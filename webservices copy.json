@@ -1,0 +1,644 @@
+{
+    "swagger": "3.0",
+    "info": {
+        "description": "LocalHost Webservices",
+        "version": "1.0.0",
+        "title": "LocalHost",
+        "termsOfService": ""
+
+    },
+    "host": "",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Authorization Services"
+        },
+        {
+            "name": "User",
+            "description": "List Services"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/user-sign-up": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Auth login",
+                "description": "Register User",
+                "operationId": "RegisterUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "full_name",
+                        "in": "formData",
+                        "description": "Full Name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_id",
+                        "in": "formData",
+                        "description": "Department Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_token",
+                        "in": "formData",
+                        "description": "Device Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_type",
+                        "in": "formData",
+                        "description": "Device Type",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "profile_picture",
+                        "in": "formData",
+                        "description": "Profile Picture",
+                        "required": false,
+                        "type": "file"
+                    },
+                    {
+                        "name": "home_address",
+                        "in": "formData",
+                        "description": "Home Address",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "home_city",
+                        "in": "formData",
+                        "description": "Home City",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "home_lat",
+                        "in": "formData",
+                        "description": "Home Latitude",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "home_lng",
+                        "in": "formData",
+                        "description": "Home Longitude",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "office_address",
+                        "in": "formData",
+                        "description": "Office Address",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "office_city",
+                        "in": "formData",
+                        "description": "Office City",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "office_lat",
+                        "in": "formData",
+                        "description": "Office Latitude",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "office_lng",
+                        "in": "formData",
+                        "description": "Office Longitude",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance-login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Auth login",
+                "description": "User Login",
+                "operationId": "UserLogin",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_token",
+                        "in": "formData",
+                        "description": "Device Token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "device_type",
+                        "in": "formData",
+                        "description": "Device Type",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/auth-logout": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Attendance Logout",
+                "description": "Attendance Logout",
+                "operationId": "AttendanceLogout",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/forgot-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forgot Password",
+                "description": "Forgot Password",
+                "operationId": "ForgotPassword",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Attendance User Account ",
+                "description": "Attendance User Account",
+                "operationId": "AttendanceUserAccount",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/user/update": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Update Attendance User",
+                "description": "Update Attendance User",
+                "operationId": "updateAttendanceUser",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "full_name",
+                        "in": "formData",
+                        "description": "Full Name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "Phone e.g. (202) 564-3546",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "profile_picture",
+                        "in": "formData",
+                        "description": "Profile Picture",
+                        "required": false,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/change-password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Attendance Change Password",
+                "description": "Attendance Change Password",
+                "operationId": "AttendanceChangePassword",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "current_password",
+                        "in": "formData",
+                        "description": "Current Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_password",
+                        "in": "formData",
+                        "description": "New Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_password_confirmation",
+                        "in": "formData",
+                        "description": "New Password Confirmation",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/page": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "About Me",
+                "description": "About Me",
+                "operationId": "AboutMe",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "description": "Slug",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/department": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Department",
+                "description": "Department",
+                "operationId": "Department",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page",
+                        "required": false,
+                        "type": "string",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "required": false,
+                        "type": "string",
+                        "default": 20
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/attendance/mark": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": " Attendance  Mark",
+                "description": "Attendance  Mark",
+                "operationId": "AttendanceMark",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "(check in = 1, check out = 2 )",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "checkin_note",
+                        "in": "formData",
+                        "description": "Your note here",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "checkout_note",
+                        "in": "formData",
+                        "description": "Your note here",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/user-audit": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "User Audit",
+                "description": "User Audit",
+                "operationId": "UserAudit",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "Date eg. 2021-01-23",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "time",
+                        "in": "formData",
+                        "description": "Time eg. 01:30:10",
+                        "required": true,
+                        "type": "string"
+                    },
+
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "(check in = 1, check out = 2 )",
+                        "required": true,
+                        "type": "integer"
+                    }
+
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+
+
+        "/attendance/list": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Attendance List",
+                "description": "Attendance List",
+                "operationId": "AttendanceList",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page",
+                        "required": false,
+                        "type": "string",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "required": false,
+                        "type": "string",
+                        "default": 20
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start Date e.g 2021-03-04 19:00:00",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End Date e.g 2021-03-05 18:59:59",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+
+                }
+            }
+        },
+        "/attendance/user-attendance": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "User Attendance",
+                "description": "User Attendance",
+                "operationId": "UserAttendance",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+
+                }
+            }
+        }
+
+    }
+}
