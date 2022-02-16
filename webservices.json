@@ -54,7 +54,7 @@
                         "name": "last_name",
                         "in": "formData",
                         "description": "Last Name",
-                        "required": true,
+                        "required": false,
                         "type": "string"
                     },
                     {
@@ -68,7 +68,7 @@
                         "name": "phone",
                         "in": "formData",
                         "description": "Phone",
-                        "required": true,
+                        "required": false,
                         "type": "string"
                     },
                     {

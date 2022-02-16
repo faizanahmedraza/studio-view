@@ -44,10 +44,10 @@ class AuthApiController extends ApiBaseController
         try {
             $userRecord = [
                 'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
+                'last_name' => $data['last_name'] ?? '',
                 'password' => bcrypt($data['password']),
                 'email' => $data['email'],
-                'phone' => $data['phone'],
+                'phone' => $data['phone'] ?? '',
                 'email_verified' => 1,
                 'is_active' => 1,
                 'is_verified' => 1,
