@@ -20,7 +20,7 @@
         }
     ],
     "schemes": [
-        "https",
+        "http",
         "https"
     ],
     "securityDefinitions": {
