@@ -32,9 +32,9 @@ class StoreUserRequest extends Request
     {
         return [
             'first_name'        => 'required|max:32',
-            'last_name'         => 'required|max:32',
+            'last_name'         => 'nullable|max:32',
             'email'      => 'required|email|max:255|unique:users,email,NULL,id,deleted_at,NULL,role_id,1',
-            'phone'             => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'phone'             => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'password'          => 'required|min:6|max:30',
             // 'confirm_password'  => 'required|string|min:6|same:password|max:30',
             'device_token'          => 'required',
