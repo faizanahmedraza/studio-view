@@ -13,6 +13,7 @@
         "baopham/dynamodb": "^6.0",
         "darkaonline/l5-swagger": "^6.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "doctrine/dbal": "^3.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "^6.2",

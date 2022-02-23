@@ -16,7 +16,7 @@
         },
         {
             "name": "Customer",
-            "description": "List Services"
+            "description": "Customer Services"
         }
     ],
     "schemes": [
@@ -156,6 +156,90 @@
                 }
             }
         },
+        "/login-fb":
+        {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login with FB",
+                "description": "Login with FB",
+                "operationId": "Login with FB",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "loginFb",
+                        "in": "body",
+                        "description": "login_fb",
+                        "required": false,
+                        "example":{
+                            "providerData":{
+                                 "displayName": "name",
+                                 "email": "email",
+                                 "phoneNumber": "21321312",
+                                 "photoURL": "https://graph.facebook.com/213123/picture",
+                                 "providerId": "facebook.com",
+                                 "uid": "213123"
+                             },
+                            "accessToken":"EAAODdsadsad332edscxzewdwydmNBfgBAGS7hZCfYgU6YICtuL7HengZAexFvDeea0JPSi1hnwVzpsFIZBm4qBSIMgrGsZAfjcDiZAWsgRjqHjGySGTZBUaMMJ0qIZBpQyG8HZCOPRoM7KJpJbFvZB3RDmIMn1WScacp6qdcFB1uKh0ZAdi2aiNwCMgZBSElX5AducTI5FGmg2HyPC4HiVRjmRNMyNajZAMo7LCcPf51ddpD8287T2NvldCbfzGHjtranUB112pDl5Gt",
+                            "device_token":"213ewssads2a",
+                            "device_type":"ios"
+                          },
+                        "schema":"",
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/login-google":
+        {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login with Google",
+                "description": "Login with Google",
+                "operationId": "Login with Google",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "loginGoogle",
+                        "in": "body",
+                        "description": "login_google",
+                        "required": false,
+                        "example":{
+                            "providerData":{
+                                 "displayName": "Name",
+                                 "email": "email",
+                                 "phoneNumber": "",
+                                 "photoURL": "https://lh3.googleusercontent.com/a/AATXAJyLFxnBJq7B50hzN42_tSG5c_sadsadsadsadsay5jsOB8JPgcSPM=s96-c",
+                                 "providerId":  "google.com",
+                                 "uid": "113047526299287012031"
+                             },
+                            "idToken":"eyJhbGciOiJSUzI1NiIsImtpZdsasadsadsadsadsadsadsadsCI6ImFjYjZiZTUxZWZlYTZhNDE5ZWM5MzI1ZmVhYTFlYzQ2NjBmNWIzN2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEzMDQ3NTI2Mjk5Mjg3MDEyMDMxIiwiZW1haWwiOiJzYWFzZmEuZW1haWxAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfTWZiT3J3ZTlkQTY3SWFhY2pSM3d3IiwiaWF0IjoxNjQ1NTk5NTc1LCJleHAiOjE2NDU2MDMxNzV9.lmfPHkle9tvIiMx_-CumdbbhBHenmknlTPiOvGKin9VG1sS_LIcwdJ8tugR4PegxQ6LPdaqVNkMa-ofYkmPI-n20V4G9dFAmRshbBuLKXgOrsUdloId_Pg0H0qgYd5orotZ9iJVDQWMS6Tim1ZnjTmyWxrJvALC_gHr5vr-RPKA2Q73OKQlfUphUmsFQO1ZaXjoPWIX5YJ0tocXJRLRYUvYCSV4668ZpFMZP1dUY_25Cpg67nthFQSYoY-VMCYjsBkHXdip_mZv1JABRJlvzVVwFaRyvErCsiL_pYcMM75rZSj2UZxqYhBwikoa46SF9xV78Du6OlPfls50XAqtsnA",
+                            "device_token":"213ewssads2a",
+                            "device_type":"android"
+                          },
+                        "schema":"",
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/logout": {
             "delete": {
                 "tags": [
@@ -198,6 +282,132 @@
                         "name": "email",
                         "in": "formData",
                         "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/customer": {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Customer Profile",
+                "description": "Customer Profile",
+                "operationId": "CustomerProfile",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/customer/update": {
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Customer Profile Update",
+                "description": "Customer Profile Update",
+                "operationId": "CustomerProfileUpdate",
+                "produces": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "full_name",
+                        "in": "formData",
+                        "description": "Full Name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "Phone",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "profile_picture",
+                        "in": "formData",
+                        "description": "Profile Picture in base64 (eg. data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCE........)",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/customer/change-password": {
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Customer Change Password",
+                "description": "Customer Change Password",
+                "operationId": "CustomerChangePassword",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "current_password",
+                        "in": "formData",
+                        "description": "Current Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_password",
+                        "in": "formData",
+                        "description": "New Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_password_confirmation",
+                        "in": "formData",
+                        "description": "New Password Confirmation",
                         "required": true,
                         "type": "string"
                     }

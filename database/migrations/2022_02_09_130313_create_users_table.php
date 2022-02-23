@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('phone')->nullable();
             $table->integer('email_verified')->default(1);
             $table->integer('sms_verified')->default(1);
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('is_admin')->default(0);
             $table->string('address')->nullable();
             $table->string('remember_token')->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->text('profile_picture')->nullable();
             $table->string('email_verified_at')->nullable();
             // $table->tinyInteger('status')->default('1');
             $table->softDeletes();

@@ -35,12 +35,14 @@ class NewUserResource extends JsonResource
             // 'role_id' => $this->role_id,
             // 'email_verified' => $this->email_verified,
             // 'sms_verified' => $this->sms_verified,
-            'is_verified' => $this->is_verified,
-            'is_unblock' => $this->is_unblock,
+            // 'is_verified' => $this->is_verified,
+            // 'is_unblock' => $this->is_unblock,
             // 'is_notification' => $this->is_notification,
             'is_active' => $this->is_active,
             'profile_picture' => $this->profile_picture,
-            'email_verified_at' => $this->email_verified_at ?? '',
+            'is_fb' => $this->is_fb,
+            'is_google' => $this->is_google,
+            // 'email_verified_at' => $this->email_verified_at ?? '',
             '_token' => $this->_token,
 
         ];

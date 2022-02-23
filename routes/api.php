@@ -11,6 +11,10 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::post('sign-up', 'AuthApiController@userRegister')->name('user-sign-up');
     Route::post('login', 'AuthApiController@userLogin')->name('user-login');
     Route::post('forgot-password', 'AuthApiController@ForgotPassword')->name('Forgot-Password');
+    Route::post('login-fb', 'AuthApiController@userLoginFb')->name('user-login');
+    Route::post('login-google', 'AuthApiController@userLoginGoogle')->name('user-login');
+    // Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
+
 
     Route::group(['middleware' => 'jwt-auth'], function () {
 
@@ -21,9 +25,9 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::delete('logout', 'AuthApiController@logout')->name('user-logout');
 
 
-        // Route::get('attendance/user', 'AttendanceUserController@attendanceMe')->name('attendance-user');
-        // Route::post('attendance/user/update', 'AttendanceUserController@attendanceUpdate')->name('attendance-update');
-        // Route::post('attendance/change-password', 'AttendanceUserController@changePassword')->name('attendance-change-Password');
+        Route::get('customer', 'UserController@getCustomer')->name('get-customer');
+        Route::put('customer/update', 'UserController@customerUpdate')->name('customer-update');
+        Route::put('customer/change-password', 'UserController@changePassword')->name('customer-change-Password');
 
 
 

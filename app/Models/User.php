@@ -19,6 +19,7 @@ class User extends Authenticatable implements UserInterface, JWTSubject
     // for admin
     public const ROLE_ID = '2';
     public const ROLE_TYPE = '1';
+    // for user role id  1 and role type null
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +31,7 @@ class User extends Authenticatable implements UserInterface, JWTSubject
         'password', 'phone', 'email_verified', 'sms_verified', 'is_verified', 'department_id',
         'is_unblock', 'is_notification', 'is_active', 'address',
         'is_admin', 'device_type', 'device_token',
-        'remember_token', 'profile_picture', 'email_verified_at','is_home','is_office'
+        'remember_token', 'profile_picture', 'email_verified_at','is_home','is_office','is_fb','is_google','is_icloud'
     ];
 
     /**
