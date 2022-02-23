@@ -250,9 +250,9 @@
                         "Bearer": []
                     }
                 ],
-                "summary": "Attendance Logout",
-                "description": "Attendance Logout",
-                "operationId": "AttendanceLogout",
+                "summary": "User Logout",
+                "description": "User Logout",
+                "operationId": "UserLogout",
                 "produces": [
                     "application/json"
                 ],
