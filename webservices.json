@@ -250,9 +250,9 @@
                         "Bearer": []
                     }
                 ],
-                "summary": "User Logout",
-                "description": "User Logout",
-                "operationId": "UserLogout",
+                "summary": "Logout",
+                "description": "Logout",
+                "operationId": "Logout",
                 "produces": [
                     "application/json"
                 ],
