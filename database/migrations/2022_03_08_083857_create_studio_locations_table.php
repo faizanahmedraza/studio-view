@@ -16,7 +16,7 @@ class CreateStudioLocationsTable extends Migration
         Schema::create('studio_locations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('studio_id');
-            $table->string('address');
+            $table->text('address');
             $table->string('lat');
             $table->string('lng');
             $table->text('additional_details')->nullable();

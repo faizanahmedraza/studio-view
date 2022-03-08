@@ -25,5 +25,7 @@ class ModelServiceProvider extends ServiceProvider
         $this->app->bind('App\Models\Interfaces\RoleInterface', 'App\Models\Roles');
         $this->app->bind('App\Models\Interfaces\PermissionsInterface', 'App\Models\Permissions');
         $this->app->bind('App\Models\Interfaces\PagesInterface', 'App\Models\Pages');
+        $this->app->bind('App\Models\Interfaces\StudioInterface', 'App\Models\Studio');
+
     }
 }

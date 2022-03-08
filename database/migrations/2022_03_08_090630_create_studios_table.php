@@ -20,7 +20,7 @@ class CreateStudiosTable extends Migration
             $table->text('detail')->nullable();
             $table->integer('minimum_booking_hr')->nullable();
             $table->integer('max_occupancy_people')->nullable();
-            $table->integer('studio_hr_status')->nullable();
+            $table->integer('hours_status')->nullable();
             $table->string('hrs_from')->nullable();
             $table->string('hrs_to')->nullable();
             $table->integer('adv_booking_time_id')->nullable();

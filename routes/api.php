@@ -19,19 +19,16 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::group(['middleware' => 'jwt-auth'], function () {
 
         ###Page###
-        Route::get('page', 'AttendanceUserController@getPage')->name('getPage');
+        // Route::get('page', 'UserController@getPage')->name('getPage');
 
         ###User###
         Route::delete('logout', 'AuthApiController@logout')->name('user-logout');
-
-
         Route::get('customer', 'UserController@getCustomer')->name('get-customer');
         Route::put('customer/update', 'UserController@customerUpdate')->name('customer-update');
         Route::put('customer/change-password', 'UserController@changePassword')->name('customer-change-Password');
 
-
-
-
+        ###Studio###
+        Route::resource('studio', 'StudioController');
 
     });
 });
