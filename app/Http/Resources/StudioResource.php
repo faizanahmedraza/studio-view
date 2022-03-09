@@ -38,7 +38,11 @@ class StudioResource extends JsonResource
             'main_equipment' => $this->main_equipment ?? '',
             'rules' => $this->rules ?? '',
             'cancelation_policy' => $this->cancelation_policy ?? '',
-            'status' => $this->status ?? '',
+            'location'=>new StudioLocationResource($this->getLocation),
+            'price'=>new StudioPriceResource($this->getPrice),
+            'types'=> StudioTypeResource::collection($this->getStudioTypes),
+            'images'=> StudioImageResource::collection($this->getImages),
+            'status' => $this->status ?true :false ,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];

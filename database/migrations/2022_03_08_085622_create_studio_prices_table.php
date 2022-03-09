@@ -18,11 +18,11 @@ class CreateStudioPricesTable extends Migration
             $table->integer('studio_id');
             $table->double('hourly_rate');
             $table->boolean('audio_eng_included')->default(false);
-            $table->float('discount')->default(0);
-            $table->double('audio_eng_rate_hr')->default(0);
+            $table->float('discount')->nullable();
+            $table->double('audio_eng_rate_hr')->nullable();
             $table->boolean('audio_eng_discount')->default(false);
-            $table->double('other_fees')->default(0);
-            $table->double('mixing_services')->default(0);
+            $table->double('other_fees')->nullable();
+            $table->double('mixing_services')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

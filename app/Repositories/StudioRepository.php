@@ -55,4 +55,14 @@ class StudioRepository implements StudioRepositoryInterface
         $this->model::where('id', $id)->delete();
     }
 
+    public function getUserActiveStudios($userId)
+    {
+        return $this->model->where('user_id', $userId)->where('status', 1)->orderBy('created_at')->get();
+    }
+
+    public function getUserPendingStudios($userId)
+    {
+        return $this->model->where('user_id', $userId)->where('status', 0)->orderBy('created_at')->get();
+    }
+
 }

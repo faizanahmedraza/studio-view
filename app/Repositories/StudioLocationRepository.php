@@ -50,6 +50,9 @@ class StudioLocationRepository implements StudioLocationRepositoryInterface
     {
         $this->model::where('id', $id)->delete();
     }
-
+    public function updateByStudioId($id, array $data)
+    {
+        $this->model::where('studio_id', $id)->update($data);
+    }
 
 }

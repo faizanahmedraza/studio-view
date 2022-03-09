@@ -34,10 +34,31 @@ class Studio extends Model  implements StudioInterface
     }
     public function getTypes()
     {
-        return $this->belongsToMany(StudioType::class,'studio_types', 'studio_id', 'id');
+        return $this->belongsToMany(Type::class,'studio_types')->orderBy('id');
+    }
+    public function getStudioTypes()
+    {
+        return $this->hasMany(StudioType::class,'studio_id', 'id');
     }
     public function getImages()
     {
-        return $this->hasMany(StudioImage::class, 'studio_id', 'id');
+        return $this->hasMany(StudioImage::class, 'studio_id', 'id')->orderBy('id');
     }
+    public function deleteStudio()
+    {
+        $this->getLocation()->delete();
+        $this->getPrice()->delete();
+        $this->getStudioTypes()->delete();
+        $this->getImages()->delete();
+        $this->delete();
+    }
+    public function deleteTypes()
+    {
+        $this->getStudioTypes()->delete();
+    }
+    public function deleteImages()
+    {
+        $this->getImages()->delete();
+    }
+
 }

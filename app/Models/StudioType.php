@@ -19,5 +19,14 @@ class StudioType extends Model implements StudioTypeInterface
     protected $guarded = [
     ];
 
+    public function getType()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
+    public function getStudio()
+    {
+        return $this->belongsTo(Studio::class, 'studio_id');
+    }
+
 }
 

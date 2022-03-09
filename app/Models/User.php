@@ -234,10 +234,7 @@ class User extends Authenticatable implements UserInterface, JWTSubject
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function department()
-    {
-        return $this->belongsTo(Departments::class, 'department_id');
-    }
+
 
 
     public function deactivate()
@@ -312,27 +309,7 @@ class User extends Authenticatable implements UserInterface, JWTSubject
     {
         return $this->hasMany(UserDevice::class);
     }
-    public function userWorkingDay()
-    {
-        return $this->hasOne(UserWorkingDay::class, 'user_id', 'id')->whereNull('deleted_at');
-    }
-    public function userApplyLeave()
-    {
-        return $this->hasMany(ApplyLeave::class, 'user_id', 'id')->whereNull('deleted_at');
-    }
 
-    public function userLocation()
-    {
-        return $this->hasMany(UserLocation::class, 'user_id', 'id')->whereNull('deleted_at');
-    }
-    public function userLocationHome()
-    {
-        return $this->hasOne(UserLocation::class, 'user_id', 'id')->whereNull('deleted_at')->where('type','home');
-    }
-    public function userLocationOffice()
-    {
-        return $this->hasOne(UserLocation::class, 'user_id', 'id')->whereNull('deleted_at')->where('type','office');
-    }
 
 
 }
