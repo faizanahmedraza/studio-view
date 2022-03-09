@@ -28,7 +28,7 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::put('customer/change-password', 'UserController@changePassword')->name('customer-change-Password');
 
         ###Studio###
-        Route::resource('studio', 'StudioController');
+        Route::resource('studios', 'StudioController');
 
     });
 });

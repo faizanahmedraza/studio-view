@@ -2,23 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Interfaces\StudioInterface;
-use App\Models\Studio;
-use App\Repositories\Interfaces\StudioRepositoryInterface;
-use App\Models\StudioType;
-use App\Models\StudioLocation;
-use App\Models\StudioPrice;
-use App\Models\StudioImage;
+use App\Models\Interfaces\StudioImageInterface;
+use App\Repositories\Interfaces\StudioImageRepositoryInterface;
+
 
 /**
- * Class StudioRepository
+ * Class StudioImageRepository
  *
  */
-class StudioRepository implements StudioRepositoryInterface
+class StudioImageRepository implements StudioImageRepositoryInterface
 {
     private $model;
 
-    public function __construct(StudioInterface $model)
+    public function __construct(StudioImageInterface $model)
     {
         $this->model = $model;
     }
@@ -55,4 +51,21 @@ class StudioRepository implements StudioRepositoryInterface
         $this->model::where('id', $id)->delete();
     }
 
+
+    public function addImages($images=[],$studioId)
+    {
+        $data=[];
+        foreach ($images as $image) {
+            $data[]=[
+                'studio_id'=>$studioId,
+                'image_url'=>$image,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s'),
+            ];
+
+        }
+        if(count($data) > 0){
+            $this->model::insert($data);
+        }
+    }
 }

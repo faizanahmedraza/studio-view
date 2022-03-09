@@ -46,6 +46,7 @@ function backendUserFile()
 }
 
 
+
 /**
  * user upload file get path
  */
@@ -106,4 +107,36 @@ function defaultStoreCoverUrl()
 function getFileExtension($filename, $offset = 3)
 {
     return substr(strtolower($filename), strlen($filename) - $offset, $offset);
+}
+
+/**
+ * studios upload file save path
+ */
+function backendStudioFile()
+{
+    return 'backends/studios/';
+}
+
+/**
+ * upload Studio image base64
+ */
+function uploadImageStudio($base64Image,$studioName)
+{
+        $slug = \Str::slug(trim($studioName), '-');
+
+        $image = $base64Image;  // your base64 encoded
+
+        $image_parts = explode(";base64,", $image);
+
+        $image_type_aux = explode("image/", $image_parts[0]);
+
+        $image_type = $image_type_aux[1];
+
+        $image_base64 = base64_decode($image_parts[1]);
+
+        $file = backendStudioFile() . $slug . '-' . time(). '-' . uniqid() . '.'.$image_type;
+
+        file_put_contents($file, $image_base64);
+
+        return url($file);
 }

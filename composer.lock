@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "919869798916a0739590be180c752818",
+    "content-hash": "c26d96380a51fb4dd1b6d92853808d83",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1612,6 +1612,51 @@
                 }
             ],
             "time": "2021-10-05T13:56:00+00:00"
+        },
+        {
+            "name": "harishpatel143/laravel-base64-validation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/harishpatel143/laravel-base64-validation.git",
+                "reference": "aceed871f0825035c7677fe55841c22d28d5f395"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/harishpatel143/laravel-base64-validation/zipball/aceed871f0825035c7677fe55841c22d28d5f395",
+                "reference": "aceed871f0825035c7677fe55841c22d28d5f395",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Harishpatel143\\Base64Validation\\Providers\\Base64ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Harishpatel143\\Base64Validation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Harish Patel",
+                    "email": "harishdpatel143@gmail.com"
+                }
+            ],
+            "description": "This package use for validate the image upload by base64 encoded.",
+            "support": {
+                "issues": "https://github.com/harishpatel143/laravel-base64-validation/issues",
+                "source": "https://github.com/harishpatel143/laravel-base64-validation/tree/master"
+            },
+            "time": "2019-01-17T10:58:09+00:00"
         },
         {
             "name": "laravel/framework",
@@ -9472,7 +9517,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "harishpatel143/laravel-base64-validation": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

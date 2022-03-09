@@ -2,23 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Interfaces\StudioInterface;
-use App\Models\Studio;
-use App\Repositories\Interfaces\StudioRepositoryInterface;
-use App\Models\StudioType;
-use App\Models\StudioLocation;
-use App\Models\StudioPrice;
-use App\Models\StudioImage;
+use App\Models\Interfaces\StudioLocationInterface;
+use App\Repositories\Interfaces\StudioLocationRepositoryInterface;
+
 
 /**
- * Class StudioRepository
+ * Class StudioLocationRepository
  *
  */
-class StudioRepository implements StudioRepositoryInterface
+class StudioLocationRepository implements StudioLocationRepositoryInterface
 {
     private $model;
 
-    public function __construct(StudioInterface $model)
+    public function __construct(StudioLocationInterface $model)
     {
         $this->model = $model;
     }
@@ -54,5 +50,6 @@ class StudioRepository implements StudioRepositoryInterface
     {
         $this->model::where('id', $id)->delete();
     }
+
 
 }
