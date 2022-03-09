@@ -659,6 +659,60 @@
                     }
                 }
             }
+        },
+        "/types-list":
+        {
+            "get": {
+                "tags": [
+                    "Studio"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Types List",
+                "description": "Types List",
+                "operationId": "TypesList",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/advance-booking-list":
+        {
+            "get": {
+                "tags": [
+                    "Studio"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Advance Booking List",
+                "description": "Advance Booking List",
+                "operationId": "AdvanceBookingList",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
         }
 
 

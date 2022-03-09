@@ -27,6 +27,12 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::put('customer/update', 'UserController@customerUpdate')->name('customer-update');
         Route::put('customer/change-password', 'UserController@changePassword')->name('customer-change-Password');
 
+        ###Advance booking time###
+        Route::get('advance-booking-list', 'BookingTimeController@index');
+
+        ###Types###
+        Route::get('types-list', 'TypeController@index');
+
         ###Studio###
         Route::get('studios/list', 'StudioController@index');
         Route::resource('studios', 'StudioController');
