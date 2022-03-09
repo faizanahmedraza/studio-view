@@ -78,6 +78,22 @@ class AdminMenu
                         // ->addIf(can_access_route('new-request.index', $userPermissoins),
                         //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
                 )
+                ->submenuIf(true, '
+                    <a href="javascript:;">
+                        <i class="fa fa-music"></i>
+                        <span class="title">Studios</span>
+                        <span class="arrow open"></span>
+                    </a>
+                    ',
+                    Menu::new()
+                        ->addClass('sub-menu')
+                        ->addIf(can_access_route('studio.index', $userPermissoins),
+                            Link::toRoute('studio.index', '<span class="title">Studio List</span>'))
+                        ->addIf(can_access_route('studio.pending.index', $userPermissoins),
+                            Link::toRoute('studio.pending.index', '<span class="title">Studio Pending List</span>'))
+                        // ->addIf(can_access_route('new-request.index', $userPermissoins),
+                        //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
+                )
                 // ->submenuIf(can_access_route(['attendance.index','attendance.addAttendance'], $userPermissoins), '
                 //     <a href="javascript:;">
                 //         <i class="fa fa-clock-o"></i>

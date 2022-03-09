@@ -88,6 +88,13 @@ Route::group(['middleware' => 'backendAuthenticate'], function () {
         Route::get('users/block/{record}', 'CustomerController@block')->name('users.block');
 
 
+        ###studio routes###
+        Route::get('studios', 'StudioController@index')->name('studio.index');
+        Route::get('studios/list/data', 'StudioController@studiosList')->name('studios.list.data');
+        Route::get('studios-pending', 'StudioController@indexPending')->name('studio.pending.index');
+        Route::get('studios/list-pending/data', 'StudioController@studiosListPending')->name('studios.pending.list.data');
+        Route::get('studio/toggle-status/{studio}', 'StudioController@toggleStatus')->name('studio.toggle.status');
+
 
 
         ### pages###

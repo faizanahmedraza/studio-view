@@ -71,6 +71,20 @@ Breadcrumbs::for ('users.change-password', function ($breadcrumbs) {
     $breadcrumbs->push('Change Password', route('users.change-password'));
 });
 
+/*
+|--------------------------------------------------------------------------
+| Studio
+|--------------------------------------------------------------------------
+*/
+Breadcrumbs::for ('studio.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Change Password', route('studio.index'));
+});
+Breadcrumbs::for ('studio.pending.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Change Password', route('studio.pending.index'));
+});
+
 
 /*
 |--------------------------------------------------------------------------

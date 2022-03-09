@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Studio;
 
 class DashboardController extends Controller
 {
@@ -25,8 +26,9 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::where(['is_verified' => 1])->where('role_id', '=', 1)->get()->count();
+        $studios = Studio::where(['status' => 0])->get()->count();
         $newRequest = User::where(['is_verified' => 0])->get()->count();
-        return view('admin.dashboard.index', compact('users', 'newRequest'));
+        return view('admin.dashboard.index', compact('users', 'newRequest','studios'));
 
     }
 }

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('phone')->nullable();
             $table->integer('email_verified')->default(1);
-            $table->integer('sms_verified')->default(1);
+            $table->integer('sms_verified')->default(0);
             $table->integer('is_verified')->default(1);
             $table->integer('is_unblock')->default(1);
             $table->integer('is_notification')->default(1);
