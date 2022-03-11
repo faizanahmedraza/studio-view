@@ -35,6 +35,7 @@ class UserResource extends JsonResource
             'full_name' => $this->getFullname(),
             'phone' => $this->phone,
             'email' => $this->email,
+            'sms_verified' => $this->sms_verified,
             // 'is_unblock' => $this->is_unblock,
             'is_active' => $this->is_active,
             'profile_picture' => $this->profile_picture,

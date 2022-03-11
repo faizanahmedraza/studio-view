@@ -34,7 +34,7 @@ class NewUserResource extends JsonResource
             'email' => $this->email,
             // 'role_id' => $this->role_id,
             // 'email_verified' => $this->email_verified,
-            // 'sms_verified' => $this->sms_verified,
+            'sms_verified' => $this->sms_verified,
             // 'is_verified' => $this->is_verified,
             // 'is_unblock' => $this->is_unblock,
             // 'is_notification' => $this->is_notification,

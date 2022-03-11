@@ -75,8 +75,13 @@ class UserController extends ApiBaseController
             $updateData = [
                 'first_name' => ucwords(trim($data['full_name'])),
                 'email' => $data['email'],
-				'phone' => $data['phone'],
+				// 'phone' => $data['phone'],
             ];
+            if(isset($data['phone']) && $user->phone != $data['phone']){
+                $updateData['phone']=$data['phone'];
+                $user->sms_verified=0;
+                $user->save();
+            }
             if($user->is_fb==1 || $user->is_google==1){
                 unset($updateData['email']);
             }
@@ -84,42 +89,22 @@ class UserController extends ApiBaseController
 
                 //move | upload file on server
                 $slug = Str::slug(trim($data['full_name']), '-');
-                // $file = $request->file('profile_picture');
-                // $extension = $file->getClientOriginalExtension(); // getting image extension
-                // $filename = $slug . '-' . time() . '.' . $extension;
-                // $filename = $slug . '-' . time() . '.jpg';
-                // $file->move(backendUserFile(), $filename);
-                // $updateData['profile_picture'] = url(backendUserFile() . $filename);
 
                 $image = $request->profile_picture;  // your base64 encoded
 
                 $image_parts = explode(";base64,", $image);
 
-                    $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type_aux = explode("image/", $image_parts[0]);
 
-                    $image_type = $image_type_aux[1];
+                $image_type = $image_type_aux[1];
 
-                    $image_base64 = base64_decode($image_parts[1]);
+                $image_base64 = base64_decode($image_parts[1]);
 
-                    $file = backendUserFile() . $slug . '-' . time(). '-' . uniqid() . '.'.$image_type;
+                $file = backendUserFile() . $slug . '-' . time(). '-' . uniqid() . '.'.$image_type;
 
-                    file_put_contents($file, $image_base64);
-                    // $file->move(backendUserFile(), $filename);
+                file_put_contents($file, $image_base64);
+                // $file->move(backendUserFile(), $filename);
 
-                 // for ext
-                //  $ext = explode(';base64',$image);
-                //  $ext = explode('/',$ext[0]);
-                //  $ext = $ext[1];
-
-                //  $filename = $slug . '-' . time() . '.' . $ext;
-                // // dd($filename);
-                // $image = str_replace('data:image/png;base64,', '', $image);
-                // $image = str_replace(' ', '+', $image);
-                // // $imageName = str_random(10).'.'.'png';
-
-                // $folderPath = "images/";
-
-                // \File::put(backendUserFile() . $filename, base64_decode($image));
                 $updateData['profile_picture'] = url($file);
 
             }

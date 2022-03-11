@@ -37,6 +37,11 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('studios/list', 'StudioController@index');
         Route::resource('studios', 'StudioController');
 
+         ###Studio###
+         Route::get('send-verification-sms', 'SMSController@sendSms');
+         Route::post('verify-sms-code', 'SMSController@verifySmsCode');
+
+
     });
 });
 

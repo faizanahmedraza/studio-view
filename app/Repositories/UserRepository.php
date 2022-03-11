@@ -53,6 +53,6 @@ class UserRepository implements UserRepositoryInterface
 
     public function updateSmsVerification($email)
     {
-        User::where('email', $email)->update(['email_verified' => 1, 'is_active' => 1]);
+        User::where('email', $email)->update(['sms_verified' => 1]);
     }
 }

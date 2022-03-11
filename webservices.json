@@ -713,6 +713,67 @@
                     }
                 }
             }
+        },
+        "/send-verification-sms":
+        {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Send Verification Sms",
+                "description": "Send Verification Sms",
+                "operationId": "SendVerificationSms",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+        ,
+        "/verify-sms-code":
+        {
+            "post": {
+                "tags": [
+                    "Customer"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Verify Sms",
+                "description": "Verify Sms",
+                "operationId": "VerifySms",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "formData",
+                        "description": "sms code e.g. 12345",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
         }
 
 
