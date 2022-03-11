@@ -237,5 +237,28 @@ class StudioController extends ApiBaseController
         return RestAPI::response(new stdClass(), true, 'Studio Deleted Successfully');
     }
 
+    public function search(Request $request)
+    {
+        $this->validate($request,[
+            'address'=>'required|string',
+        ]);
+        DB::beginTransaction();
+        try {
+            $data= $request->all();
+            $studioLocations=$this->studioLocationRepository->findBy('address',$data['address']);
+            $studioLocations = $studioLocations->pluck('studio_id');
+            $studioLocations =  $studioLocations->toArray();
+            $allStudios=$this->studioRepository->findByIn('id',$studioLocations);
+            $allStudios = $allStudios->where('status', 1);
+            $allStudios->all();
+            $response=StudioListResource::collection($allStudios);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response($response, true, 'Studio List');
+    }
+
 
 }

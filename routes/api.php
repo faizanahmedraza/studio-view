@@ -15,6 +15,9 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::post('login-google', 'AuthApiController@userLoginGoogle')->name('user-login');
     // Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
 
+    // get all studios by location search
+    Route::get('studios/search', 'StudioController@search');
+
 
     Route::group(['middleware' => 'jwt-auth'], function () {
 

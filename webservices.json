@@ -21,6 +21,10 @@
         {
             "name": "Studio",
             "description": "Studio Services"
+        },
+        {
+            "name": "Other",
+            "description": "Studio Services"
         }
     ],
     "schemes": [
@@ -644,9 +648,9 @@
                         "Bearer": []
                     }
                 ],
-                "summary": "Studio List",
-                "description": "Studio List",
-                "operationId": "StudioList",
+                "summary": "My Studio List",
+                "description": "My Studio List",
+                "operationId": "MyStudioList",
                 "produces": [
                     "application/json"
                 ],
@@ -664,7 +668,7 @@
         {
             "get": {
                 "tags": [
-                    "Studio"
+                    "Other"
                 ],
                 "security": [
                     {
@@ -691,7 +695,7 @@
         {
             "get": {
                 "tags": [
-                    "Studio"
+                    "Other"
                 ],
                 "security": [
                     {
@@ -766,6 +770,34 @@
                         "description": "sms code e.g. 12345",
                         "required": true,
                         "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/studios/search":
+        {
+            "get": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Studio Search",
+                "description": "Studio Search",
+                "operationId": "StudioSearch",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "address",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {

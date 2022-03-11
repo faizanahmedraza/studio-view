@@ -38,7 +38,7 @@ class StudioLocationRepository implements StudioLocationRepositoryInterface
 
     public function findBy($attribute, $value)
     {
-        return $this->model->where($attribute, '=', $value)->first();
+        return $this->model->where($attribute, '=', $value)->get();
     }
 
     public function update($id, array $data)
