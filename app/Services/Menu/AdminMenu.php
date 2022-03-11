@@ -66,15 +66,15 @@ class AdminMenu
                 // )
                 ->submenuIf(can_access_route(['users.index'], $userPermissoins), '
                     <a href="javascript:;">
-                        <i class="fa fa-user"></i>
-                        <span class="title">Users</span>
+                        <i class="fa fa-users"></i>
+                        <span class="title">Customers</span>
                         <span class="arrow open"></span>
                     </a>
                     ',
                     Menu::new()
                         ->addClass('sub-menu')
                         ->addIf(can_access_route('users.index', $userPermissoins),
-                            Link::toRoute('users.index', '<span class="title">Users List</span>'))
+                            Link::toRoute('users.index', '<span class="title">Customers List</span>'))
                         // ->addIf(can_access_route('new-request.index', $userPermissoins),
                         //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
                 )

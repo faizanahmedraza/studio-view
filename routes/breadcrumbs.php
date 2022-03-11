@@ -52,7 +52,7 @@ Breadcrumbs::for ('dashboard.index', function ($breadcrumbs) {
 */
 Breadcrumbs::for ('users.index', function ($breadcrumbs) {
     $breadcrumbs->parent('dashboard.index');
-    $breadcrumbs->push('Users List', route('users.index'));
+    $breadcrumbs->push('Customers List', route('users.index'));
 });
 
 Breadcrumbs::for ('users.edit', function ($breadcrumbs, $data) {

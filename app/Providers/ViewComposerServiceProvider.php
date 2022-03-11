@@ -66,14 +66,14 @@ class ViewComposerServiceProvider extends ServiceProvider
          *Users
          */
         view()->composer('admin.Customer.index', function ($view) {
-            $view->with(['pageTitle' => 'Users List']);
+            $view->with(['pageTitle' => 'Customer List']);
         });
         view()->composer('admin.Customer.edit', function ($view) {
-            $view->with(['pageTitle' => 'User Edit']);
+            $view->with(['pageTitle' => 'Customer Edit']);
         });
 
         view()->composer('admin.Customer.edit-unverified-users', function ($view) {
-            $view->with(['pageTitle' => 'User Edit']);
+            $view->with(['pageTitle' => 'Customer Edit']);
         });
 
         /**

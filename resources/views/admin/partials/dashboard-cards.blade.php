@@ -10,11 +10,11 @@
                  {{$users}}
                     </div>
                     <div class="desc">
-                        Users
+                        Customers
                     </div>
                 </div>
                 <a class="more" href="{{route('users.index')}}">
-                    See Users <i class="m-icon-swapright m-icon-white"></i>
+                    See Customers <i class="m-icon-swapright m-icon-white"></i>
                 </a>
             </div>
         </div>
