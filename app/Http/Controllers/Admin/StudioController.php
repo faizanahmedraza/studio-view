@@ -58,6 +58,7 @@ class StudioController extends Controller
     public function toggleStatus(Studio $studio)
     {
         $studio->status= $studio->status ? false : true ;
+        $studio->approved_at=  date('Y-m-d H:i:s') ;
         $studio->save();
         return redirect()->back()
         ->with('success', 'Status Changed Successfully!');
