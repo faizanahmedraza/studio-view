@@ -23,6 +23,10 @@
             "description": "Studio Services"
         },
         {
+            "name": "Studio Booking",
+            "description": "Studio Services"
+        },
+        {
             "name": "Other",
             "description": "Studio Services"
         }
@@ -806,8 +810,81 @@
                     }
                 }
             }
+        },
+        "/studio-request": {
+            "post": {
+                "tags": [
+                    "Studio Booking"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Book Studio Request",
+                "description": "Book Studio Request",
+                "operationId": "BookStudioRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "studio_id",
+                        "in": "formData",
+                        "description": "studio id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "date (format : Y-m-d)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "formData",
+                        "description": "start time (format : H:i)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "formData",
+                        "description": "end time (format : H:i)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "audio_engineer",
+                        "in": "formData",
+                        "description": "audio engineer (1 OR 0)",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "mixing_services",
+                        "in": "formData",
+                        "description": "mixing services (1 OR 0)",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "other_services",
+                        "in": "formData",
+                        "description": "other services (1 OR 0)",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
         }
-
 
 
     }

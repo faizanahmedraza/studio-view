@@ -17,7 +17,10 @@ class CreateStudioBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('studio_id');
-            $table->tinyInteger('status',4)->default(0);
+            $table->date('date');
+            $table->string('start_time');
+            $table->string('end_time');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

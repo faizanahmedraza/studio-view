@@ -60,5 +60,8 @@ class Studio extends Model  implements StudioInterface
     {
         $this->getImages()->delete();
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
