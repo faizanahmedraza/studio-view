@@ -134,9 +134,9 @@ class StudioController extends ApiBaseController
             return RestAPI::response('Unathorized Access', false, 'error_exception');
         }
 
-        if (json_last_error() != JSON_ERROR_NONE) {
-            return RestAPI::response("Json request is not valid / ".json_last_error_msg(), false, json_last_error());
-        }
+        // if (json_last_error() != JSON_ERROR_NONE) {
+        //     return RestAPI::response("Json request is not valid / ".json_last_error_msg(), false, json_last_error());
+        // }
 
         $data=$request->all();
 
