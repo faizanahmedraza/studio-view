@@ -43,5 +43,8 @@ Route::group(['prefix' => 'v1'], static function () {
 
 
     });
+
+    //public api of studios listing
+    Route::get('/studios/public/list', 'StudioController@studiosList');
 });
 

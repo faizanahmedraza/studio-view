@@ -12,6 +12,10 @@ class RestAPI
      */
     public static function response($output, $status = true, $message = '', $format = 'json')
     {
+        if ($output->links()) {
+            self::setPagination($output);
+        }
+
         $response = [
             'status' => $status ? true : false,
             'message' => $status ? $message : (is_array($output) ? implode("\n", $output) : $output),
@@ -42,7 +46,7 @@ class RestAPI
     /**
      * For Rest Api response pagination
      */
-    public static function setPagination(\Illuminate\Pagination\LengthAwarePaginator $paginator)
+    public static function setPagination($paginator)
     {
         self::$pagination = new \stdClass();
         self::$pagination->total_records = $paginator->total();

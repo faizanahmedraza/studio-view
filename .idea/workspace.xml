@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55bcc4c9-f659-4506-bd03-4b69e80884f3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/Classes/RestAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Classes/RestAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/CommonHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/CommonHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/CreateStudioRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/CreateStudioRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StudioListResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StudioListResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StudioLocationResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StudioLocationResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Studio.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Studio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StudioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StudioRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webservices.json" beforeDir="false" afterPath="$PROJECT_DIR$/webservices.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="295" column="33" lean-forward="true" selection-start-line="295" selection-start-column="33" selection-end-line="295" selection-end-column="33" />
+              <folding>
+                <element signature="e#44#51#0#PHP" expanded="true" />
+                <element signature="e#1694#2156#0#PHP" />
+                <element signature="e#2162#5775#0#PHP" />
+                <element signature="e#5780#9883#0#PHP" />
+                <element signature="e#10425#11030#0#PHP" />
+                <element signature="e#11247#13320#0#PHP" />
+                <element signature="e#11424#11957#1#PHP" />
+                <element signature="e#12007#12351#1#PHP" />
+                <element signature="e#12407#12588#1#PHP" />
+                <element signature="e#11945#12060#0#PHP" />
+                <element signature="e#12084#12250#0#PHP" />
+                <element signature="e#12191#12250#0#PHP" />
+                <element signature="e#12939#13119#0#PHP" />
+                <element signature="e#13056#13119#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/StudioListResource.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Helpers/CommonHelper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="213" column="1" selection-start-line="213" selection-start-column="1" selection-end-line="213" selection-end-column="1" />
+              <folding>
+                <element signature="e#35#352#0#PHP" />
+                <element signature="n#offerDateFormat#0;n#!!top" />
+                <element signature="n#hideChr#0;n#!!top" />
+                <element signature="n#limitText#0;n#!!top" />
+                <element signature="e#929#1109#0#PHP" />
+                <element signature="n#splitStores#0;n#!!top" />
+                <element signature="e#1185#1407#0#PHP" />
+                <element signature="e#1286#1401#0#PHP" />
+                <element signature="n#offersCountSorting#0;n#!!top" />
+                <element signature="e#1520#1733#0#PHP" />
+                <element signature="n#sideBarTopOffers#0;n#!!top" />
+                <element signature="e#1837#2031#0#PHP" />
+                <element signature="e#1875#2025#0#PHP" />
+                <element signature="n#searchDataTransformation#0;n#!!top" />
+                <element signature="e#2120#2335#0#PHP" />
+                <element signature="n#searchCatDataTransformation#0;n#!!top" />
+                <element signature="e#2427#2606#0#PHP" />
+                <element signature="n#setDiscountLabel#0;n#!!top" />
+                <element signature="e#2819#3253#0#PHP" />
+                <element signature="e#2974#3253#0#PHP" />
+                <element signature="e#3127#3247#0#PHP" />
+                <element signature="n#textToShare#0;n#!!top" />
+                <element signature="e#3484#3567#0#PHP" />
+                <element signature="n#remoteFileExists#0;n#!!top" />
+                <element signature="e#3861#4073#0#PHP" />
+                <element signature="e#4007#4067#0#PHP" />
+                <element signature="n#urlFilters#0;n#!!top" />
+                <element signature="e#4209#4290#0#PHP" />
+                <element signature="n#couponValueRange#0;n#!!top" />
+                <element signature="e#4343#4469#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="63" column="140" lean-forward="true" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="140" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Exceptions/BaseException.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-209">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Exceptions/UserNotAllowedToLogin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Classes/RestAPI.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/StudioTypeRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="38" column="26" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webservices.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="811" column="68" selection-start-line="811" selection-start-column="68" selection-end-line="811" selection-end-column="68" />
+              <folding>
+                <element signature="n#!!block;n#info#0;n#!!top" />
+                <element signature="e#239#330#0" />
+                <element signature="e#340#430#0" />
+                <element signature="e#440#526#0" />
+                <element signature="e#549#588#0" />
+                <element signature="e#841#887#0" />
+                <element signature="e#1056#1114#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/sign-up#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/sign-up#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#3563#3609#0" />
+                <element signature="e#3769#3827#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#5211#5257#0" />
+                <element signature="e#5427#5485#0" />
+                <element signature="e#5750#6651#0" />
+                <element signature="e#5795#6196#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-fb#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-fb#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#7040#7086#0" />
+                <element signature="e#7268#7326#0" />
+                <element signature="e#7599#9223#0" />
+                <element signature="e#7644#8110#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-google#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-google#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#9608#9654#0" />
+                <element signature="e#9684#9784#0" />
+                <element signature="e#9706#9766#0" />
+                <element signature="e#9933#9991#0" />
+                <element signature="e#10023#10043#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#10316#10362#0" />
+                <element signature="e#10537#10595#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/forgot-password#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/forgot-password#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#11169#11219#0" />
+                <element signature="e#11249#11349#0" />
+                <element signature="e#11271#11331#0" />
+                <element signature="e#11527#11585#0" />
+                <element signature="e#11617#11637#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#11901#11951#0" />
+                <element signature="e#11981#12081#0" />
+                <element signature="e#12003#12063#0" />
+                <element signature="e#12279#12394#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/update#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/update#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#13863#13913#0" />
+                <element signature="e#13943#14043#0" />
+                <element signature="e#13965#14025#0" />
+                <element signature="e#14244#14302#0" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/change-password#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/change-password#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="e#15943#16001#0" />
+                <element signature="n#!!block;n#/studios/{studioId}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/studios/{studioId}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/verify-sms-code#0;n#!!block;n#paths#0;n#!!top" />
+                <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/verify-sms-code#0;n#!!block;n#paths#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/StudioType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>StudioLocation</find>
+      <find>StudioLocationInterface</find>
+      <find>swagger</find>
+      <find>getLocation</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\laragon\www\Studio\app</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Services/Menu/AdminMenu.php" />
+        <option value="$PROJECT_DIR$/app/Models/User.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/database/migrations/2022_03_30_080903_alter_fields_in_studios.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2022_03_30_082957_alter_fields_in_studio_locations.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Interfaces/RepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/StudioLocationRepository.php" />
+        <option value="$PROJECT_DIR$/app/Models/Studio.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Api/CreateStudioRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/StudioLocationResource.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/StudioRepository.php" />
+        <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/StudioListResource.php" />
+        <option value="$PROJECT_DIR$/app/Classes/RestAPI.php" />
+        <option value="$PROJECT_DIR$/app/Helpers/CommonHelper.php" />
+        <option value="$PROJECT_DIR$/webservices.json" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-color" />
+      <path value="$PROJECT_DIR$/vendor/php-parallel-lint/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/vendor/propaganistas/laravel-phone" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/davejamesmiller/laravel-breadcrumbs" />
+      <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/rap2hpoutre/laravel-log-viewer" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/swagger-api/swagger-ui" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/darkaonline/l5-swagger" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/locale" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/vendor/baopham/dynamodb" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/libphonenumber-for-php" />
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-menu" />
+      <path value="$PROJECT_DIR$/vendor/spatie/macroable" />
+      <path value="$PROJECT_DIR$/vendor/spatie/url" />
+      <path value="$PROJECT_DIR$/vendor/spatie/menu" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/vendor/league/iso3166" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/facade/ignition" />
+      <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-buttons" />
+      <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-html" />
+      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-crt-php" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/harishpatel143/laravel-base64-validation" />
+      <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
+    </include_path>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/Studio.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/php.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="Scopes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Studio" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55bcc4c9-f659-4506-bd03-4b69e80884f3" name="Default Changelist" comment="" />
+      <created>1646309591186</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646309591186</updated>
+      <workItem from="1646309592518" duration="3280000" />
+      <workItem from="1648623721091" duration="18666000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="21946000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25340393" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31751227" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vendor/spatie/menu/src/Menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Menu/AdminMenu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding>
+            <element signature="e#37#73#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="130" column="59" lean-forward="true" selection-start-line="130" selection-start-column="59" selection-end-line="130" selection-end-column="59" />
+          <folding>
+            <element signature="e#30#70#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/constants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-488" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-932" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="90" column="46" lean-forward="true" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2022_03_30_080903_alter_fields_in_studios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="20" column="67" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="20" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2022_03_30_082957_alter_fields_in_studio_locations.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/TypeAndAdvanceBookingTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/SiteSettingTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2022_03_11_081222_create_sms_verification_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Interfaces/RepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Interfaces/StudioLocationRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/StudioLocationRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/StudioResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Interfaces/StudioInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/BookingTime.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Interfaces/StudioLocationInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Interfaces/StudioRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/ModelServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="27" column="116" selection-start-line="27" selection-start-column="100" selection-end-line="27" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Interfaces/PagesInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/StudioImage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/StudioLocation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="69" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/StudioPrice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/StudioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/StudioLocationResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="28" column="40" lean-forward="true" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Api/CreateStudioRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <folding>
+            <element signature="e#859#1868#1#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/StudioRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="e#36#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Scopes/RoleTypeScope.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Type.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Studio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/StudioType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Interfaces/StudioTypeRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/StudioTypeRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="38" column="26" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exceptions/BaseException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-209">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/JsonResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="82" column="5" lean-forward="true" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="63" column="140" lean-forward="true" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="140" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exceptions/UserNotAllowedToLogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Classes/RestAPI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Helpers/CommonHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="213" column="1" selection-start-line="213" selection-start-column="1" selection-end-line="213" selection-end-column="1" />
+          <folding>
+            <element signature="e#35#352#0#PHP" />
+            <element signature="n#offerDateFormat#0;n#!!top" />
+            <element signature="n#hideChr#0;n#!!top" />
+            <element signature="n#limitText#0;n#!!top" />
+            <element signature="e#929#1109#0#PHP" />
+            <element signature="n#splitStores#0;n#!!top" />
+            <element signature="e#1185#1407#0#PHP" />
+            <element signature="e#1286#1401#0#PHP" />
+            <element signature="n#offersCountSorting#0;n#!!top" />
+            <element signature="e#1520#1733#0#PHP" />
+            <element signature="n#sideBarTopOffers#0;n#!!top" />
+            <element signature="e#1837#2031#0#PHP" />
+            <element signature="e#1875#2025#0#PHP" />
+            <element signature="n#searchDataTransformation#0;n#!!top" />
+            <element signature="e#2120#2335#0#PHP" />
+            <element signature="n#searchCatDataTransformation#0;n#!!top" />
+            <element signature="e#2427#2606#0#PHP" />
+            <element signature="n#setDiscountLabel#0;n#!!top" />
+            <element signature="e#2819#3253#0#PHP" />
+            <element signature="e#2974#3253#0#PHP" />
+            <element signature="e#3127#3247#0#PHP" />
+            <element signature="n#textToShare#0;n#!!top" />
+            <element signature="e#3484#3567#0#PHP" />
+            <element signature="n#remoteFileExists#0;n#!!top" />
+            <element signature="e#3861#4073#0#PHP" />
+            <element signature="e#4007#4067#0#PHP" />
+            <element signature="n#urlFilters#0;n#!!top" />
+            <element signature="e#4209#4290#0#PHP" />
+            <element signature="n#couponValueRange#0;n#!!top" />
+            <element signature="e#4343#4469#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="811" column="68" selection-start-line="811" selection-start-column="68" selection-end-line="811" selection-end-column="68" />
+          <folding>
+            <element signature="n#!!block;n#info#0;n#!!top" />
+            <element signature="e#239#330#0" />
+            <element signature="e#340#430#0" />
+            <element signature="e#440#526#0" />
+            <element signature="e#549#588#0" />
+            <element signature="e#841#887#0" />
+            <element signature="e#1056#1114#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/sign-up#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/sign-up#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#3563#3609#0" />
+            <element signature="e#3769#3827#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#5211#5257#0" />
+            <element signature="e#5427#5485#0" />
+            <element signature="e#5750#6651#0" />
+            <element signature="e#5795#6196#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-fb#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-fb#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#7040#7086#0" />
+            <element signature="e#7268#7326#0" />
+            <element signature="e#7599#9223#0" />
+            <element signature="e#7644#8110#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-google#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/login-google#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#9608#9654#0" />
+            <element signature="e#9684#9784#0" />
+            <element signature="e#9706#9766#0" />
+            <element signature="e#9933#9991#0" />
+            <element signature="e#10023#10043#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/logout#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#10316#10362#0" />
+            <element signature="e#10537#10595#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/forgot-password#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/forgot-password#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#11169#11219#0" />
+            <element signature="e#11249#11349#0" />
+            <element signature="e#11271#11331#0" />
+            <element signature="e#11527#11585#0" />
+            <element signature="e#11617#11637#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/customer#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#11901#11951#0" />
+            <element signature="e#11981#12081#0" />
+            <element signature="e#12003#12063#0" />
+            <element signature="e#12279#12394#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/update#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/update#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#13863#13913#0" />
+            <element signature="e#13943#14043#0" />
+            <element signature="e#13965#14025#0" />
+            <element signature="e#14244#14302#0" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/change-password#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/customer/change-password#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="e#15943#16001#0" />
+            <element signature="n#!!block;n#/studios/{studioId}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#put#0;n#!!block;n#/studios/{studioId}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/{studio}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#delete#0;n#!!block;n#/studios/{id}#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/studios/list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/types-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/advance-booking-list#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#get#0;n#!!block;n#/send-verification-sms#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/verify-sms-code#0;n#!!block;n#paths#0;n#!!top" />
+            <element signature="n#!!block;n#200#0;n#!!block;n#responses#0;n#!!block;n#post#0;n#!!block;n#/verify-sms-code#0;n#!!block;n#paths#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/StudioListResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="295" column="33" lean-forward="true" selection-start-line="295" selection-start-column="33" selection-end-line="295" selection-end-column="33" />
+          <folding>
+            <element signature="e#44#51#0#PHP" expanded="true" />
+            <element signature="e#1694#2156#0#PHP" />
+            <element signature="e#2162#5775#0#PHP" />
+            <element signature="e#5780#9883#0#PHP" />
+            <element signature="e#10425#11030#0#PHP" />
+            <element signature="e#11247#13320#0#PHP" />
+            <element signature="e#11424#11957#1#PHP" />
+            <element signature="e#12007#12351#1#PHP" />
+            <element signature="e#12407#12588#1#PHP" />
+            <element signature="e#11945#12060#0#PHP" />
+            <element signature="e#12084#12250#0#PHP" />
+            <element signature="e#12191#12250#0#PHP" />
+            <element signature="e#12939#13119#0#PHP" />
+            <element signature="e#13056#13119#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
