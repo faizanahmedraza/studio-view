@@ -202,3 +202,13 @@ function couponValueRange()
     $result[] = 'Free';
     return $result;
 }
+
+function cleanQueryValue($value)
+{
+    return trim(strtolower($value));
+}
+
+function getIds($value)
+{
+    return array_map('intval', explode(',', $value));
+}

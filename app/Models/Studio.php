@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Interfaces\StudioInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Studio extends Model  implements StudioInterface
+class Studio extends Model implements StudioInterface
 {
     use SoftDeletes;
     public $table = 'studios';

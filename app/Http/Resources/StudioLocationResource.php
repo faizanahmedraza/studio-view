@@ -24,6 +24,11 @@ class StudioLocationResource extends JsonResource
 
         return [
             'address' => $this->address ?? '',
+            'street' => $this->street ?? '',
+            'country' => $this->country ?? '',
+            'city' => $this->city ?? '',
+            'state' => $this->state ?? '',
+            'zip_code' => $this->zip_code ?? '',
             'lat' => $this->lat ?? '',
             'lng' => $this->lng ?? '',
             'additional_details' => $this->additional_details ?? '',
