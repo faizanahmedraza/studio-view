@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55bcc4c9-f659-4506-bd03-4b69e80884f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Api/CustomerFavouriteRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Interfaces/CustomerFavouriteInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CustomerFavouriteRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/CustomerFavouriteRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Classes/RestAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Classes/RestAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/StudioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ModelServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ModelServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/StudioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StudioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/10/4c/104c2a26bef044040c91c1c674644bbd8bc40651" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/2a/58/2a58b016d34c6ca57e06f5c729dde22681c186a3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/4b/6e/4b6e649f9b3471b8967d726a90e88966176893e7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/7d/36/7d36ab8afcb59632bc9f122f17e545d682de6b25" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/a3/de/a3ded1f23fe65ba592166345fae1cbc014e5bbef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/a7/31/a7315dc3e1701dfbd14abc794829d8530fad998e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/bc/11/bc11d69cd41accb36b5cccc6ec42558ab95cbfe0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webservices.json" beforeDir="false" afterPath="$PROJECT_DIR$/webservices.json" afterDir="false" />
-    </list>
+    <list default="true" id="55bcc4c9-f659-4506-bd03-4b69e80884f3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CustomerFavouriteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
-              <folding>
-                <element signature="e#44#68#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/Api/CustomerFavouriteRequest.php">
+        <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            <state relative-caret-position="256">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -87,7 +52,6 @@
       <list>
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/Services/Menu/AdminMenu.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/database/migrations/2022_03_30_080903_alter_fields_in_studios.php" />
         <option value="$PROJECT_DIR$/database/migrations/2022_03_30_082957_alter_fields_in_studio_locations.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Interfaces/RepositoryInterface.php" />
@@ -115,6 +79,7 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/Api/CustomerFavouriteRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CustomerFavouriteController.php" />
         <option value="$PROJECT_DIR$/app/Models/CustomerFavourite.php" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -287,33 +252,6 @@
             <path>
               <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
               <item name="Studio" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Studio" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Studio" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Studio" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Studio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Studio" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -376,7 +314,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33954000" />
+    <option name="totallyTimeSpent" value="34758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -462,13 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1018,9 +949,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Api/CustomerFavouriteRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CustomerFavouriteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="29">
           <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
           <folding>
             <element signature="e#44#68#0#PHP" expanded="true" />
@@ -1028,10 +966,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Api/CustomerFavouriteRequest.php">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        <state relative-caret-position="256">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
         </state>
       </provider>
     </entry>
