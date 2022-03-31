@@ -67,7 +67,7 @@ class StudioRepository implements StudioRepositoryInterface
 
     public function getFavouriteStudios(array $studioIds)
     {
-        return $this->model->where('status', 1)->whereIn('id',$studioIds)->orderBy('created_at')->get();
+        return $this->model->where('status', 1)->whereIn('id',$studioIds)->orderBy('created_at')->paginate(env('PAGE_LIMIT',20));
     }
 
     public function initiateQuery()

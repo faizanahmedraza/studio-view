@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class RestAPI
 {
 
@@ -12,10 +14,9 @@ class RestAPI
      */
     public static function response($output, $status = true, $message = '', $format = 'json')
     {
-        if (isset($output->links) && !empty($output->links())) {
+        if (isset($output->resource) && $output->resource instanceof LengthAwarePaginator) {
             self::setPagination($output);
         }
-
         $response = [
             'status' => $status ? true : false,
             'message' => $status ? $message : (is_array($output) ? implode("\n", $output) : $output),

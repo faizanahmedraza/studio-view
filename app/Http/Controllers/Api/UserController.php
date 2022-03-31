@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\UpdateCustomerRequest;
 use App\Models\User;
 use App\Classes\RestAPI;
 use Illuminate\Support\Str;
@@ -57,20 +58,14 @@ class UserController extends ApiBaseController
     /**
      * Update User profile
      */
-    public function customerUpdate(Request $request)
+    public function customerUpdate(UpdateCustomerRequest $request)
     {
-        $validatedData = $request->validate([
-            'full_name' => 'required|max:255',
-            'email' => 'required|email',
-            // 'phone' => 'required|numeric',
-        ]);
         DB::beginTransaction();
         try {
             $user = $this->userRepository->find(auth()->user()->id);
             $data = $request->all();
             // $data = $request->all();
             // print_r($data);die;
-
 
             $updateData = [
                 'first_name' => ucwords(trim($data['full_name'])),
