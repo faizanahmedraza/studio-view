@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\CreateStudioRequest;
+use App\Models\Type;
+use App\Models\User;
+use App\Repositories\Interfaces\StudioImageRepositoryInterface;
+use App\Repositories\Interfaces\StudioLocationRepositoryInterface;
+use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
+use App\Repositories\Interfaces\StudioRepositoryInterface;
+use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
 use DB;
 use stdClass;
 use Validator;
@@ -16,13 +24,25 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 class StudioController extends Controller
 {
     private $userRepository;
+    private $studioRepository;
+    private $studioTypeRepository;
+    private $studioLocationRepository;
+    private $studioPriceRepository;
+    private $studioImageRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
-        {
-            $this->middleware('auth:admin');
-            parent::__construct();
-            $this->userRepository = $userRepository;
-        }
+    public function __construct(UserRepositoryInterface $userRepository, StudioRepositoryInterface $studioRepository,
+                                StudioTypeRepositoryInterface $studioTypeRepository, StudioLocationRepositoryInterface $studioLocationRepository,
+                                StudioPriceRepositoryInterface $studioPriceRepository, StudioImageRepositoryInterface $studioImageRepository)
+    {
+        $this->middleware('auth:admin');
+        parent::__construct();
+        $this->userRepository = $userRepository;
+        $this->studioRepository = $studioRepository;
+        $this->studioTypeRepository = $studioTypeRepository;
+        $this->studioLocationRepository = $studioLocationRepository;
+        $this->studioPriceRepository = $studioPriceRepository;
+        $this->studioImageRepository = $studioImageRepository;
+    }
 
     /**
      * get app verified user list
@@ -30,6 +50,90 @@ class StudioController extends Controller
     public function index()
     {
         return view('admin.studio.index');
+    }
+
+    public function create()
+    {
+        $customers = User::where([['role_id' ,'=',1],['is_active' ,'=',1]])->get();
+        $types = Type::where('status',1)->get();
+        return view('admin.studio.create',compact('customers','types'));
+    }
+
+    public function store(CreateStudioRequest $request)
+    {
+        try{
+            $user = $this->userRepository->find((int)$request->customer);
+
+            $studioData = [
+                'user_id' => $user->id,
+                'name' => $data['name'] ?? null,
+                'detail' => $data['detail'] ?? null,
+                'minimum_booking_hr' => $data['minimum_booking_hr'] ?? null,
+                'max_occupancy_people' => $data['max_occupancy_people'] ?? null,
+                'hours_status' => $data['hours_status'] ?? null,
+                'adv_booking_time_id' => $data['adv_booking_time_id'] ?? null,
+                'past_client' => $data['past_client'] ?? null,
+                'audio_sample' => $data['audio_sample'] ?? null,
+                'amenities' => $data['amenities'] ?? null,
+                'main_equipment' => $data['main_equipment'] ?? null,
+                'rules' => $data['rules'] ?? null,
+                'cancelation_policy' => $data['cancelation_policy'] ?? null,
+            ];
+            if ($data['hours_status'] == 3) {
+                $studioData['hrs_to'] = $data['hrs_to'] ?? null;
+                $studioData['hrs_from'] = $data['hrs_from'] ?? null;
+            }
+            $studio = $this->studioRepository->create($studioData);
+            $studioId = $studio->id;
+            $this->studioTypeRepository->addTypes($data['types'], $studioId);
+            $studioLocationData = [
+                'address' => $data['address'] ?? null,
+                'street' => $data['street'] ?? null,
+                'country' => $data['country'] ?? null,
+                'city' => $data['city'] ?? null,
+                'state' => $data['state'] ?? null,
+                'zip_code' => $data['zip_code'] ?? null,
+                'lat' => $data['lat'] ?? null,
+                'lng' => $data['lng'] ?? null,
+                'additional_details' => $data['additional_location_details'] ?? null,
+                'studio_id' => $studioId
+            ];
+            $this->studioLocationRepository->create($studioLocationData);
+            $studioPriceData = [
+                'hourly_rate' => $data['hourly_rate'] ?? null,
+                'audio_eng_included' => $data['audio_eng_included'] ? true : false,
+                'discount' => $data['discount'] ?? null,
+                'audio_eng_rate_hr' => $data['additional_services']['audio_eng_rate_hr'] ?? null,
+                'audio_eng_discount' => $data['additional_services']['audio_eng_discount'] ? true : false,
+                'other_fees' => $data['additional_services']['other_fees'] ?? null,
+                'mixing_services' => $data['additional_services']['mixing_services'] ?? null,
+                'studio_id' => $studioId
+            ];
+            $this->studioPriceRepository->create($studioPriceData);
+            $studioImages = [];
+            foreach ($data['photos'] as $base64Image) {
+                $studioImages[] = uploadImageStudio($base64Image, $studio->name);
+            }
+            if (count($studioImages) > 0) {
+                $this->studioImageRepository->addImages($studioImages, $studioId);
+            }
+        } catch (\Exception $e)
+        {
+
+        }
+        return back()->with('success','Studio created Successfully!');
+    }
+
+    public function edit(Studio $studio,Request $request)
+    {
+        $customers = User::where([['role_id' ,'=',1],['is_active' ,'=',1]])->get();
+        $types = Type::where('status',1)->get();
+        return view('admin.studio.edit',compact('studio','customers','types'));
+    }
+
+    public function update(Studio $studio, Request $request)
+    {
+        return back()->with('success','Studio updated Successfully!');
     }
 
     /**

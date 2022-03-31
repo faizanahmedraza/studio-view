@@ -21,8 +21,6 @@ class AdminMenu
             // $userPermissoins = Auth::user()->getPermissions();
             $userPermissoins = ['users.index'];
 
-
-
             return Menu::new()
                 ->addClass('page-sidebar-menu')
                 ->setAttribute('data-keep-expanded', 'false')
@@ -87,10 +85,13 @@ class AdminMenu
                     ',
                     Menu::new()
                         ->addClass('sub-menu')
+                        ->addIf(can_access_route('studio.create', $userPermissoins),
+                            Link::toRoute('studio.create', '<span class="title">Studio Create</span>'))
                         ->addIf(can_access_route('studio.index', $userPermissoins),
                             Link::toRoute('studio.index', '<span class="title">Studio List</span>'))
                         ->addIf(can_access_route('studio.pending.index', $userPermissoins),
                             Link::toRoute('studio.pending.index', '<span class="title">Studio Pending List</span>'))
+
                         // ->addIf(can_access_route('new-request.index', $userPermissoins),
                         //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
                 )

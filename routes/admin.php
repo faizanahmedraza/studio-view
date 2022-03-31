@@ -95,7 +95,11 @@ Route::group(['middleware' => 'backendAuthenticate'], function () {
         Route::get('studios/list-pending/data', 'StudioController@studiosListPending')->name('studios.pending.list.data');
         Route::get('studio/toggle-status/{studio}', 'StudioController@toggleStatus')->name('studio.toggle.status');
 
-
+        //studio crud
+        Route::get('studios/create', 'StudioController@create')->name('studio.create');
+        Route::post('studios/create', 'StudioController@store')->name('studio.store');
+        Route::get('studios/edit/{studio}', 'StudioController@edit')->name('studio.edit');
+        Route::put('studios/edit/{studio}', 'StudioController@update')->name('studio.update');
 
         ### pages###
         Route::get('page/edit', 'PageController@edit')->name('attendancePage.edit');

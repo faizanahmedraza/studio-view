@@ -18,7 +18,7 @@
             <h3 class="page-title">{{ $pageTitle }}
                 <small></small>
             </h3>
-        {{ Breadcrumbs::render('users.index') }}
+        {{ Breadcrumbs::render('studio.pending.index') }}
         <!-- END PAGE TITLE & BREADCRUMB-->
         </div>
     </div>

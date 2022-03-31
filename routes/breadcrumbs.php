@@ -78,13 +78,20 @@ Breadcrumbs::for ('users.change-password', function ($breadcrumbs) {
 */
 Breadcrumbs::for ('studio.index', function ($breadcrumbs) {
     $breadcrumbs->parent('dashboard.index');
-    $breadcrumbs->push('Change Password', route('studio.index'));
+    $breadcrumbs->push('Studio List', route('studio.index'));
 });
 Breadcrumbs::for ('studio.pending.index', function ($breadcrumbs) {
     $breadcrumbs->parent('dashboard.index');
-    $breadcrumbs->push('Change Password', route('studio.pending.index'));
+    $breadcrumbs->push('Studio Pending List', route('studio.pending.index'));
 });
-
+Breadcrumbs::for ('studio.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Create', route('studio.create'));
+});
+Breadcrumbs::for ('studio.edit', function ($breadcrumbs,$data) {
+    $breadcrumbs->parent('studio.index',$data);
+    $breadcrumbs->push('Edit', route('studio.edit',$data->id));
+});
 
 /*
 |--------------------------------------------------------------------------
