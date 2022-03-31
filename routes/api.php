@@ -41,7 +41,10 @@ Route::group(['prefix' => 'v1'], static function () {
          Route::get('send-verification-sms', 'SMSController@sendSms');
          Route::post('verify-sms-code', 'SMSController@verifySmsCode');
 
-
+         ###Customer Saved Apis###
+        Route::get('studios/saved/list', 'CustomerFavouriteController@index');
+        Route::post('studios/saved', 'CustomerFavouriteController@store');
+        Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');
     });
 
     //public api of studios listing

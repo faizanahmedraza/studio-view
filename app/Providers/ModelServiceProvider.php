@@ -30,6 +30,6 @@ class ModelServiceProvider extends ServiceProvider
         $this->app->bind('App\Models\Interfaces\StudioLocationInterface', 'App\Models\StudioLocation');
         $this->app->bind('App\Models\Interfaces\StudioPriceInterface', 'App\Models\StudioPrice');
         $this->app->bind('App\Models\Interfaces\StudioImageInterface', 'App\Models\StudioImage');
-
+        $this->app->bind('App\Models\Interfaces\CustomerFavouriteInterface', 'App\Models\CustomerFavourite');
     }
 }

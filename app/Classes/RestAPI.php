@@ -12,7 +12,7 @@ class RestAPI
      */
     public static function response($output, $status = true, $message = '', $format = 'json')
     {
-        if ($output->links()) {
+        if (isset($output->links) && !empty($output->links())) {
             self::setPagination($output);
         }
 

@@ -652,6 +652,95 @@
         }
       }
     },
+    "/studios/saved/list": {
+      "get": {
+        "tags": [
+          "Studio"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Studio List",
+        "description": "Studio List",
+        "operationId": "StudioList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/studios/saved": {
+      "post": {
+        "tags": [
+          "Studio"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Add to Saved Studios",
+        "description": "Add in saved",
+        "operationId": "AddSavedStudio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studio_id",
+            "in": "formData",
+            "description": "Studio Id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/studios/saved/{studioId}": {
+      "delete": {
+        "tags": [
+          "Studio"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Delete from favourite Studios",
+        "description": "Delete from saved",
+        "operationId": "DeleteSavedStudio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studio_id",
+            "in": "formData",
+            "description": "Studio Id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/types-list": {
       "get": {
         "tags": [

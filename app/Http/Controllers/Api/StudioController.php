@@ -278,6 +278,8 @@ class StudioController extends ApiBaseController
 
             if ($request->query('status')) {
                 $allStudios->where('status', (int)$request->status);
+            } else {
+                $allStudios->where('status', 1);
             }
 
             if ($request->query('order_by')) {
