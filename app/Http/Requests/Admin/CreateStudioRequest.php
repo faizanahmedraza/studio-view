@@ -35,7 +35,7 @@ class CreateStudioRequest extends Request
             'hours_status' => 'required|numeric|in:1,2,3',
             "hrs_to" => "required_if:hours_status,==,3",
             "hrs_from" => "required_if:hours_status,==,3",
-            "adv_booking_time_id" =>'required|numeric|exists:adv_booking_times,id',
+            "adv_booking_time" =>'required|numeric|exists:adv_booking_times,id',
             'past_client'=>'nullable|string',
             'audio_samples'=>'nullable|string',
             // feature
@@ -46,16 +46,11 @@ class CreateStudioRequest extends Request
             'cancellation_policy'=>'nullable|string',
 
             // photos
-            'images'=> ($this->getMethod() == 'PUT') ? 'nullable|array' : 'required|array|min:1',
-            'images.*' => ($this->getMethod() == 'PUT') ? 'nullable|mimes:jpg,gif,png|max:10000' : 'required|mimes:jpg,gif,png|max:10000',
+            'images'=> ($this->isMethod('put')) ? 'sometimes|nullable|array' : 'required|array|min:1',
+            'images.*' => ($this->isMethod('put')) ? 'nullable|mimes:jpg,gif,png|max:10000' : 'required|mimes:jpg,gif,png|max:10000',
 
             // location
             "address"=>'required|string',
-            "street"=>'required|string',
-            "country"=>'required|string',
-            "city"=>'required|string',
-            "state"=>'required|string',
-            "zip_code"=>'required|string',
             "lat"=>'required',
             "lng"=>'required',
             "additional_location_details"=>'nullable|string',

@@ -1,5 +1,22 @@
 @extends('admin.layouts.app')
 
+@section('css')
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+          type="text/css">
+    <style>
+        #geocoder {
+            z-index: 1;
+            margin: 20px;
+        }
+
+        .mapboxgl-ctrl-geocoder {
+            min-width: 100%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- BEGIN PAGE HEADER-->
     <div class="row">
@@ -34,11 +51,11 @@
                     <h4>&nbsp;</h4>
 
                     <form method="POST"
-                          action="{{ route('studio.store') }}"
+                          action="{{ route('studio.edit',$studio->id) }}"
                           class="form-horizontal"
                           role="form" enctype="multipart/form-data">
                         @csrf
-                        @method('POST')
+                        @method('PUT')
 
                         <div class="form-group">
                             <label for="customer" class="col-md-3 control-label">Customer *</label>
@@ -139,7 +156,7 @@
                                 <select name="hours_status" class="form-control">
                                     <option value="">Select</option>
                                     @foreach($hoursStatus as $key => $val)
-                                        <option value="{{$key+1}}" {{old('hours_status',$studio->hours_status) == $key+1 ? 'selected' : ''}}>{{$val}}</option>
+                                        <option value="{{$key}}" {{old('hours_status',$studio->hours_status) == $key ? 'selected' : ''}}>{{$val}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -285,115 +302,53 @@
 
                         <h3 class="text-center">Where's your studio located?</h3>
 
-                        <div class="form-group">
-                            <label for="address" class="col-md-3 control-label">Address *</label>
-                            <div class="col-md-7">
-                                <input type="text" id="address" name="address" value="{{ old('address',$studio->getLocation->address) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('address'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <div id="geocoder"></div>
 
                         <div class="form-group">
-                            <label for="street" class="col-md-3 control-label">Street *</label>
+                            <label for="cancellation_policy" class="col-md-3 control-label">Address
+                                *</label>
                             <div class="col-md-7">
-                                <input type="text" name="street" value="{{ old('street',$studio->getLocation->street) }}"
-                                       class="form-control"/>
+                                <input type="text" id="address" name="address"
+                                       value="{{ old('address',$studio->getLocation->address ?? '') }}"
+                                       class="form-control" readonly/>
                             </div>
-                            @if ($errors->has('street'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('street') }}</strong>
-                                    </span>
-                            @endif
                         </div>
 
-                        <div class="form-group">
-                            <label for="country" class="col-md-3 control-label">Country *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="country" value="{{ old('country',$studio->getLocation->country) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('country'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <input type="hidden" id="street" name="street"
+                               value="{{ old('street',$studio->getLocation->street ?? '') }}"
+                               class="form-control"/>
 
-                        <div class="form-group">
-                            <label for="city" class="col-md-3 control-label">City *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="city" value="{{ old('city',$studio->getLocation->city) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('city'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <input type="hidden" id="country" name="country"
+                               value="{{ old('country',$studio->getLocation->country ?? '') }}"
+                               class="form-control"/>
 
-                        <div class="form-group">
-                            <label for="state" class="col-md-3 control-label">State/Province *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="state" value="{{ old('state',$studio->getLocation->state) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('state'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('state') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <input type="hidden" id="city" name="city"
+                               value="{{ old('city',$studio->getLocation->city ?? '') }}"
+                               class="form-control"/>
 
-                        <div class="form-group">
-                            <label for="zip_code" class="col-md-3 control-label">Zip Code *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="zip_code" value="{{ old('zip_code',$studio->getLocation->zip_code) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('zip_code'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('zip_code') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <input type="hidden" id="state" name="state"
+                               value="{{ old('state',$studio->getLocation->state ?? '') }}"
+                               class="form-control"/>
 
-                        <div class="form-group">
-                            <label for="lat" class="col-md-3 control-label">Latitude *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="lat" value="{{ old('lat',$studio->getLocation->lat) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('lat'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('lat') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <input type="hidden" id="zip_code" name="zip_code"
+                               value="{{ old('zip_code',$studio->getLocation->zip_code ?? '') }}"
+                               class="form-control"/>
 
-                        <div class="form-group">
-                            <label for="lng" class="col-md-3 control-label">Longitude *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="lng" value="{{ old('lng',$studio->getLocation->lng) }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('lng'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('lng') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+
+                        <input type="hidden" id="lat" name="lat"
+                               value="{{ old('lat',$studio->getLocation->lat ?? '') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="lng" name="lng"
+                               value="{{ old('lng',$studio->getLocation->lng ?? '') }}"
+                               class="form-control"/>
 
                         <div class="form-group">
                             <label for="additional_details" class="col-md-3 control-label">Additional Location Details
                                 *</label>
                             <div class="col-md-7">
-                                <input type="text" name="additional_details" value="{{ old('additional_details',$studio->getLocation->additional_details) }}"
+                                <input type="text" name="additional_details"
+                                       value="{{ old('additional_details',$studio->getLocation->additional_details ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('additional_details'))
@@ -408,7 +363,8 @@
                         <div class="form-group">
                             <label for="hourly_rate" class="col-md-3 control-label">Price Per Hour *</label>
                             <div class="col-md-7">
-                                <input type="number" name="hourly_rate" value="{{ old('hourly_rate',$studio->getPrice->hourly_rate) }}"
+                                <input type="number" name="hourly_rate"
+                                       value="{{ old('hourly_rate',$studio->getPrice->hourly_rate ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('hourly_rate'))
@@ -424,11 +380,11 @@
                                 <div class="form-check form-check-inline">
                                     <input type="radio" id="audio_eng_included_yes" name="audio_eng_included"
                                            class="form-check-input"
-                                           value="1" {{ (old('audio_eng_included',$studio->getPrice->audio_eng_included) == '1') ? 'checked' : '' }}/>
+                                           value="1" {{ (old('audio_eng_included',$studio->getPrice->audio_eng_included ?? '') == '1') ? 'checked' : '' }}/>
                                     <label class="form-check-label" for="audio_eng_included_yes">Yes</label>
                                     <input type="radio" id="audio_eng_included_no" name="audio_eng_included"
                                            class="form-check-input"
-                                           value="0" {{ (old('audio_eng_included',$studio->getPrice->audio_eng_included) == '0') ? 'checked' : ''  }}/>
+                                           value="0" {{ (old('audio_eng_included',$studio->getPrice->audio_eng_included ?? '') == '0') ? 'checked' : ''  }}/>
                                     <label class="form-check-label" for="audio_eng_included_no">No</label>
                                 </div>
                             </div>
@@ -443,7 +399,8 @@
                             <label for="discount" class="col-md-3 control-label">% Discount on bookings longer than 8
                                 hours *</label>
                             <div class="col-md-7">
-                                <input type="number" name="discount" value="{{ old('discount',$studio->getPrice->discount) }}"
+                                <input type="number" name="discount"
+                                       value="{{ old('discount',$studio->getPrice->discount ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('discount'))
@@ -457,7 +414,8 @@
                             <label for="audio_eng_rate_hr" class="col-md-3 control-label">Audio English Rate Per Hour
                                 *</label>
                             <div class="col-md-7">
-                                <input type="number" name="audio_eng_rate_hr" value="{{ old('audio_eng_rate_hr',$studio->getPrice->audio_eng_rate_hr) }}"
+                                <input type="number" name="audio_eng_rate_hr"
+                                       value="{{ old('audio_eng_rate_hr',$studio->getPrice->audio_eng_rate_hr ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('audio_eng_rate_hr'))
@@ -473,11 +431,11 @@
                                 <div class="form-check form-check-inline">
                                     <input type="radio" id="audio_eng_discount_yes" name="audio_eng_discount"
                                            class="form-check-input"
-                                           value="1" {{ (old('audio_eng_discount',$studio->getPrice->audio_eng_discount) == '1') ? 'checked' : '' }}/>
+                                           value="1" {{ (old('audio_eng_discount',$studio->getPrice->audio_eng_discount ?? '') == '1') ? 'checked' : '' }}/>
                                     <label class="form-check-label" for="audio_eng_discount_yes">Yes</label>
                                     <input type="radio" id="audio_eng_discount_no" name="audio_eng_discount"
                                            class="form-check-input"
-                                           value="0" {{ (old('audio_eng_discount',$studio->getPrice->audio_eng_discount) == '0') ? 'checked' : ''  }}/>
+                                           value="0" {{ (old('audio_eng_discount',$studio->getPrice->audio_eng_discount ?? '') == '0') ? 'checked' : ''  }}/>
                                     <label class="form-check-label" for="audio_eng_discount_no">No</label>
                                 </div>
                             </div>
@@ -491,7 +449,8 @@
                         <div class="form-group">
                             <label for="other_fees" class="col-md-3 control-label">Other Fees *</label>
                             <div class="col-md-7">
-                                <input type="number" name="other_fees" value="{{ old('other_fees',$studio->getPrice->other_fees) }}"
+                                <input type="number" name="other_fees"
+                                       value="{{ old('other_fees',$studio->getPrice->other_fees ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('other_fees'))
@@ -504,7 +463,8 @@
                         <div class="form-group">
                             <label for="mixing_services" class="col-md-3 control-label">Mixing Services *</label>
                             <div class="col-md-7">
-                                <input type="number" name="mixing_services" value="{{ old('mixing_services',$studio->getPrice->mixing_services) }}"
+                                <input type="number" name="mixing_services"
+                                       value="{{ old('mixing_services',$studio->getPrice->mixing_services ?? '') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('mixing_services'))
@@ -572,26 +532,59 @@
 @stop
 
 @section('footer-js')
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
     <script src="{{ asset('assets/admin/scripts/core/app.js') }}"></script>
     <script>
-        function initMap() {
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpemFuYWhtZWRyYXphIiwiYSI6ImNsMWthdDJzazF3am8zZXJ0bDBoemd5NHoifQ.l-XO8G0aOsFypxjsXsAvVg';
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            types: 'country,region,place'
+        });
 
-            var input = document.getElementById('address');
+        geocoder.addTo('#geocoder');
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
+        // Add geocoder result to container.
+        geocoder.on('result', (e) => {
+            $("#address").val(e.result.place_name);
+            $("#street").val(e.result.text);
+            $("#lat").val(e.result.geometry.coordinates[0]);
+            $("#lng").val(e.result.geometry.coordinates[1]);
+            if (e.result.id.split(".")[0] == "region") {
+                $("#state").val(e.result.id.split(".")[1]);
+            }
 
+            if (e.result.id.split(".")[0] == "country") {
+                $("#country").val(e.result.id.split(".")[1]);
+            }
 
-            autocomplete.addListener('place_changed', function () {
+            if (e.result.id.split(".")[0] == "place") {
+                $("#city").val(e.result.id.split(".")[1]);
+            }
+            e.result.context.forEach(filterContext);
+        });
 
-                var place = autocomplete.getPlace();
+        function filterContext(item, index) {
+            if (item.id.split(".")[0] == "region") {
+                $("#state").val(item.text);
+            }
 
-                document.getElementById('lat-span').innerHTML = place.geometry.location.lat();
+            if (item.id.split(".")[0] == "country") {
+                $("#country").val(item.text);
+            }
 
-                document.getElementById('lon-span').innerHTML = place.geometry.location.lng();
-
-            });
-
+            if (item.id.split(".")[0] == "place") {
+                $("#city").val(item.text);
+            }
+            if (item.id.split(".")[0] == "postcode") {
+                $("#zip_code").val(e.result.id.split(".")[1]);
+            }
         }
+
+        // Clear results container when search is cleared.
+        geocoder.on('clear', () => {
+            results.innerText = '';
+        });
 
         jQuery(document).ready(function () {
             // initiate layout and plugins
@@ -601,9 +594,5 @@
                 window.location.href = "{{route('studio.index') }}";
             });
         });
-    </script>
-    {{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjlVM7TBhU-52zIhm3praMoec4lqxZzeo&libraries=places&callback=initMap" async defer></script>--}}
-    <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjlVM7TBhU-52zIhm3praMoec4lqxZzeo&libraries=places&callback=initMap">
     </script>
 @endsection

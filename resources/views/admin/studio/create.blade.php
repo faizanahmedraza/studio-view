@@ -1,5 +1,22 @@
 @extends('admin.layouts.app')
 
+@section('css')
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+          type="text/css">
+    <style>
+        #geocoder {
+            z-index: 1;
+            margin: 20px;
+        }
+
+        .mapboxgl-ctrl-geocoder {
+            min-width: 100%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- BEGIN PAGE HEADER-->
     <div class="row">
@@ -137,9 +154,9 @@
                                 <select name="hours_status" class="form-control">
                                     <option value="">Select</option>
                                     @foreach($hoursStatus as $key => $val)
-                                        <option value="{{$key+1}}" {{(int)old('hours_status') == $key+1 ? 'selected' : ''}}>{{$val}}</option>
+                                        <option value="{{$key}}" {{(int)old('hours_status') == $key ? 'selected' : ''}}>{{$val}}</option>
                                     @endforeach
-                                </select>s
+                                </select>
                             </div>
                             @if ($errors->has('hours_status'))
                                 <span class="help-block">
@@ -283,114 +300,39 @@
 
                         <h3 class="text-center">Where's your studio located?</h3>
 
-                        <div class="form-group">
-                            <label for="address" class="col-md-3 control-label">Address *</label>
-                            <div class="col-md-7">
-                                <input type="text" id="address" name="address" value="{{ old('address') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('address'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+                        <div id="geocoder"></div>
+
+                        <input type="hidden" id="address" name="address" value="{{ old('address') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="street" name="street" value="{{ old('street') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="country" name="country" value="{{ old('country') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="city" name="city" value="{{ old('city') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="state" name="state" value="{{ old('state') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="zip_code" name="zip_code" value="{{ old('zip_code') }}"
+                               class="form-control"/>
+
+
+                        <input type="hidden" id="lat" name="lat" value="{{ old('lat') }}"
+                               class="form-control"/>
+
+                        <input type="hidden" id="lng" name="lng" value="{{ old('lng') }}"
+                               class="form-control"/>
 
                         <div class="form-group">
-                            <label for="street" class="col-md-3 control-label">Street *</label>
+                            <label for="additional_location_details" class="col-md-3 control-label">Additional Location
+                                Details *</label>
                             <div class="col-md-7">
-                                <input type="text" name="street" value="{{ old('street') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('street'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('street') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="country" class="col-md-3 control-label">Country *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="country" value="{{ old('country') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('country'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="city" class="col-md-3 control-label">City *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="city" value="{{ old('city') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('city'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="state" class="col-md-3 control-label">State/Province *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="state" value="{{ old('state') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('state'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('state') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="zip_code" class="col-md-3 control-label">Zip Code *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="zip_code" value="{{ old('zip_code') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('zip_code'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('zip_code') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lat" class="col-md-3 control-label">Latitude *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="lat" value="{{ old('lat') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('lat'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('lat') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lng" class="col-md-3 control-label">Longitude *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="lng" value="{{ old('lng') }}"
-                                       class="form-control"/>
-                            </div>
-                            @if ($errors->has('lng'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('lng') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="additional_location_details" class="col-md-3 control-label">Additional Location Details *</label>
-                            <div class="col-md-7">
-                                <input type="text" name="additional_location_details" value="{{ old('additional_location_details') }}"
+                                <input type="text" name="additional_location_details"
+                                       value="{{ old('additional_location_details') }}"
                                        class="form-control"/>
                             </div>
                             @if ($errors->has('additional_location_details'))
@@ -437,7 +379,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="discount" class="col-md-3 control-label">% Discount on bookings longer than 8 hours *</label>
+                            <label for="discount" class="col-md-3 control-label">% Discount on bookings longer than 8
+                                hours *</label>
                             <div class="col-md-7">
                                 <input type="number" name="discount" value="{{ old('discount') }}"
                                        class="form-control"/>
@@ -561,26 +504,67 @@
 @stop
 
 @section('footer-js')
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
     <script src="{{ asset('assets/admin/scripts/core/app.js') }}"></script>
     <script>
-        function initMap() {
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpemFuYWhtZWRyYXphIiwiYSI6ImNsMWthdDJzazF3am8zZXJ0bDBoemd5NHoifQ.l-XO8G0aOsFypxjsXsAvVg';
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            types: 'country,region,place'
+        });
 
-            var input = document.getElementById('address');
+        geocoder.addTo('#geocoder');
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
+        // Add geocoder result to container.
+        geocoder.on('result', (e) => {
+            $("#address").val(e.result.place_name);
+            $("#street").val(e.result.text);
+            $("#lat").val(e.result.geometry.coordinates[0]);
+            $("#lng").val(e.result.geometry.coordinates[1]);
+            if(e.result.id.split(".")[0] == "region")
+            {
+                $("#state").val(e.result.id.split(".")[1]);
+            }
 
+            if(e.result.id.split(".")[0] == "country")
+            {
+                $("#country").val(e.result.id.split(".")[1]);
+            }
 
-            autocomplete.addListener('place_changed', function() {
+            if(e.result.id.split(".")[0] == "place")
+            {
+                $("#city").val(e.result.id.split(".")[1]);
+            }
+            e.result.context.forEach(filterContext);
+        });
 
-                var place = autocomplete.getPlace();
+        function filterContext(item, index)
+        {
+            if(item.id.split(".")[0] == "region")
+            {
+                $("#state").val(item.text);
+            }
 
-                document.getElementById('lat-span').innerHTML = place.geometry.location.lat();
+            if(item.id.split(".")[0] == "country")
+            {
+                $("#country").val(item.text);
+            }
 
-                document.getElementById('lon-span').innerHTML = place.geometry.location.lng();
-
-            });
-
+            if(item.id.split(".")[0] == "place")
+            {
+                $("#city").val(item.text);
+            }
+            if(item.id.split(".")[0] == "postcode")
+            {
+                $("#zip_code").val(e.result.id.split(".")[1]);
+            }
         }
+
+        // Clear results container when search is cleared.
+        geocoder.on('clear', () => {
+            results.innerText = '';
+        });
 
         jQuery(document).ready(function () {
             // initiate layout and plugins
@@ -590,9 +574,5 @@
                 window.location.href = "{{route('studio.index') }}";
             });
         });
-    </script>
-{{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjlVM7TBhU-52zIhm3praMoec4lqxZzeo&libraries=places&callback=initMap" async defer></script>--}}
-    <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjlVM7TBhU-52zIhm3praMoec4lqxZzeo&libraries=places&callback=initMap">
     </script>
 @endsection
