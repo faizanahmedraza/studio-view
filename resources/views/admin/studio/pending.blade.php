@@ -117,7 +117,7 @@
                 {data: 'id', orderable: true, searchable: true, className: 'text-center'},
                 {data: 'name', orderable: true, searchable: true, className: 'text-center'},
                 {data: 'status', orderable: false, searchable: false, className: 'text-center'},
-                {data: 'action', orderable: false, searchable: false, className: 'text-center'},
+                {data: 'action', orderable: false, searchable: false, className: 'text-center'}
 
             ]);
 

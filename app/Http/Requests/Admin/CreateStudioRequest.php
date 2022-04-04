@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\User;
+
 class CreateStudioRequest extends Request
 {
     /**
@@ -23,11 +25,11 @@ class CreateStudioRequest extends Request
     {
         return [
             // description
-            'customer'=>'required|string|max:255',
-            'name'=>'required|string|max:255',
-            'detail'=>'required|string',
-            'types'=>'required|array',
-            'types.*' => 'required|numeric|distinct|exists:std_types,id|min:1',
+            'customer'=>'required|in:'.implode(',',User::where('role_id',1)->pluck('id')->toArray()),
+            'studio_name'=>'required|string|max:255',
+            'details'=>'required|string',
+            'studio_types'=>'required|array',
+            'studio_types.*' => 'required|numeric|distinct|exists:std_types,id|min:1',
             'minimum_booking_hr' => 'required|numeric',
             'max_occupancy_people' => 'required|numeric',
             'hours_status' => 'required|numeric|in:1,2,3',
@@ -35,17 +37,17 @@ class CreateStudioRequest extends Request
             "hrs_from" => "required_if:hours_status,==,3",
             "adv_booking_time_id" =>'required|numeric|exists:adv_booking_times,id',
             'past_client'=>'nullable|string',
-            'audio_sample'=>'nullable|string',
+            'audio_samples'=>'nullable|string',
             // feature
             'amenities'=>'required|string',
             'main_equipment'=>'nullable|string',
             // rule
             'rules'=>'nullable|string',
-            'cancelation_policy'=>'nullable|string',
+            'cancellation_policy'=>'nullable|string',
 
             // photos
-            'photos'=>'required|array|min:1',
-            'photos.*' => 'required|base64image|min:1',
+            'images'=> ($this->getMethod() == 'PUT') ? 'nullable|array' : 'required|array|min:1',
+            'images.*' => ($this->getMethod() == 'PUT') ? 'nullable|mimes:jpg,gif,png|max:10000' : 'required|mimes:jpg,gif,png|max:10000',
 
             // location
             "address"=>'required|string',

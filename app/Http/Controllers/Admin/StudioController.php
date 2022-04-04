@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateStudioRequest;
+use App\Models\BookingTime;
 use App\Models\Type;
 use App\Models\User;
 use App\Repositories\Interfaces\StudioImageRepositoryInterface;
@@ -56,7 +57,9 @@ class StudioController extends Controller
     {
         $customers = User::where([['role_id' ,'=',1],['is_active' ,'=',1]])->get();
         $types = Type::where('status',1)->get();
-        return view('admin.studio.create',compact('customers','types'));
+        $advanceBookingTimes = BookingTime::where('status',1)->get();
+        $hoursStatus = Studio::HOURS_STATUS;
+        return view('admin.studio.create',compact('customers','types','advanceBookingTimes','hoursStatus'));
     }
 
     public function store(CreateStudioRequest $request)
@@ -64,20 +67,22 @@ class StudioController extends Controller
         try{
             $user = $this->userRepository->find((int)$request->customer);
 
+            $data = $request->all();
+
             $studioData = [
                 'user_id' => $user->id,
-                'name' => $data['name'] ?? null,
-                'detail' => $data['detail'] ?? null,
+                'name' => $data['studio_name'] ?? null,
+                'detail' => $data['details'] ?? null,
                 'minimum_booking_hr' => $data['minimum_booking_hr'] ?? null,
                 'max_occupancy_people' => $data['max_occupancy_people'] ?? null,
                 'hours_status' => $data['hours_status'] ?? null,
                 'adv_booking_time_id' => $data['adv_booking_time_id'] ?? null,
                 'past_client' => $data['past_client'] ?? null,
-                'audio_sample' => $data['audio_sample'] ?? null,
+                'audio_sample' => $data['audio_samples'] ?? null,
                 'amenities' => $data['amenities'] ?? null,
                 'main_equipment' => $data['main_equipment'] ?? null,
                 'rules' => $data['rules'] ?? null,
-                'cancelation_policy' => $data['cancelation_policy'] ?? null,
+                'cancelation_policy' => $data['cancellation_policy'] ?? null,
             ];
             if ($data['hours_status'] == 3) {
                 $studioData['hrs_to'] = $data['hrs_to'] ?? null;
@@ -85,7 +90,7 @@ class StudioController extends Controller
             }
             $studio = $this->studioRepository->create($studioData);
             $studioId = $studio->id;
-            $this->studioTypeRepository->addTypes($data['types'], $studioId);
+            $this->studioTypeRepository->addTypes($data['studio_types'], $studioId);
             $studioLocationData = [
                 'address' => $data['address'] ?? null,
                 'street' => $data['street'] ?? null,
@@ -103,16 +108,17 @@ class StudioController extends Controller
                 'hourly_rate' => $data['hourly_rate'] ?? null,
                 'audio_eng_included' => $data['audio_eng_included'] ? true : false,
                 'discount' => $data['discount'] ?? null,
-                'audio_eng_rate_hr' => $data['additional_services']['audio_eng_rate_hr'] ?? null,
-                'audio_eng_discount' => $data['additional_services']['audio_eng_discount'] ? true : false,
-                'other_fees' => $data['additional_services']['other_fees'] ?? null,
-                'mixing_services' => $data['additional_services']['mixing_services'] ?? null,
+                'audio_eng_rate_hr' => ['audio_eng_rate_hr'] ?? null,
+                'audio_eng_discount' => ['audio_eng_discount'] ? true : false,
+                'other_fees' => ['other_fees'] ?? null,
+                'mixing_services' => ['mixing_services'] ?? null,
                 'studio_id' => $studioId
             ];
             $this->studioPriceRepository->create($studioPriceData);
             $studioImages = [];
-            foreach ($data['photos'] as $base64Image) {
-                $studioImages[] = uploadImageStudio($base64Image, $studio->name);
+            foreach ($request->images as $image)
+            {
+                $studioImages[] = uploadImageStudio(base64_encode($image), $studio->name);
             }
             if (count($studioImages) > 0) {
                 $this->studioImageRepository->addImages($studioImages, $studioId);
@@ -124,11 +130,15 @@ class StudioController extends Controller
         return back()->with('success','Studio created Successfully!');
     }
 
-    public function edit(Studio $studio,Request $request)
+    public function edit($id)
     {
+        $id = base64_decode($id);
+        $studio = Studio::with(['getStudioTypes','getImages','getPrice','getLocation'])->where('id',$id)->firstOrFail();
         $customers = User::where([['role_id' ,'=',1],['is_active' ,'=',1]])->get();
         $types = Type::where('status',1)->get();
-        return view('admin.studio.edit',compact('studio','customers','types'));
+        $advanceBookingTimes = BookingTime::where('status',1)->get();
+        $hoursStatus = Studio::HOURS_STATUS;
+        return view('admin.studio.edit',compact('studio','customers','types','advanceBookingTimes','hoursStatus'));
     }
 
     public function update(Studio $studio, Request $request)
@@ -147,9 +157,6 @@ class StudioController extends Controller
             ->setRowId(static function ($record) {
                 return $record->id;
             })
-            // ->editColumn('fullname', function ($record) {
-            //     return $record->name();
-            // })
             ->editColumn('status', static function ($record) {
                 return view('admin.studio.status', compact('record'));
             })
@@ -187,9 +194,6 @@ class StudioController extends Controller
             ->setRowId(static function ($record) {
                 return $record->id;
             })
-            // ->editColumn('fullname', function ($record) {
-            //     return $record->name();
-            // })
             ->editColumn('status', static function ($record) {
                 return view('admin.studio.status', compact('record'));
             })
@@ -198,8 +202,5 @@ class StudioController extends Controller
             })
             ->make(true);
     }
-
-
-
 
 }
