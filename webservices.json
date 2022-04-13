@@ -662,9 +662,9 @@
             "Bearer": []
           }
         ],
-        "summary": "Studio List",
-        "description": "Studio List",
-        "operationId": "StudioList",
+        "summary": "Studio Saved List",
+        "description": "Studio Saved List",
+        "operationId": "StudioSavedList",
         "produces": [
           "application/json"
         ],
