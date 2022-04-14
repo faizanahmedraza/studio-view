@@ -42,6 +42,10 @@ class CustomerFavouriteController extends Controller
         $data = $request->all();
         DB::beginTransaction();
         try {
+            $exist = $this->studioRepository->findByWhereArray(['id' => $data['studio_id'], 'status' => 0]);
+            if ($exist) {
+                return RestAPI::response('Studio is not active.', false, 'error_exception');
+            }
             $customerData = [
                 'user_id' => $this->userRepository->find(auth()->user()->id)->id,
                 'studio_id' => $this->studioRepository->find($data['studio_id'])->id ?? null,

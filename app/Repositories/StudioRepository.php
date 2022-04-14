@@ -45,6 +45,11 @@ class StudioRepository implements StudioRepositoryInterface
         return $this->model->where($attribute, '=', $value)->first();
     }
 
+    public function findByWhereArray($where = [])
+    {
+        return $this->model->where($where)->first();
+    }
+
     public function update($id, array $data)
     {
         $this->model::where('id', $id)->update($data);
