@@ -688,7 +688,7 @@
           }
         ],
         "summary": "Add to Saved Studios",
-        "description": "Add in saved",
+        "description": "Add in saved studios. Only active studios are allowed..",
         "operationId": "AddSavedStudio",
         "produces": [
           "application/json"
