@@ -310,6 +310,8 @@ class User extends Authenticatable implements UserInterface, JWTSubject
         return $this->hasMany(UserDevice::class);
     }
 
-
-
+    public function favouriteStudios()
+    {
+        return $this->hasMany(CustomerFavourite::class,'user_id','id');
+    }
 }

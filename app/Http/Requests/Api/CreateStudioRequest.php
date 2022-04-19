@@ -21,7 +21,6 @@ class CreateStudioRequest extends Request
      */
     public function rules()
     {
-
         return [
             // description
             'name'=>'required|string|max:255',
@@ -49,6 +48,11 @@ class CreateStudioRequest extends Request
 
             // location
             "address"=>'required|string',
+            "street"=>'required|string',
+            "country"=>'required|string',
+            "city"=>'required|string',
+            "state"=>'required|string',
+            "zip_code"=>'required|string',
             "lat"=>'required',
             "lng"=>'required',
             "additional_location_details"=>'nullable|string',

@@ -47,6 +47,13 @@ Route::group(['prefix' => 'v1'], static function () {
          ###Studio Request###
          Route::post('studio-request', 'StudioRequestController@request');
 
+         ###Customer Saved Apis###
+        Route::get('studios/saved/list', 'CustomerFavouriteController@index');
+        Route::post('studios/saved', 'CustomerFavouriteController@store');
+        Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');
     });
+
+    //public api of studios listing
+    Route::get('/studios/public/list', 'StudioController@studiosList');
 });
 

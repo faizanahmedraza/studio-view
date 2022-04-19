@@ -92,7 +92,12 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('admin.studio.pending', function ($view) {
             $view->with(['pageTitle' => 'Studio Pending List']);
         });
-
+        view()->composer('admin.studio.create', function ($view) {
+            $view->with(['pageTitle' => 'Studio Create']);
+        });
+        view()->composer('admin.studio.edit', function ($view) {
+            $view->with(['pageTitle' => 'Studio Edit']);
+        });
 
         /**
          * Page

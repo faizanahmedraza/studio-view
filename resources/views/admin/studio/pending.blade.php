@@ -18,7 +18,7 @@
             <h3 class="page-title">{{ $pageTitle }}
                 <small></small>
             </h3>
-        {{ Breadcrumbs::render('users.index') }}
+        {{ Breadcrumbs::render('studio.pending.index') }}
         <!-- END PAGE TITLE & BREADCRUMB-->
         </div>
     </div>
@@ -117,7 +117,7 @@
                 {data: 'id', orderable: true, searchable: true, className: 'text-center'},
                 {data: 'name', orderable: true, searchable: true, className: 'text-center'},
                 {data: 'status', orderable: false, searchable: false, className: 'text-center'},
-                {data: 'action', orderable: false, searchable: false, className: 'text-center'},
+                {data: 'action', orderable: false, searchable: false, className: 'text-center'}
 
             ]);
 
