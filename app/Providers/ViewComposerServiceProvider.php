@@ -100,6 +100,19 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
 
         /**
+         * Studio Types
+         */
+        view()->composer('admin.studio-types.index', function ($view) {
+            $view->with(['pageTitle' => 'Studio Type List']);
+        });
+        view()->composer('admin.studio-types.create', function ($view) {
+            $view->with(['pageTitle' => 'Studio Type Create']);
+        });
+        view()->composer('admin.studio-types.edit', function ($view) {
+            $view->with(['pageTitle' => 'Studio Type Edit']);
+        });
+
+        /**
          * Page
          */
         view()->composer('admin.pages.edit', function ($view) {

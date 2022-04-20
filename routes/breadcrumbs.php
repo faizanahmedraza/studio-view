@@ -95,6 +95,24 @@ Breadcrumbs::for ('studio.edit', function ($breadcrumbs,$data) {
 
 /*
 |--------------------------------------------------------------------------
+| Studio Types
+|--------------------------------------------------------------------------
+*/
+Breadcrumbs::for ('studio.type.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Studio Type List', route('studio.type.index'));
+});
+Breadcrumbs::for ('studio.type.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Create', route('studio.type.create'));
+});
+Breadcrumbs::for ('studio.type.edit', function ($breadcrumbs,$data) {
+    $breadcrumbs->parent('studio.type.index',$data);
+    $breadcrumbs->push('Edit', route('studio.type.edit',$data->id));
+});
+
+/*
+|--------------------------------------------------------------------------
 | Edit Profile
 |--------------------------------------------------------------------------
 */

@@ -9,7 +9,7 @@ use Spatie\Menu\Laravel\Menu;
 /**
  * Class AdminMenu
  *
- * @author Muzafar Ali Jatoi <muzfr7@gmail.com>
+ * @author Mehmood Ismail
  * @date   23/9/18
  */
 class AdminMenu
@@ -73,8 +73,8 @@ class AdminMenu
                         ->addClass('sub-menu')
                         ->addIf(can_access_route('users.index', $userPermissoins),
                             Link::toRoute('users.index', '<span class="title">Customers List</span>'))
-                        // ->addIf(can_access_route('new-request.index', $userPermissoins),
-                        //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
+                // ->addIf(can_access_route('new-request.index', $userPermissoins),
+                //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
                 )
                 ->submenuIf(true, '
                     <a href="javascript:;">
@@ -92,8 +92,25 @@ class AdminMenu
                         ->addIf(can_access_route('studio.pending.index', $userPermissoins),
                             Link::toRoute('studio.pending.index', '<span class="title">Studio Pending List</span>'))
 
-                        // ->addIf(can_access_route('new-request.index', $userPermissoins),
-                        //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
+                // ->addIf(can_access_route('new-request.index', $userPermissoins),
+                //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
+                )
+                ->submenuIf(true, '
+                    <a href="javascript:;">
+                        <i class="fa fa-music"></i>
+                        <span class="title">Studio Types</span>
+                        <span class="arrow open"></span>
+                    </a>
+                    ',
+                    Menu::new()
+                        ->addClass('sub-menu')
+                        ->addIf(can_access_route('studio.type.create', $userPermissoins),
+                            Link::toRoute('studio.type.create', '<span class="title">Studio Type Create</span>'))
+                        ->addIf(can_access_route('studio.type.index', $userPermissoins),
+                            Link::toRoute('studio.type.index', '<span class="title">Studio Type List</span>'))
+
+                // ->addIf(can_access_route('new-request.index', $userPermissoins),
+                //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
                 )
                 // ->submenuIf(can_access_route(['attendance.index','attendance.addAttendance'], $userPermissoins), '
                 //     <a href="javascript:;">
@@ -248,8 +265,6 @@ class AdminMenu
                 //         ->addIf(can_access_route('apply-leave.create', $userPermissoins),
                 //         Link::toRoute('apply-leave.create', '<span class="title">Add Apply For Leave</span>'))
                 // )
-
-
 
 
                 // ->addIf(can_access_route('users.change-password', $userPermissoins), (Link::toRoute(

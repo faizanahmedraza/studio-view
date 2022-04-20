@@ -27,6 +27,7 @@ class ModelServiceProvider extends ServiceProvider
         $this->app->bind('App\Models\Interfaces\PagesInterface', 'App\Models\Pages');
         $this->app->bind('App\Models\Interfaces\StudioInterface', 'App\Models\Studio');
         $this->app->bind('App\Models\Interfaces\StudioTypeInterface', 'App\Models\StudioType');
+        $this->app->bind('App\Models\Interfaces\TypeInterface', 'App\Models\Type');
         $this->app->bind('App\Models\Interfaces\StudioLocationInterface', 'App\Models\StudioLocation');
         $this->app->bind('App\Models\Interfaces\StudioPriceInterface', 'App\Models\StudioPrice');
         $this->app->bind('App\Models\Interfaces\StudioImageInterface', 'App\Models\StudioImage');

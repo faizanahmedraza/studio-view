@@ -101,6 +101,14 @@ Route::group(['middleware' => 'backendAuthenticate'], function () {
         Route::get('studios/edit/{studio}', 'StudioController@edit')->name('studio.edit');
         Route::put('studios/edit/{studio}', 'StudioController@update')->name('studio.update');
 
+        Route::get('studios/types', 'StudioTypeController@index')->name('studio.type.index');
+        Route::get('studios/types/list/data', 'StudioTypeController@studiosList')->name('studio.type.list.data');
+        Route::get('studios/types/create', 'StudioTypeController@create')->name('studio.type.create');
+        Route::post('studios/types/create', 'StudioTypeController@store')->name('studio.type.store');
+        Route::get('studios/types/edit/{type}', 'StudioTypeController@edit')->name('studio.type.edit');
+        Route::put('studios/types/edit/{type}', 'StudioTypeController@update')->name('studio.type.update');
+        Route::get('studios/types/toggle-status/{type}', 'StudioTypeController@toggleStatus')->name('studio.type.toggle.status');
+
         ### pages###
         Route::get('page/edit', 'PageController@edit')->name('attendancePage.edit');
         Route::put('page/update/{page}', 'PageController@update')->name('attendancePage.update');
