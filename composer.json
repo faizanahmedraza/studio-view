@@ -11,6 +11,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "baopham/dynamodb": "^6.0",
+        "cloudinary-labs/cloudinary-laravel": "^1.0",
         "darkaonline/l5-swagger": "^6.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^3.3",

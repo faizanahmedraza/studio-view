@@ -52,7 +52,7 @@ class StudioImageRepository implements StudioImageRepositoryInterface
     }
 
 
-    public function addImages($images=[],$studioId)
+    public function addImages(array $images,$studioId)
     {
         $data=[];
         foreach ($images as $image) {

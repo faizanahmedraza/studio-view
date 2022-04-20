@@ -11,6 +11,7 @@ use App\Repositories\Interfaces\StudioLocationRepositoryInterface;
 use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
+use App\Services\CloudinaryService;
 use DB;
 use stdClass;
 use Validator;
@@ -110,16 +111,18 @@ class StudioController extends Controller
                 'hourly_rate' => $data['hourly_rate'] ?? null,
                 'audio_eng_included' => $data['audio_eng_included'] ? true : false,
                 'discount' => $data['discount'] ?? null,
-                'audio_eng_rate_hr' => ['audio_eng_rate_hr'] ?? null,
-                'audio_eng_discount' => ['audio_eng_discount'] ? true : false,
-                'other_fees' => ['other_fees'] ?? null,
-                'mixing_services' => ['mixing_services'] ?? null,
+                'audio_eng_rate_hr' => $data['audio_eng_rate_hr'] ?? null,
+                'audio_eng_discount' => $data['audio_eng_discount'] ? true : false,
+                'other_fees' => $data['other_fees'] ?? null,
+                'mixing_services' => $data['mixing_services'] ?? null,
                 'studio_id' => $studioId
             ];
             $this->studioPriceRepository->create($studioPriceData);
             $studioImages = [];
-            foreach ($request->images as $image) {
-                $studioImages[] = uploadImageStudio(base64_encode($image), $studio->name);
+            if (is_array($request->images)) {
+                foreach ($request->images as $image) {
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studioId)->secureUrl;
+                }
             }
             if (count($studioImages) > 0) {
                 $this->studioImageRepository->addImages($studioImages, $studioId);
@@ -191,18 +194,18 @@ class StudioController extends Controller
                 'hourly_rate' => $data['hourly_rate'] ?? null,
                 'audio_eng_included' => $data['audio_eng_included'] ? true : false,
                 'discount' => $data['discount'] ?? null,
-                'audio_eng_rate_hr' => ['audio_eng_rate_hr'] ?? null,
-                'audio_eng_discount' => ['audio_eng_discount'] ? true : false,
-                'other_fees' => ['other_fees'] ?? null,
-                'mixing_services' => ['mixing_services'] ?? null,
+                'audio_eng_rate_hr' => $data['audio_eng_rate_hr'] ?? null,
+                'audio_eng_discount' => $data['audio_eng_discount'] ? true : false,
+                'other_fees' => $data['other_fees'] ?? null,
+                'mixing_services' => $data['mixing_services'] ?? null,
                 'studio_id' => $studio->id
             ];
             $this->studioPriceRepository->updateByStudioId($studio->id, $studioPriceData);
             $studioImages = [];
-            if(isset($request->images) && !empty($request->images)) {
+            if (is_array($request->images) && !empty($request->images)) {
                 $studio->deleteImages();
                 foreach ($request->images as $image) {
-                    $studioImages[] = uploadImageStudio(base64_encode($image), $studio->name);
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studio->id)->secureUrl;
                 }
             }
             if (count($studioImages) > 0) {

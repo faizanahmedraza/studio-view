@@ -51,7 +51,7 @@ class StudioTypeRepository implements StudioTypeRepositoryInterface
         $this->model::where('id', $id)->delete();
     }
 
-    public function addTypes($types=[],$studioId)
+    public function addTypes(array $types,$studioId)
     {
         $data=[];
         foreach ($types as $type) {

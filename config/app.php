@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -240,7 +240,8 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Form'  => Collective\Html\FormFacade::class,
         'HTML'  => Collective\Html\HtmlFacade::class,
-        'auth.password.tokens' => Illuminate\Auth\Passwords\TokenRepositoryInterface::class
+        'auth.password.tokens' => Illuminate\Auth\Passwords\TokenRepositoryInterface::class,
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
     ],
 
     'super_admin_role_id' => 1,

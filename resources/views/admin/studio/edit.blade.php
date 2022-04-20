@@ -108,7 +108,7 @@
                                 @foreach($types as $key => $val)
                                     <label><input class="form-control" name="studio_types[]" type="checkbox"
                                                   data-parent="checkbox{{$key+1}}"
-                                                  value="{{$val->id}}" {{  (in_array($val->id, (array)old("studio_types",$studio->getStudioTypes->pluck('id')->toArray())) ? "checked":"") }}>
+                                                  value="{{$val->id}}" {{  in_array($val->id, (array)old("studio_types",$studio->getStudioTypes->pluck('type_id')->toArray())) ? "checked":"" }}>
                                         {{$val->name}}</label>
                                     <br>
                                 @endforeach
