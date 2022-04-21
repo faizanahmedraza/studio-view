@@ -694,6 +694,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "page_no",
+            "in": "query",
+            "type": "string",
+            "description": "Page number per page 20 records",
+            "required": false
+          }
         ],
         "responses": {
           "200": {

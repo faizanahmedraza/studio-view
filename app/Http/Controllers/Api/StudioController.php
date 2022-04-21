@@ -305,7 +305,7 @@ class StudioController extends ApiBaseController
     public function citiesList(Request $request)
     {
         try {
-            $limit = 5;
+            $limit = 20;
             if (!empty($request->page_no)) {
                 $page_no = (int)$request->page_no;
                 $offset = $page_no * $limit;
