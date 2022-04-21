@@ -302,10 +302,17 @@ class StudioController extends ApiBaseController
         return RestAPI::response($response, true, 'Studios List');
     }
 
-    public function citiesList()
+    public function citiesList(Request $request)
     {
         try {
-            $cities = $this->studioLocationRepository->initiateQuery()->select('city')->distinct()->get();
+            $limit = 5;
+            if (!empty($request->page_no)) {
+                $page_no = (int)$request->page_no;
+                $offset = $page_no * $limit;
+            } else {
+                $offset = 0;
+            }
+            $cities = $this->studioLocationRepository->initiateQuery()->select('city')->distinct()->offset($offset)->limit($limit)->get();
             $response = StudioCityListResource::collection($cities);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
