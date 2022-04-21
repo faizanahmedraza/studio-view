@@ -44,6 +44,10 @@ class Studio extends Model implements StudioInterface
     {
         return $this->hasMany(StudioImage::class, 'studio_id', 'id')->orderBy('id');
     }
+    public function savedStudios()
+    {
+        return $this->hasMany(CustomerFavourite::class, 'studio_id', 'id')->orderBy('id');
+    }
     public function deleteStudio()
     {
         $this->getLocation()->delete();
@@ -60,5 +64,8 @@ class Studio extends Model implements StudioInterface
     {
         $this->getImages()->delete();
     }
-
+    public function isSaved()
+    {
+        return (bool)$this->savedStudios()->where('user_id',auth()->user()->id)->exists();
+    }
 }
