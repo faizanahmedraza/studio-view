@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
@@ -87,9 +88,7 @@ class CustomerController extends Controller
         }
         if ($UserRequest->hasfile('upload_file')) {
             $file = $UserRequest->file('upload_file');
-            $fileName = $file->getClientOriginalName();
-            $file->move(backendUserFile(), $file->getClientOriginalName());
-            $updateRecord['profile_picture'] = url(backendUserFile() . $fileName);
+            $updateRecord['profile_picture'] = CloudinaryService::upload($file->getRealPath(),\auth()->id())->secureUrl;
         }
         $user->update($updateRecord);
         return redirect()->route('users.index')->with('success', 'User has been updated successfully!');

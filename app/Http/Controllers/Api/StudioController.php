@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\StudioCityListResource;
+use App\Services\CloudinaryService;
 use DB;
 use stdClass;
 use Validator;
@@ -115,7 +116,7 @@ class StudioController extends ApiBaseController
             $this->studioPriceRepository->create($studioPriceData);
             $studioImages = [];
             foreach ($data['photos'] as $base64Image) {
-                $studioImages[] = uploadImageStudio($base64Image, $studio->name);
+                $studioImages[] = CloudinaryService::upload($base64Image,$studioId)->secureUrl;
             }
             if (count($studioImages) > 0) {
                 $this->studioImageRepository->addImages($studioImages, $studioId);
@@ -199,7 +200,7 @@ class StudioController extends ApiBaseController
             }
             if (isset($data['photos']['new']) && count($data['photos']['new']) > 0) {
                 foreach ($data['photos']['new'] as $base64Image) {
-                    $studioImages[] = uploadImageStudio($base64Image, $studioData['name']);
+                    $studioImages[] = CloudinaryService::upload($base64Image,$studio->id)->secureUrl;
                 }
             }
             $studio->deleteImages();

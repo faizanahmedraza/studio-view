@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\UpdateCustomerRequest;
 use App\Models\User;
 use App\Classes\RestAPI;
+use App\Services\CloudinaryService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -81,26 +82,7 @@ class UserController extends ApiBaseController
                 unset($updateData['email']);
             }
             if ($request->profile_picture) {
-
-                //move | upload file on server
-                $slug = Str::slug(trim($data['full_name']), '-');
-
-                $image = $request->profile_picture;  // your base64 encoded
-
-                $image_parts = explode(";base64,", $image);
-
-                $image_type_aux = explode("image/", $image_parts[0]);
-
-                $image_type = $image_type_aux[1];
-
-                $image_base64 = base64_decode($image_parts[1]);
-
-                $file = backendUserFile() . $slug . '-' . time(). '-' . uniqid() . '.'.$image_type;
-
-                file_put_contents($file, $image_base64);
-                // $file->move(backendUserFile(), $filename);
-
-                $updateData['profile_picture'] = url($file);
+                $updateData['profile_picture'] = CloudinaryService::upload($request->profile_picture,auth()->user()->id)->secureUrl;
 
             }
             // dd($updateData);

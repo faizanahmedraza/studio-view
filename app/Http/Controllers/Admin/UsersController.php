@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\UpdateAdministratorRequest;
 use App\Http\Requests\Admin\UpdatePasswordRequest;
 use App\Repositories\Interfaces\AdminRepositoryInterface;
+use App\Services\CloudinaryService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -84,9 +85,7 @@ class UsersController extends Controller
         if ($request->hasfile('profile_picture')) {
             //move | upload file on server
             $file = $request->file('profile_picture');
-            $fileName = $file->getClientOriginalName();
-            $file->move(backendUserFile(), $file->getClientOriginalName());
-            $updateRecord['profile_picture'] = url(backendUserFile() . $fileName);
+            $updateRecord['profile_picture'] = CloudinaryService::upload($file->getRealPath(),\auth()->id())->secureUrl;
             $oldImage = $userRecord->profile_picture;
         }
         if (isset($data['password'])) {
