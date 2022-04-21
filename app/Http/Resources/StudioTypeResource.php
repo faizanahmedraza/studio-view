@@ -25,6 +25,7 @@ class StudioTypeResource extends JsonResource
         return [
             'id' => $this->type_id ?? '',
             'name' => $this->getType->name ?? '',
+            'image_url' => $this->getType->image_url ?? ''
         ];
     }
 }
