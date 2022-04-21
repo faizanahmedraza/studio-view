@@ -55,4 +55,8 @@ class StudioLocationRepository implements StudioLocationRepositoryInterface
         $this->model::where('studio_id', $id)->update($data);
     }
 
+    public function initiateQuery()
+    {
+        return $this->model::query();
+    }
 }

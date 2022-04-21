@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\StudioCityListResource;
 use DB;
 use stdClass;
 use Validator;
@@ -299,5 +300,16 @@ class StudioController extends ApiBaseController
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
         return RestAPI::response($response, true, 'Studios List');
+    }
+
+    public function citiesList()
+    {
+        try {
+            $cities = $this->studioLocationRepository->initiateQuery()->select('city')->distinct()->get();
+            $response = StudioCityListResource::collection($cities);
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response($response, true, 'Studios Cities List');
     }
 }

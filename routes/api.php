@@ -33,6 +33,8 @@ Route::group(['prefix' => 'v1'], static function () {
         ###Types###
         Route::get('types-list', 'TypeController@index');
 
+        ###Studio Cities Api
+        Route::get('studios/cities/list', 'StudioController@citiesList');
         ###Studio###
         Route::get('studios/list', 'StudioController@index');
         Route::resource('studios', 'StudioController');
@@ -45,6 +47,7 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');
         Route::post('studios/saved', 'CustomerFavouriteController@store');
         Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');
+
     });
 
     //public api of studios listing

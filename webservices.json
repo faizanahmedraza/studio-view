@@ -677,6 +677,31 @@
         }
       }
     },
+    "/studios/cities/list": {
+      "get": {
+        "tags": [
+          "Studio"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Studio Cities List",
+        "description": "Studio Cities List",
+        "operationId": "StudioCityList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/studios/saved": {
       "post": {
         "tags": [
