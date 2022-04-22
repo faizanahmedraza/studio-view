@@ -54,6 +54,7 @@ class StudioRequestController extends ApiBaseController
         DB::beginTransaction();
         try {
             $data=$request->all();
+            print_r($data);
 
             // $response='';
             DB::commit();
@@ -62,9 +63,6 @@ class StudioRequestController extends ApiBaseController
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
         // return RestAPI::response( $response, true, 'Studio Created Successfully');
-
-
-
 
     }
 

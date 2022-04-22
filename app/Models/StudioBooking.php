@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Interfaces\StudioTypeInterface;
 
-class StudioType extends Model implements StudioTypeInterface
+class StudioBooking extends Model
 {
     use SoftDeletes;
+
+    public const STATUS= ['pending' => 0 ,'approve' => 1  ,'reject' => 2];
 
     public $table = 'studio_bookings';
     /**
