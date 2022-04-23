@@ -49,7 +49,7 @@ class StudioController extends ApiBaseController
     public function index()
     {
         try {
-            $allStudios = $this->studioRepository->initiateQuery()->where('user_id',auth()->id())->get();
+            $allStudios = $this->studioRepository->initiateQuery()->where('user_id', auth()->id())->get();
             $response = StudioListResource::collection($allStudios);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
@@ -116,7 +116,7 @@ class StudioController extends ApiBaseController
             $this->studioPriceRepository->create($studioPriceData);
             $studioImages = [];
             foreach ($data['photos'] as $base64Image) {
-                $studioImages[] = CloudinaryService::upload($base64Image,$studioId)->secureUrl;
+                $studioImages[] = CloudinaryService::upload($base64Image, $studioId)->secureUrl;
             }
             if (count($studioImages) > 0) {
                 $this->studioImageRepository->addImages($studioImages, $studioId);
@@ -200,7 +200,7 @@ class StudioController extends ApiBaseController
             }
             if (isset($data['photos']['new']) && count($data['photos']['new']) > 0) {
                 foreach ($data['photos']['new'] as $base64Image) {
-                    $studioImages[] = CloudinaryService::upload($base64Image,$studio->id)->secureUrl;
+                    $studioImages[] = CloudinaryService::upload($base64Image, $studio->id)->secureUrl;
                 }
             }
             $studio->deleteImages();
@@ -296,7 +296,7 @@ class StudioController extends ApiBaseController
                 $allStudios = $allStudios->paginate(20);
             }
 
-            $response = StudioListResource::collection($allStudios);
+            $response = StudioResource::collection($allStudios);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }

@@ -26,7 +26,7 @@ class StudioListResource extends JsonResource
             'price'=> new StudioPriceResource($this->getPrice),
             'types'=> StudioTypeResource::collection($this->getStudioTypes),
             'images'=> StudioImageResource::collection($this->getImages),
-            'location'=>new StudioLocationResource($this->getLocation),
+            'location'=> new StudioLocationResource($this->getLocation),
             'status' => $this->status,
             'is_saved' => $this->isSaved(),
             'approved_at' => $this->approved_at ?? '',

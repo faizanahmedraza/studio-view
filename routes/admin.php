@@ -62,7 +62,6 @@ Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm
 Route::get('/password/reset/{email}/{token}/{role_id}', 'Auth\ResetPasswordController@reset_password_from_show')->name('password.reset');
 
 
-
 Route::group(['middleware' => 'backendAuthenticate'], function () {
 
     ###Dashbaord###

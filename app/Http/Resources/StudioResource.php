@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudioResource extends JsonResource
 {
-
     public function __construct($resource)
     {
         parent::__construct($resource);
@@ -20,8 +19,6 @@ class StudioResource extends JsonResource
      */
     public function toArray($request)
     {
-
-
         return [
             'id' => $this->id ?? '',
             'name' => $this->name ?? '',
@@ -38,11 +35,11 @@ class StudioResource extends JsonResource
             'main_equipment' => $this->main_equipment ?? '',
             'rules' => $this->rules ?? '',
             'cancelation_policy' => $this->cancelation_policy ?? '',
-            'location'=>new StudioLocationResource($this->getLocation),
-            'price'=>new StudioPriceResource($this->getPrice),
+            'location'=> new StudioLocationResource($this->getLocation),
+            'price'=> new StudioPriceResource($this->getPrice),
             'types'=> StudioTypeResource::collection($this->getStudioTypes),
             'images'=> StudioImageResource::collection($this->getImages),
-            'status' => $this->status ?true :false ,
+            'status' => $this->status ? true : false,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];
