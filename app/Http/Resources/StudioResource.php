@@ -42,6 +42,7 @@ class StudioResource extends JsonResource
             'price'=>new StudioPriceResource($this->getPrice),
             'types'=> StudioTypeResource::collection($this->getStudioTypes),
             'images'=> StudioImageResource::collection($this->getImages),
+            'user' => new UserResource($this->user),
             'status' => $this->status ?true :false ,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
