@@ -15,6 +15,9 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::post('login-google', 'AuthApiController@userLoginGoogle')->name('user-login');
     // Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
 
+    // get all studios by location search
+    Route::get('studios/search', 'StudioController@search');
+
 
     Route::group(['middleware' => 'jwt-auth'], function () {
 
@@ -39,9 +42,12 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('studios/list', 'StudioController@index');
         Route::resource('studios', 'StudioController');
 
-         ###Studio###
-         Route::get('send-verification-sms', 'SMSController@sendSms');
-         Route::post('verify-sms-code', 'SMSController@verifySmsCode');
+        ###Sms###
+        Route::get('send-verification-sms', 'SMSController@sendSms');
+        Route::post('verify-sms-code', 'SMSController@verifySmsCode');
+
+         ###Studio Request###
+         Route::post('studio-request', 'StudioRequestController@request');
 
          ###Customer Saved Apis###
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');

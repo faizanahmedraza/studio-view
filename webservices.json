@@ -963,6 +963,84 @@
           }
         }
       }
-    }
+    },
+
+    "/studio-request": {
+        "post": {
+          "tags": [
+            "Studio"
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "summary": "Studio Request",
+          "description": "Request For Studio",
+          "operationId": "RequestStudio",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+
+            {
+                "name": "studio_id",
+                "in": "formData",
+                "description": "Studio Id",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "date",
+                "in": "formData",
+                "description": "2022-12-22 Eg format Y-m-d",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "start_time",
+                "in": "formData",
+                "description": "20:44 Eg format H:i",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "end_time",
+                "in": "formData",
+                "description": "20:44 Eg format H:i",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "audio_engineer",
+                "in": "formData",
+                "description": "Boolean 1 OR 0",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "mixing_services",
+                "in": "formData",
+                "description": "Boolean 1 OR 0",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "other_services",
+                "in": "formData",
+                "description": "Boolean 1 OR 0",
+                "required": false,
+                "type": "integer"
+            }
+
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+
+        }
+      }
   }
 }

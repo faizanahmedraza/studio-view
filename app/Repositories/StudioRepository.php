@@ -70,6 +70,11 @@ class StudioRepository implements StudioRepositoryInterface
         return $this->model->where('user_id', $userId)->where('status', 0)->orderBy('created_at')->get();
     }
 
+    public function findByIn($attribute,array $value)
+    {
+        return $this->model->whereIn($attribute, $value)->get();
+    }
+
     public function getFavouriteStudios(array $studioIds)
     {
         return $this->model->where('status', 1)->whereIn('id',$studioIds)->orderBy('created_at')->paginate(env('PAGE_LIMIT',20));

@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Interfaces\StudioLocationInterface;
-use App\Repositories\Interfaces\StudioLocationRepositoryInterface;
+use App\Models\Interfaces\StudioBookingInterface;
+use App\Repositories\Interfaces\StudioBookingRepositoryInterface;
 
 
 /**
- * Class StudioLocationRepository
+ * Class StudioBookingRepository
  *
  */
-class StudioLocationRepository implements StudioLocationRepositoryInterface
+class StudioBookingRepository implements StudioBookingRepositoryInterface
 {
     private $model;
 
-    public function __construct(StudioLocationInterface $model)
+    public function __construct(StudioBookingInterface $model)
     {
         $this->model = $model;
     }
@@ -38,7 +38,7 @@ class StudioLocationRepository implements StudioLocationRepositoryInterface
 
     public function findBy($attribute, $value)
     {
-        return $this->model->where($attribute, '=', $value)->get();
+        return $this->model->where($attribute, '=', $value);
     }
 
     public function update($id, array $data)
@@ -49,10 +49,6 @@ class StudioLocationRepository implements StudioLocationRepositoryInterface
     public function delete($id)
     {
         $this->model::where('id', $id)->delete();
-    }
-    public function updateByStudioId($id, array $data)
-    {
-        $this->model::where('studio_id', $id)->update($data);
     }
 
     public function initiateQuery()
