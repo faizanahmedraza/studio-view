@@ -146,6 +146,8 @@ class StudioRequestController extends ApiBaseController
                 'total_hours_price' => $sellingPriceTotalHrs,
                 'total_eng_hours_price' => $sellingPriceAudioEngRateHrs,
                 'grand_total' => $grandPrice,
+                'on_arrival_to_bring_issued_id_agree' => $request->on_arrival_to_bring_issued_id_agree ? 1 : 0,
+                'studio_cancellation_policy_agree' => $request->studio_cancellation_policy_agree ? 1 : 0,
                 'status' => 0
             ];
 
