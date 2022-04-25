@@ -34,4 +34,10 @@ class RequestStudioRequest extends Request
         ];
     }
 
+    public function messages()
+    {
+        return [
+          'end_time.after' => 'The end time must be a time after start time.'
+        ];
+    }
 }
