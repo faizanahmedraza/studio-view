@@ -42,6 +42,7 @@ class StudioRequestController extends ApiBaseController
     }
     public function request(RequestStudioRequest $request)
     {
+        dd($request->all());
         $time1 = new DateTime($request->date.' '.$request->start_time);
         $time2 = new DateTime($request->date.' '.$request->end_time);
         $timediff = $time1->diff($time2);
