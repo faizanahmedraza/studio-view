@@ -50,7 +50,7 @@ class StudioController extends ApiBaseController
     {
         try {
             $allStudios = $this->studioRepository->initiateQuery()->where('user_id', auth()->id())->get();
-            $response = StudioListResource::collection($allStudios);
+            $response = StudioResource::collection($allStudios);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
