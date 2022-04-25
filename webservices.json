@@ -999,8 +999,21 @@
                 "description": "Boolean 1 OR 0",
                 "required": false,
                 "type": "integer"
+            },
+            {
+              "name": "on_arrival_to_bring_issued_id_agree",
+              "in": "formData",
+              "description": "Boolean 1 OR 0",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "name": "studio_cancellation_policy_agree",
+              "in": "formData",
+              "description": "Boolean 1 OR 0",
+              "required": true,
+              "type": "integer"
             }
-
           ],
           "responses": {
             "200": {

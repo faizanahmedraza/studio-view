@@ -30,7 +30,9 @@ class RequestStudioRequest extends Request
             'end_time' => 'required|date_format:H:i|after:start_time',
             'audio_engineer' => 'nullable|boolean',
             'mixing_services' => 'nullable|boolean',
-            'other_services' => 'nullable|boolean'
+            'other_services' => 'nullable|boolean',
+            'on_arrival_to_bring_issued_id_agree' => 'required|boolean',
+            'studio_cancellation_policy_agree' => 'required|boolean',
         ];
     }
 
