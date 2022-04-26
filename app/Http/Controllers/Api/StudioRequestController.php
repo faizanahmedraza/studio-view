@@ -51,39 +51,41 @@ class StudioRequestController extends ApiBaseController
         $differenceInHours = $requestEndTime->diffInHours($requestStartTime);
         $requestDate = Carbon::parse($request->date)->format('Y-m-d');
 
-        if ($differenceInHours >= $studio->minimum_booking_hr && $studio->hours_status == 3) {
-            if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
-                $studioRequest = $this->studioBookingRepository->initiateQuery()
-                    ->where('studio_id', $studio->id)
-                    ->where('date', $requestDate)->first();
-
-                if (!empty($studioRequest)) {
-                    $studioRequestForCurrentTime = $this->studioBookingRepository->initiateQuery()
+        if ($differenceInHours >= $studio->minimum_booking_hr) {
+            if ($studio->hours_status == 3) {
+                if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
+                    $studioRequest = $this->studioBookingRepository->initiateQuery()
                         ->where('studio_id', $studio->id)
-                        ->where('date', $requestDate)
-                        ->where('start_time', $requestStartTime->format('H:i'))
-                        ->where('end_time', $requestEndTime->format('H:i'))->first();
+                        ->where('date', $requestDate)->first();
 
-                    if (!empty($studioRequestForCurrentTime)) {
-                        return RestAPI::response('The time you selected is already granted to some one.', false, 'validation_error');
+                    if (!empty($studioRequest)) {
+                        $studioRequestForCurrentTime = $this->studioBookingRepository->initiateQuery()
+                            ->where('studio_id', $studio->id)
+                            ->where('date', $requestDate)
+                            ->where('start_time', $requestStartTime->format('H:i'))
+                            ->where('end_time', $requestEndTime->format('H:i'))->first();
+
+                        if (!empty($studioRequestForCurrentTime)) {
+                            return RestAPI::response('The time you selected is already granted to some one.', false, 'validation_error');
+                        }
+
+                        $reqStartTime = Carbon::parse($studioRequest->start_time);
+                        $reqEndTime = Carbon::parse($studioRequest->end);
+                        $reqDiffTime = $reqEndTime->diffInHours($reqStartTime);
+
+                        $studioStartHours = Carbon::parse($studio->hrs_from);
+                        $studioEndHours = Carbon::parse($studio->hrs_to);
+                        $studioTotalHours = $studioEndHours->diffInHours($studioStartHours);
+
+                        $remainingHours = $studioTotalHours - $reqDiffTime;
+                        if ($remainingHours < $studio->minimum_booking_hr) {
+                            return RestAPI::response('The date ' . $requestDate . ' you selected studio, not have enough time to grant you. Please use another slot.', false, 'validation_error');
+                        }
                     }
 
-                    $reqStartTime = Carbon::parse($studioRequest->start_time);
-                    $reqEndTime = Carbon::parse($studioRequest->end);
-                    $reqDiffTime = $reqEndTime->diffInHours($reqStartTime);
-
-                    $studioStartHours = Carbon::parse($studio->hrs_from);
-                    $studioEndHours = Carbon::parse($studio->hrs_to);
-                    $studioTotalHours = $studioEndHours->diffInHours($studioStartHours);
-
-                    $remainingHours = $studioTotalHours - $reqDiffTime;
-                    if ($remainingHours < $studio->minimum_booking_hr) {
-                        return RestAPI::response('The date ' . $requestDate . ' you selected studio, not have enough time to grant you. Please use another slot.', false, 'validation_error');
-                    }
+                } else {
+                    return RestAPI::response('The time you selected is not the time where studio opens.', false, 'validation_error');
                 }
-
-            } else {
-                return RestAPI::response('The time you selected is not the time where studio opens.', false, 'validation_error');
             }
         } else {
             return RestAPI::response('Total hours should be greater or equal to studio minimum hours.', false, 'validation_error');
@@ -159,7 +161,7 @@ class StudioRequestController extends ApiBaseController
             DB::rollback();
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
-         return RestAPI::response( $response, true, 'Studio Booking Created Successfully');
+        return RestAPI::response($response, true, 'Studio Booking Created Successfully');
 
     }
 
