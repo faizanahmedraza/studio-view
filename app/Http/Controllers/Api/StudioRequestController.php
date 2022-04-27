@@ -51,7 +51,7 @@ class StudioRequestController extends ApiBaseController
         $differenceInHours = $requestEndTime->diffInHours($requestStartTime);
         $requestDate = Carbon::parse($request->date)->format('Y-m-d');
 
-        if ($differenceInHours >= $studio->minimum_booking_hr) {
+        if ((int)$differenceInHours >= (int)$studio->minimum_booking_hr) {
             if ($studio->hours_status == 3) {
                 if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
                     $studioRequest = $this->studioBookingRepository->initiateQuery()
