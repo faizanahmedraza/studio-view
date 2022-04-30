@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\StudioCityListResource;
 use App\Services\CloudinaryService;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use stdClass;
 use Validator;
 use App\Models\Studio;
@@ -82,6 +83,7 @@ class StudioController extends ApiBaseController
                 'main_equipment' => $data['main_equipment'] ?? null,
                 'rules' => $data['rules'] ?? null,
                 'cancelation_policy' => $data['cancelation_policy'] ?? null,
+                'is_owner' => $user->id,
             ];
             if ($data['hours_status'] == 3) {
                 $studioData['hrs_to'] = $data['hrs_to'] ?? null;
@@ -134,7 +136,7 @@ class StudioController extends ApiBaseController
     public function update(UpdateStudioRequest $request, Studio $studio)
     {
         $user = $this->userRepository->find(auth()->user()->id);
-        if ($user->id != $studio->user_id) {
+        if ($user->id != $studio->is_owner) {
             return RestAPI::response('Unathorized Access', false, 'error_exception');
         }
 
@@ -218,10 +220,6 @@ class StudioController extends ApiBaseController
     public function show(Studio $studio)
     {
         try {
-            $user = $this->userRepository->find(auth()->user()->id);
-            if ($user->id != $studio->user_id) {
-                return RestAPI::response('Unathorized Access', false, 'error_exception');
-            }
             $response = new StudioResource($studio);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
@@ -232,7 +230,7 @@ class StudioController extends ApiBaseController
     public function destroy(Studio $studio)
     {
         $user = $this->userRepository->find(auth()->user()->id);
-        if ($user->id != $studio->user_id) {
+        if ($user->id != $studio->is_owner) {
             return RestAPI::response('Unathorized Access', false, 'error_exception');
         }
         DB::beginTransaction();
@@ -248,19 +246,19 @@ class StudioController extends ApiBaseController
 
     public function search(Request $request)
     {
-        $this->validate($request,[
-            'address'=>'required|string',
+        $this->validate($request, [
+            'address' => 'required|string',
         ]);
         DB::beginTransaction();
         try {
-            $data= $request->all();
-            $studioLocations=$this->studioLocationRepository->findBy('address',$data['address']);
+            $data = $request->all();
+            $studioLocations = $this->studioLocationRepository->findBy('address', $data['address']);
             $studioLocations = $studioLocations->pluck('studio_id');
-            $studioLocations =  $studioLocations->toArray();
-            $allStudios=$this->studioRepository->findByIn('id',$studioLocations);
+            $studioLocations = $studioLocations->toArray();
+            $allStudios = $this->studioRepository->findByIn('id', $studioLocations);
             $allStudios = $allStudios->where('status', 1);
             $allStudios->all();
-            $response=StudioListResource::collection($allStudios);
+            $response = StudioListResource::collection($allStudios);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

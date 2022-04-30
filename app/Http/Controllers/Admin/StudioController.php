@@ -86,6 +86,7 @@ class StudioController extends Controller
                 'rules' => $data['rules'] ?? null,
                 'cancelation_policy' => $data['cancellation_policy'] ?? null,
                 'status' => $data['status'] ? true : false,
+                'is_owner' => $user->id,
             ];
             if ($data['hours_status'] == 3) {
                 $studioData['hrs_to'] = $data['hrs_to'] ?? null;
@@ -169,6 +170,7 @@ class StudioController extends Controller
                 'rules' => $data['rules'] ?? null,
                 'cancelation_policy' => $data['cancellation_policy'] ?? null,
                 'status' => $data['status'] ? true : false,
+                'is_owner' => $user->id,
             ];
             if ($data['hours_status'] == 3) {
                 $studioData['hrs_to'] = $data['hrs_to'] ?? null;
