@@ -54,6 +54,8 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::post('studios/saved', 'CustomerFavouriteController@store');
         Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');
 
+        ###Send Notification Apis###
+        Route::post('/send-notification', 'NotificationController@sendNotification')->name('send.notification');
     });
 
     //public api of studios listing

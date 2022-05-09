@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\StudioBookingResource;
 use App\Repositories\Interfaces\StudioBookingRepositoryInterface;
+use App\Services\NotificationService;
 use Carbon\Carbon;
 use DB;
 use DateTime;
@@ -45,6 +46,7 @@ class StudioRequestController extends ApiBaseController
 
     public function request(RequestStudioRequest $request)
     {
+        $user = $this->userRepository->find(auth()->user()->id);
         $studio = $this->studioRepository->find($request->studio_id);
         $requestStartTime = Carbon::parse($request->start_time);
         $requestEndTime = Carbon::parse($request->end_time);
@@ -52,23 +54,28 @@ class StudioRequestController extends ApiBaseController
         $requestDate = Carbon::parse($request->date)->format('Y-m-d');
 
         if ($differenceInHours >= $studio->minimum_booking_hr) {
+            $studioRequestForCurrentTime = $this->studioBookingRepository->initiateQuery()
+                ->where('studio_id', $studio->id)
+                ->where('date', $requestDate)
+                ->where('start_time', $requestStartTime->format('H:i'))
+                ->where('end_time', $requestEndTime->format('H:i'));
+
+            if (!empty($studioRequestForCurrentTime->where('status', 1)->first())) {
+                $currentUser = $studioRequestForCurrentTime->where('status', 1)->first();
+                if ($currentUser->user_id == auth()->id()) {
+                    return RestAPI::response('You have already booked this Studio.', false, 'validation_error');
+                } else {
+                    return RestAPI::response('The Studio is already booked for this time.', false, 'validation_error');
+                }
+            }
+
+            if (!empty($studioRequestForCurrentTime->where('user_id', $user->id)->where('status', 0)->first())) {
+                return RestAPI::response('You have already requested for the studio for this time.', false, 'validation_error');
+            }
+
             if ($studio->hours_status == 3) {
                 if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
-                    $studioRequest = $this->studioBookingRepository->initiateQuery()
-                        ->where('studio_id', $studio->id)
-                        ->where('date', $requestDate)->first();
-
                     if (!empty($studioRequest)) {
-                        $studioRequestForCurrentTime = $this->studioBookingRepository->initiateQuery()
-                            ->where('studio_id', $studio->id)
-                            ->where('date', $requestDate)
-                            ->where('start_time', $requestStartTime->format('H:i'))
-                            ->where('end_time', $requestEndTime->format('H:i'))->first();
-
-                        if (!empty($studioRequestForCurrentTime)) {
-                            return RestAPI::response('The time you selected is already granted to some one.', false, 'validation_error');
-                        }
-
                         $reqStartTime = Carbon::parse($studioRequest->start_time);
                         $reqEndTime = Carbon::parse($studioRequest->end);
                         $reqDiffTime = $reqEndTime->diffInHours($reqStartTime);
@@ -94,7 +101,6 @@ class StudioRequestController extends ApiBaseController
 
         DB::beginTransaction();
         try {
-            $user = $this->userRepository->find(auth()->user()->id);
             $data = $request->all();
 
             $hourlyRate = $studio->getPrice->hourly_rate;
@@ -155,6 +161,12 @@ class StudioRequestController extends ApiBaseController
 
             $booking = $this->studioBookingRepository->create($bookingData);
             $response = new StudioBookingResource($booking);
+
+            $notificationData['title'] = "Request For Studio";
+            $notificationData['body'] = $user->getFullname() . ' has requested to rent your studio "' . $studio->name . '" at ' . $data['start_time'] . " to " . $data['end_time'] . " on " . $data['date'];
+            $notificationData['image'] = $studio->getImages[0]->image_url;
+
+//            NotificationService::sendNotification($notificationData);
 
             DB::commit();
         } catch (\Exception $e) {
