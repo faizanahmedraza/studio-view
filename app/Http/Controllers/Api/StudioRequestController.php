@@ -55,14 +55,25 @@ class StudioRequestController extends ApiBaseController
         $requestDate = Carbon::parse($request->date)->format('Y-m-d');
 
         if ($differenceInHours >= $studio->minimum_booking_hr) {
-            $studioRequestForCurrentTime = $this->studioBookingRepository->initiateQuery()
+            $studioRequestForCurrentTime1 = $this->studioBookingRepository->initiateQuery()
+                ->where('studio_id', $studio->id)
+                ->where('date', $requestDate)
+                ->where('start_time', $requestStartTime->format('H:i'))
+                ->where('end_time', $requestEndTime->format('H:i'));
+            $studioRequestForCurrentTime2 = $this->studioBookingRepository->initiateQuery()
+                ->where('studio_id', $studio->id)
+                ->where('date', $requestDate)
+                ->where('start_time', $requestStartTime->format('H:i'))
+                ->where('end_time', $requestEndTime->format('H:i'));
+            $studioRequestForCurrentTime3 = $this->studioBookingRepository->initiateQuery()
                 ->where('studio_id', $studio->id)
                 ->where('date', $requestDate)
                 ->where('start_time', $requestStartTime->format('H:i'))
                 ->where('end_time', $requestEndTime->format('H:i'));
 
-            if (!empty($studioRequestForCurrentTime->where('status', 1)->first())) {
-                $currentUser = $studioRequestForCurrentTime->where('status', 1)->first();
+
+            if (!empty($studioRequestForCurrentTime1->where('status', 1)->first())) {
+                $currentUser = $studioRequestForCurrentTime2->where('status', 1)->first();
                 if ($currentUser->user_id == auth()->id()) {
                     return RestAPI::response('You have already booked this Studio.', false, 'validation_error');
                 } else {
@@ -70,7 +81,7 @@ class StudioRequestController extends ApiBaseController
                 }
             }
 
-            if (!empty($studioRequestForCurrentTime->where('user_id', $user->id)->where('status', 0)->first())) {
+            if (!empty($studioRequestForCurrentTime3->where('user_id', $user->id)->where('status', 0)->first())) {
                 return RestAPI::response('You have already requested for the studio for this time.', false, 'validation_error');
             }
 
