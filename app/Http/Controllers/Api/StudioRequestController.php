@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\StudioBookingResource;
+use App\Models\Studio;
 use App\Repositories\Interfaces\StudioBookingRepositoryInterface;
 use App\Services\NotificationService;
 use Carbon\Carbon;
@@ -162,6 +163,7 @@ class StudioRequestController extends ApiBaseController
             $booking = $this->studioBookingRepository->create($bookingData);
             $response = new StudioBookingResource($booking);
 
+            $notificationData['user_id'] = $studio->user_id;
             $notificationData['title'] = "Request For Studio";
             $notificationData['body'] = $user->getFullname() . ' has requested to rent your studio "' . $studio->name . '" at ' . $data['start_time'] . " to " . $data['end_time'] . " on " . $data['date'];
             $notificationData['image'] = $studio->getImages[0]->image_url;

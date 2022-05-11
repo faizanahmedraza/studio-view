@@ -9,7 +9,7 @@ class NotificationService
     public static function sendNotification(array $formData)
     {
         try {
-            $firebaseToken = UserDevice::where('user_id', auth()->id())->pluck('device_token')->all();
+            $firebaseToken = UserDevice::where('user_id', $formData['user_id'])->pluck('device_token')->all();
 
             $SERVER_API_KEY = env('FIRE_BASE_SERVER_KEY');
 
