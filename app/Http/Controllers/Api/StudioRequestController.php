@@ -166,7 +166,7 @@ class StudioRequestController extends ApiBaseController
             $notificationData['body'] = $user->getFullname() . ' has requested to rent your studio "' . $studio->name . '" at ' . $data['start_time'] . " to " . $data['end_time'] . " on " . $data['date'];
             $notificationData['image'] = $studio->getImages[0]->image_url;
 
-//            NotificationService::sendNotification($notificationData);
+            NotificationService::sendNotification($notificationData);
 
             DB::commit();
         } catch (\Exception $e) {
