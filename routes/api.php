@@ -46,10 +46,13 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('send-verification-sms', 'SMSController@sendSms');
         Route::post('verify-sms-code', 'SMSController@verifySmsCode');
 
-         ###Studio Request###
-         Route::post('studio-request', 'StudioRequestController@request');
+        ###Studio Request###
+        Route::post('studio-request', 'StudioRequestController@request');
+        Route::get('my-studio-request', 'StudioRequestController@myStudioRequest'); //my studios that have been requested by others (list)
+        Route::get('my-booking-request', 'StudioRequestController@myBookingRequest'); //my requests for other's studios (list)
 
-         ###Customer Saved Apis###
+
+        ###Customer Saved Apis###
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');
         Route::post('studios/saved', 'CustomerFavouriteController@store');
         Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');

@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\StudioBookingResource;
-use App\Models\Studio;
-use App\Repositories\Interfaces\StudioBookingRepositoryInterface;
-use App\Services\NotificationService;
-use Carbon\Carbon;
 use DB;
 use DateTime;
 use Validator;
-
+use Carbon\Carbon;
+use App\Models\Studio;
 use App\Classes\RestAPI;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
+
+use App\Http\Resources\StudioBookingResource;
+
+use App\Http\Resources\StudioRequestResource;
 use App\Http\Requests\Api\RequestStudioRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
 use App\Repositories\Interfaces\StudioImageRepositoryInterface;
 use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
+use App\Repositories\Interfaces\StudioBookingRepositoryInterface;
 use App\Repositories\Interfaces\StudioLocationRepositoryInterface;
 
 
@@ -190,5 +192,33 @@ class StudioRequestController extends ApiBaseController
 
     }
 
+    public function myStudioRequest()
+    {
+        try {
+            $user = $this->userRepository->find(auth()->user()->id);
+            $userStudios=$user->studios;
+            $userStudiosIds=$userStudios->pluck('id');
+            $studioRequests=$this->studioBookingRepository->getIn('studio_id',$userStudiosIds);
 
+            $response = StudioRequestResource::collection($studioRequests);
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response($response, true, 'Studios Request List');
+
+    }
+
+    public function myBookingRequest()
+    {
+        try {
+            $user = $this->userRepository->find(auth()->user()->id);
+
+            $studioRequests=$this->studioBookingRepository->getIn('user_id',[$user->id]);
+
+            $response = StudioRequestResource::collection($studioRequests);
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response($response, true, 'Studios Request List');
+    }
 }

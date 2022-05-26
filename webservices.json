@@ -22,6 +22,10 @@
       "description": "Studio Services"
     },
     {
+      "name": "Studio Request",
+      "description": "Studio Request Services"
+    },
+    {
       "name": "Studio Public Apis",
       "description": "Studio Services"
     }
@@ -968,7 +972,7 @@
     "/studio-request": {
         "post": {
           "tags": [
-            "Studio"
+            "Studio Request"
           ],
           "security": [
             {
@@ -1054,6 +1058,56 @@
           }
 
         }
+    },
+    "/my-studio-request": {
+      "get": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "My Studios Request",
+        "description": "my studios that have been requested by others (list)",
+        "operationId": "MyStudiosRequest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
       }
+    },
+    "/my-booking-request": {
+      "get": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "My Booking Request",
+        "description": "my requests for other's studios (list)",
+        "operationId": "MyBookingRequest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
   }
 }
