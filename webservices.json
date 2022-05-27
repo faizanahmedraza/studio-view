@@ -1108,6 +1108,45 @@
           }
         }
       }
+    },
+    "/my-studio-request-status/{studio_id}": {
+      "put": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Change Studio Booking Request Status",
+        "description": "Change Studio Booking Request Status",
+        "operationId": "ChangeStudioBookingRequestStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+            {
+                "name": "status",
+                "in": "formData",
+                "description": "for pending = 0 ,  approve = 1  , reject = 2",
+                "required": true,
+                "type": "integer"
+            },
+            {
+                "name": "booking_id",
+                "in": "formData",
+                "description": "booking id",
+                "required": true,
+                "type": "integer"
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
     }
   }
 }

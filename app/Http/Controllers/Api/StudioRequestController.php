@@ -15,6 +15,7 @@ use App\Http\Resources\StudioBookingResource;
 
 use App\Http\Resources\StudioRequestResource;
 use App\Http\Requests\Api\RequestStudioRequest;
+use App\Http\Requests\Api\RequestStudioStatusRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
@@ -221,4 +222,64 @@ class StudioRequestController extends ApiBaseController
         }
         return RestAPI::response($response, true, 'Studios Request List');
     }
+
+    public function myStudioRequestStatus(RequestStudioStatusRequest $request,$studio_id)
+    {
+        try {
+            $user = $this->userRepository->find(auth()->user()->id);
+            if(empty($user)){
+                return RestAPI::response("User not found", false);
+            }
+            $studio = $this->studioRepository->find($studio_id);
+            if(empty($studio)){
+                return RestAPI::response("Studio not found", false);
+            }
+            if($request->status == 1 && $studio->user_id != $user->id){
+                return RestAPI::response("Unauthorized Access", false);
+            }
+            if($request->status == 0){
+                return RestAPI::response("Can not change the status to pending", false);
+            }
+            $studioBooking=$this->studioBookingRepository->find($request->booking_id);
+            if($studioBooking->studio_id != $studio->id){
+                return RestAPI::response("Booking studio and requested studio doesn't match.", false);
+            }
+            if($studioBooking->status != 0){
+                return RestAPI::response("Can not change the status because its already approved or rejected", false);
+            }
+            if($request->status == 2){
+                $studioBooking->status=2;
+                $studioBooking->save();
+                return RestAPI::response(new stdClass(), true, 'Status Changed Successfully');
+            }
+            if($request->status == 1){
+                $studioBookingsByDate=$this->studioBookingRepository->where(['studio_id'=>$studioBooking->studio_id,'date'=>$studioBooking->date,'status'=>1]);
+                $check=true;
+                $filtered = $studioBookingsByDate->whereBetween('start_time', [$studioBooking->start_time, $studioBooking->end_time]);
+                $filtered=$filtered->all();
+                if(count($filtered) > 0){
+                    $check=false;
+                }
+                $filtered = $studioBookingsByDate->whereBetween('end_time', [$studioBooking->start_time, $studioBooking->end_time]);
+                $filtered=$filtered->all();
+                if(count($filtered) > 0){
+                    $check=false;
+                }
+
+                if(!$check){
+                    return RestAPI::response('You have other approved booking between this timing.', false,'Status Change Failed');
+                }
+
+                $studioBooking->status=1;
+                $studioBooking->save();
+
+            }
+
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response(new \stdClass(), true, 'Status Changed Successfully');
+
+    }
+
 }
