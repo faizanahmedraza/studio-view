@@ -55,4 +55,13 @@ class StudioBookingRepository implements StudioBookingRepositoryInterface
     {
         return $this->model::query();
     }
+
+    public function getIn($attr,$where)
+    {
+        return $this->model->whereIn($attr,$where)->get();
+    }
+    public function where($where)
+    {
+        return $this->model->where($where)->get();
+    }
 }

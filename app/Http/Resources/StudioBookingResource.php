@@ -38,7 +38,7 @@ class StudioBookingResource extends JsonResource
             'grand_total' => $this->grand_total ?? '',
             'on_arrival_to_bring_issued_id_agree' => $this->on_arrival_to_bring_issued_id_agree ?? '',
             'studio_cancellation_policy_agree' => $this->studio_cancellation_policy_agree ?? '',
-            'status' => $this->status ? true :false,
+            'status' => $this->status,
             'created_at' => $this->created_at ?? '',
         ];
     }
