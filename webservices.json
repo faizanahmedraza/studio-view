@@ -28,6 +28,10 @@
     {
       "name": "Studio Public Apis",
       "description": "Studio Services"
+    },
+    {
+      "name": "Payment",
+      "description": "Payment Services"
     }
   ],
   "schemes": [
@@ -1140,6 +1144,90 @@
                 "required": true,
                 "type": "integer"
             }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/card": {
+        "post": {
+          "tags": [
+            "Payment"
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "summary": "Add Card",
+          "description": "Add Card",
+          "operationId": "AddCard",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+              {
+                  "name": "name",
+                  "in": "formData",
+                  "description": "Card holder name",
+                  "required": true,
+                  "type": "string"
+              },
+              {
+                  "name": "card_number",
+                  "in": "formData",
+                  "description": "Card number",
+                  "required": true,
+                  "type": "integer"
+              },
+              {
+                "name": "cvc",
+                "in": "formData",
+                "description": "Cvc number of card",
+                "required": true,
+                "type": "integer"
+            },
+            {
+                "name": "exp_month",
+                "in": "formData",
+                "description": "Expiry month eg 10",
+                "required": true,
+                "type": "integer"
+            },{
+                "name": "exp_year",
+                "in": "formData",
+                "description": "Expiry year eg 2023",
+                "required": true,
+                "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+    },
+    "/card-delete": {
+      "delete": {
+        "tags": [
+          "Payment"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Delete Card",
+        "description": "Delete Card",
+        "operationId": "DeleteCard",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
         ],
         "responses": {
           "200": {

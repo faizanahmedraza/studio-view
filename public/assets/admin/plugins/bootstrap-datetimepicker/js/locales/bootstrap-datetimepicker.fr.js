@@ -1,6 +1,6 @@
 /**
  * French translation for bootstrap-datetimepicker
- * Nico Mollet <nico.mollet@gmail.com>
+ *
  */
 ;(function($){
 	$.fn.datetimepicker.dates['fr'] = {

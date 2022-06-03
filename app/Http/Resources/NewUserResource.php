@@ -42,6 +42,7 @@ class NewUserResource extends JsonResource
             'profile_picture' => $this->profile_picture,
             'is_fb' => $this->is_fb,
             'is_google' => $this->is_google,
+            'card' => $this->card ? true : false,
             // 'email_verified_at' => $this->email_verified_at ?? '',
             '_token' => $this->_token,
 

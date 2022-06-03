@@ -1,6 +1,6 @@
 /**
  * Ukrainian translation for bootstrap-datepicker
- * Andrey Vityuk <andrey [dot] vityuk [at] gmail.com>
+ *
  */
 ;(function($){
 	$.fn.datepicker.dates['uk'] = {

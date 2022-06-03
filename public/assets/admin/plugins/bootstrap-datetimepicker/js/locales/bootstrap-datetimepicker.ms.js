@@ -1,6 +1,6 @@
 /**
  * Malay translation for bootstrap-datetimepicker
- * Ateman Faiz <noorulfaiz@gmail.com>
+ *
  */
 ;(function($){
 	$.fn.datetimepicker.dates['ms'] = {

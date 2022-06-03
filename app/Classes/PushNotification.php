@@ -7,7 +7,7 @@ use Exception;
 use Predis\Response\ResponseInterface;
 
 /**
- * @author Ahsaan Muhammad Yousuf <ahsankhatri1992@gmail.com>
+ * @author
  *
  * A wrapper to send two push notification to condition based to handle data push
  * because fcm don't allow us to send different payload on each platform, that's

@@ -1,7 +1,7 @@
 /**
  * Select2 Arabic translation.
- * 
- * Author: Your Name <amedhat3@gmail.com>
+ *
+ * Author:
  */
 (function ($) {
     "use strict";
