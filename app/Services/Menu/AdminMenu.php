@@ -271,6 +271,25 @@ class AdminMenu
                 //     'users.change-password',
                 //     '<i class="fa fa-lock"></i> <span class="title">Change Password</span>'
                 // )))
+                ->submenuIf(true, '
+                <a href="javascript:;">
+                    <i class="fa fa-usd"></i>
+                    <span class="title">Invoices</span>
+                    <span class="arrow open"></span>
+                </a>
+                ',
+                Menu::new()
+                    ->addClass('sub-menu')
+                    ->addIf(can_access_route('invoice.index', $userPermissoins),
+                        Link::toRoute('invoice.index', '<span class="title">Invoice List</span>'))
+                    // ->addIf(can_access_route('studio.index', $userPermissoins),
+                    //     Link::toRoute('studio.index', '<span class="title">Studio List</span>'))
+                    // ->addIf(can_access_route('studio.pending.index', $userPermissoins),
+                    //     Link::toRoute('studio.pending.index', '<span class="title">Studio Pending List</span>'))
+
+            // ->addIf(can_access_route('new-request.index', $userPermissoins),
+            //     Link::toRoute('new-request.index', '<span class="title">New Request List</span>'))
+            )
                 ->add(Link::toRoute(
                     'logout',
                     '<i class="fa fa-sign-out"></i> <span class="title">Logout</span>'

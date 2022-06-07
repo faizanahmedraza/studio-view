@@ -123,6 +123,11 @@ Route::group(['middleware' => 'backendAuthenticate'], function () {
         // Route::get('sub-admin/active/{record}', 'SubAdminController@active')->name('sub-admin.active');
         // Route::get('sub-admin/inactive/{record}', 'SubAdminController@inactive')->name('sub-admin.inactive');
 
+        ###Invoices routes###
+        Route::get('invoices', 'InvoiceController@index')->name('invoice.index');
+        Route::get('invoices/list/data', 'InvoiceController@invoiceList')->name('invoice.list.data');
+
+        Route::get('studio-booking/{id}', 'StudioBookingController@getDetail')->name('studio-booking.detail');
 
 
 

@@ -91,6 +91,10 @@ Breadcrumbs::for ('studio.edit', function ($breadcrumbs,$data) {
     $breadcrumbs->parent('studio.index',$data);
     $breadcrumbs->push('Edit', route('studio.edit',$data->id));
 });
+Breadcrumbs::for ('studio.booking_details', function ($breadcrumbs,$data) {
+    $breadcrumbs->parent('invoice.index',$data);
+    $breadcrumbs->push('Invoice List', route('studio-booking.detail',$data->id));
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -128,4 +132,22 @@ Breadcrumbs::for ('users.profile', function ($breadcrumbs) {
 Breadcrumbs::for ('home', function ($breadcrumbs) {
     $breadcrumbs->push('Home', route('index'));
 });
+
+/*
+|--------------------------------------------------------------------------
+| Invoices
+|--------------------------------------------------------------------------
+*/
+Breadcrumbs::for ('invoice.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Invoice List', route('invoice.index'));
+});
+// Breadcrumbs::for ('studio.type.create', function ($breadcrumbs) {
+//     $breadcrumbs->parent('dashboard.index');
+//     $breadcrumbs->push('Create', route('studio.type.create'));
+// });
+// Breadcrumbs::for ('studio.type.edit', function ($breadcrumbs,$data) {
+//     $breadcrumbs->parent('studio.type.index',$data);
+//     $breadcrumbs->push('Edit', route('studio.type.edit',$data->id));
+// });
 

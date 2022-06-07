@@ -64,8 +64,16 @@ class Invoice extends Model implements InvoiceInterface
     // {
     //     return (bool)$this->savedStudios()->where('user_id',auth()->user()->id)->exists();
     // }
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class,'user_id','id');
-    // }
+    public function studioOwner()
+    {
+        return $this->belongsTo(User::class,'studio_owner_id','id');
+    }
+    public function requestUser()
+    {
+        return $this->belongsTo(User::class,'requested_user_id','id');
+    }
+    public function studioBooking()
+    {
+        return $this->belongsTo(StudioBooking::class,'studio_booking_id','id');
+    }
 }
