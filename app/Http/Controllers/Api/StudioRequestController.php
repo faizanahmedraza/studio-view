@@ -9,15 +9,17 @@ use Carbon\Carbon;
 use App\Models\Studio;
 use App\Classes\RestAPI;
 use Illuminate\Http\Request;
+use App\Classes\StripeWrapper;
+
 use App\Services\NotificationService;
 
 use App\Http\Resources\StudioBookingResource;
-
 use App\Http\Resources\StudioRequestResource;
 use App\Http\Requests\Api\RequestStudioRequest;
 use App\Http\Requests\Api\RequestStudioStatusRequest;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
+use App\Repositories\Interfaces\InvoiceRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
 use App\Repositories\Interfaces\StudioImageRepositoryInterface;
 use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
@@ -34,10 +36,13 @@ class StudioRequestController extends ApiBaseController
     private $studioPriceRepository;
     private $studioImageRepository;
     private $studioBookingRepository;
+    private $invoiceRepository;
+
 
     public function __construct(UserRepositoryInterface $userRepository, StudioRepositoryInterface $studioRepository,
                                 StudioTypeRepositoryInterface $studioTypeRepository, StudioLocationRepositoryInterface $studioLocationRepository,
-                                StudioPriceRepositoryInterface $studioPriceRepository, StudioImageRepositoryInterface $studioImageRepository, StudioBookingRepositoryInterface $studioBookingRepository)
+                                StudioPriceRepositoryInterface $studioPriceRepository, StudioImageRepositoryInterface $studioImageRepository, StudioBookingRepositoryInterface $studioBookingRepository,
+                                InvoiceRepositoryInterface $invoiceRepository)
     {
         $this->userRepository = $userRepository;
         $this->studioRepository = $studioRepository;
@@ -46,11 +51,16 @@ class StudioRequestController extends ApiBaseController
         $this->studioPriceRepository = $studioPriceRepository;
         $this->studioImageRepository = $studioImageRepository;
         $this->studioBookingRepository = $studioBookingRepository;
+        $this->invoiceRepository = $invoiceRepository;
+
     }
 
     public function request(RequestStudioRequest $request)
     {
         $user = $this->userRepository->find(auth()->user()->id);
+        if($user->stripe_user_id ==null || empty($user->card)){
+            return RestAPI::response('First add your card details to book a studio.', false, 'validation_error');
+        }
         $studio = $this->studioRepository->find($request->studio_id);
         $requestStartTime = Carbon::parse($request->start_time);
         $requestEndTime = Carbon::parse($request->end_time);
@@ -225,6 +235,8 @@ class StudioRequestController extends ApiBaseController
 
     public function myStudioRequestStatus(RequestStudioStatusRequest $request,$studio_id)
     {
+
+        DB::beginTransaction();
         try {
             $user = $this->userRepository->find(auth()->user()->id);
             if(empty($user)){
@@ -269,13 +281,31 @@ class StudioRequestController extends ApiBaseController
                 if(!$check){
                     return RestAPI::response('You have other approved booking between this timing.', false,'Status Change Failed');
                 }
+                // call stripe api
+                $stripeWrapper = new StripeWrapper();
+                // dd( $studioBooking->user->card->card_id, $studioBooking->grand_total, $studioBooking->user->stripe_user_id );
+                $stripe = $stripeWrapper->charge($studioBooking->user->card->card_id, $studioBooking->grand_total,$studioBooking->user_id.' user booking Studio of user '.$studioBooking->studio->user_id, $studioBooking->user->stripe_user_id);
 
-                $studioBooking->status=1;
-                $studioBooking->save();
+                if ($stripe->paid) {
+                    // Invoice work
+                    $this->invoiceRepository->create([
+                        'requested_user_id'=>$studioBooking->user_id,
+                        'studio_owner_id'=>$studioBooking->studio->user_id,
+                        'amount'=>$studioBooking->grand_total,
+                        'status'=>1,
+                        'studio_booking_id'=>$studioBooking->id,
+                    ]);
+                    $studioBooking->status=1;
+                    $studioBooking->save();
+                }else{
+                    return RestAPI::response('Status changing failed because of payment failure.', false,'Status Change Failed');
+                }
 
             }
 
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollback();
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
         return RestAPI::response(new \stdClass(), true, 'Status Changed Successfully');

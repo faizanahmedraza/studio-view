@@ -84,9 +84,9 @@ class StripeWrapper
         return $response->toArray(true);
     }
 
-    public function charge($card_id, $amount, $description, $stripe_id = 0, $autoCharge = false)
+    public function charge($card_id, $amount, $description, $stripe_id , $autoCharge = false)
     {
-        $stripe_user_id = ($stripe_id) ? $stripe_id : \Auth::user()->customer->stripe_user_id;
+        $stripe_user_id = $stripe_id;
 
         $data = $this->stripe->charges->create([
             "amount" => $amount * 100,

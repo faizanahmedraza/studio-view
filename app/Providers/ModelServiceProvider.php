@@ -33,5 +33,7 @@ class ModelServiceProvider extends ServiceProvider
         $this->app->bind('App\Models\Interfaces\StudioImageInterface', 'App\Models\StudioImage');
         $this->app->bind('App\Models\Interfaces\CustomerFavouriteInterface', 'App\Models\CustomerFavourite');
         $this->app->bind('App\Models\Interfaces\StudioBookingInterface', 'App\Models\StudioBooking');
+        $this->app->bind('App\Models\Interfaces\InvoiceInterface', 'App\Models\Invoice');
+
     }
 }
