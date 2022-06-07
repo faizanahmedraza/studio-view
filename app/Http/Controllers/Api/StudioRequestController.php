@@ -284,14 +284,16 @@ class StudioRequestController extends ApiBaseController
                 // call stripe api
                 $stripeWrapper = new StripeWrapper();
                 // dd( $studioBooking->user->card->card_id, $studioBooking->grand_total, $studioBooking->user->stripe_user_id );
-                $stripe = $stripeWrapper->charge($studioBooking->user->card->card_id, $studioBooking->grand_total,$studioBooking->user_id.' user booking Studio of user '.$studioBooking->studio->user_id, $studioBooking->user->stripe_user_id);
+                $discount=$studioBooking->discount != null ? $studioBooking->discount :0;
+                $amount=$studioBooking->grand_total - $discount;
+                $stripe = $stripeWrapper->charge($studioBooking->user->card->card_id, $amount,$studioBooking->user_id.' user booking Studio of user '.$studioBooking->studio->user_id, $studioBooking->user->stripe_user_id);
 
                 if ($stripe->paid) {
                     // Invoice work
                     $this->invoiceRepository->create([
                         'requested_user_id'=>$studioBooking->user_id,
                         'studio_owner_id'=>$studioBooking->studio->user_id,
-                        'amount'=>$studioBooking->grand_total,
+                        'amount'=> $amount,
                         'status'=>1,
                         'studio_booking_id'=>$studioBooking->id,
                     ]);
