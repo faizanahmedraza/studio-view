@@ -68,22 +68,14 @@ class StudioRequestController extends ApiBaseController
         $requestDate = Carbon::parse($request->date)->format('Y-m-d');
 
         if ($differenceInHours >= $studio->minimum_booking_hr) {
-            $studioRequestForCurrentTime1 = $this->studioBookingRepository->initiateQuery()
+            $studioRequest = $this->studioBookingRepository->initiateQuery()
                 ->where('studio_id', $studio->id)
                 ->where('date', $requestDate)
                 ->where('start_time', $requestStartTime->format('H:i'))
                 ->where('end_time', $requestEndTime->format('H:i'));
-            $studioRequestForCurrentTime2 = $this->studioBookingRepository->initiateQuery()
-                ->where('studio_id', $studio->id)
-                ->where('date', $requestDate)
-                ->where('start_time', $requestStartTime->format('H:i'))
-                ->where('end_time', $requestEndTime->format('H:i'));
-            $studioRequestForCurrentTime3 = $this->studioBookingRepository->initiateQuery()
-                ->where('studio_id', $studio->id)
-                ->where('date', $requestDate)
-                ->where('start_time', $requestStartTime->format('H:i'))
-                ->where('end_time', $requestEndTime->format('H:i'));
-
+            $studioRequestForCurrentTime1 = clone $studioRequest;
+            $studioRequestForCurrentTime2 = clone $studioRequest;
+            $studioRequestForCurrentTime3 = clone $studioRequest;
 
             if (!empty($studioRequestForCurrentTime1->where('status', 1)->first())) {
                 $currentUser = $studioRequestForCurrentTime2->where('status', 1)->first();
@@ -100,16 +92,13 @@ class StudioRequestController extends ApiBaseController
 
             if ($studio->hours_status == 3) {
                 if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
+                    $studioRequest = $studioRequest->first();
                     if (!empty($studioRequest)) {
-                        $reqStartTime = Carbon::parse($studioRequest->start_time);
-                        $reqEndTime = Carbon::parse($studioRequest->end);
-                        $reqDiffTime = $reqEndTime->diffInHours($reqStartTime);
-
                         $studioStartHours = Carbon::parse($studio->hrs_from);
                         $studioEndHours = Carbon::parse($studio->hrs_to);
                         $studioTotalHours = $studioEndHours->diffInHours($studioStartHours);
 
-                        $remainingHours = $studioTotalHours - $reqDiffTime;
+                        $remainingHours = $studioTotalHours - $differenceInHours;
                         if ($remainingHours < $studio->minimum_booking_hr) {
                             return RestAPI::response('The date ' . $requestDate . ' you selected studio, not have enough time to grant you. Please use another slot.', false, 'validation_error');
                         }
@@ -285,7 +274,7 @@ class StudioRequestController extends ApiBaseController
                 $stripeWrapper = new StripeWrapper();
                 // dd( $studioBooking->user->card->card_id, $studioBooking->grand_total, $studioBooking->user->stripe_user_id );
                 $discount=$studioBooking->discount != null ? $studioBooking->discount :0;
-                $amount=$studioBooking->grand_total - $discount;
+                $amount=$studioBooking->grand_total;// - $discount;
                 $stripe = $stripeWrapper->charge($studioBooking->user->card->card_id, $amount,$studioBooking->user_id.' user booking Studio of user '.$studioBooking->studio->user_id, $studioBooking->user->stripe_user_id);
 
                 if ($stripe->paid) {

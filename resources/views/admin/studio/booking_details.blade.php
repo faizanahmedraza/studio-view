@@ -131,7 +131,7 @@
 
                             <td>Grand Total</td>
                             <?php $discount=$studioBooking->discount != null ? $studioBooking->discount : 0; ?>
-                            <td>{{$studioBooking->grand_total - $discount}}</td>
+                            <td>{{$studioBooking->grand_total }}</td>
 
                             <td>Requested At</td>
                             <td>{{$studioBooking->created_at}}</td>
