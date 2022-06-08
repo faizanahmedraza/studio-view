@@ -201,7 +201,7 @@ class AuthApiController extends ApiBaseController
     /**
      * login user Google
      */
-     public function userLoginGoogle(UserLoginGoogleRequest $request)
+    public function userLoginGoogle(UserLoginGoogleRequest $request)
     {
         // json_decode($string);
         // return (json_last_error() == JSON_ERROR_NONE);
@@ -315,5 +315,73 @@ class AuthApiController extends ApiBaseController
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
         return RestAPI::response(new \stdClass(), true, "You have been logged out successfully.");
+    }
+
+    /**
+     * login user Google
+     */
+    public function userLoginIcloud(UserLoginGoogleRequest $request)
+    {
+        // json_decode($string);
+        // return (json_last_error() == JSON_ERROR_NONE);
+        $data=$request->all();
+        // $accessToken=$data['idToken'];
+        DB::beginTransaction();
+        try {
+
+            // $res=file_get_contents("https://oauth2.googleapis.com/tokeninfo?id_token=$accessToken");
+            // if($res === FALSE) {
+            //     return RestAPI::response('Invalid access token', false, 401);
+            // }
+            // $res=json_decode($res);
+            // if($res->email != $data['providerData']['email']){
+            //     return RestAPI::response('UnAuthorized user', false, 401);
+            // }
+
+            $check = User::where('email',$data['providerData']['email'])->where('is_icloud', 1)->where('role_id', 1)->first();
+            if(!$check){
+                $userRecord = [
+                    'first_name' => trim($data['providerData']['givenName'].' '.$data['providerData']['familyName']),
+                    'password' => null,
+                    'email' => $data['providerData']['email'],
+                    // 'phone' => $data['providerData']['phoneNumber'],
+                    'email_verified' => 1,
+                    'is_active' => 1,
+                    'is_verified' => 1,
+                    'role_id' => 1,
+                    'is_icloud' => 1,
+                    // 'profile_picture' => $data['providerData']['photoURL'],
+                ];
+
+                $user = $this->userRepository->create($userRecord);
+                $user = $this->userRepository->find($user->id);
+                $token = jwt()->fromUser($user);
+                $user->addDevice($data['device_token'], $data['device_type'], $token);
+                event(new NewUserCreateEvent($user));
+            }else{
+
+
+                $credentials['email'] = $data['providerData']['email'];
+                $credentials['password'] = null;
+                $credentials['role_id'] = 1;
+
+                if (!$token=JWTAuth::fromUser($check)) {
+                    return RestAPI::response('Invalid credentials, please try again.', false);
+                }
+                $check->validateUserActiveCriteria();
+                $check->addDevice($request->get('device_token'), $request->get('device_type'), $token);
+                $check['_token'] = $token;
+                $user=$check;
+
+
+            }
+
+            DB::commit();
+        } catch (\App\Exceptions\UserNotAllowedToLogin $e) {
+            DB::rollback();
+            return RestAPI::response($e->getMessage(), false, $e->getResolvedErrorCode());
+        }
+        $response = new NewUserResource($user,$token);
+        return RestAPI::response($response, true, "Logged-In Successfully");
     }
 }

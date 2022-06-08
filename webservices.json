@@ -252,6 +252,44 @@
         }
       }
     },
+    "/login-icloud": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login with ICloud",
+          "description": "Login with ICloud",
+          "operationId": "Login with ICloud",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "loginICloud",
+              "in": "body",
+              "description": "login_icloud",
+              "required": false,
+              "example": {
+                "providerData": {
+                  "givenName": "Name",
+                  "familyName":"Name",
+                  "email": "email"
+                },
+                "idToken": "eyJhbGciOiJSUzI1NiIsImtpZdsasadsadsadsadsadsadsadsCI6ImFjYjZiZTUxZWZlYTZhNDE5ZWM5MzI1ZmVhYTFlYzQ2NjBmNWIzN2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEzMDQ3NTI2Mjk5Mjg3MDEyMDMxIiwiZW1haWwiOiJzYWFzZmEuZW1haWxAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfTWZiT3J3ZTlkQTY3SWFhY2pSM3d3IiwiaWF0IjoxNjQ1NTk5NTc1LCJleHAiOjE2NDU2MDMxNzV9.lmfPHkle9tvIiMx_-CumdbbhBHenmknlTPiOvGKin9VG1sS_LIcwdJ8tugR4PegxQ6LPdaqVNkMa-ofYkmPI-n20V4G9dFAmRshbBuLKXgOrsUdloId_Pg0H0qgYd5orotZ9iJVDQWMS6Tim1ZnjTmyWxrJvALC_gHr5vr-RPKA2Q73OKQlfUphUmsFQO1ZaXjoPWIX5YJ0tocXJRLRYUvYCSV4668ZpFMZP1dUY_25Cpg67nthFQSYoY-VMCYjsBkHXdip_mZv1JABRJlvzVVwFaRyvErCsiL_pYcMM75rZSj2UZxqYhBwikoa46SF9xV78Du6OlPfls50XAqtsnA",
+                "device_token": "213ewssads2a",
+                "device_type": "android"
+              },
+              "schema": "",
+              "type": "object"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
     "/logout": {
       "delete": {
         "tags": [

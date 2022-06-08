@@ -13,7 +13,7 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::post('forgot-password', 'AuthApiController@ForgotPassword')->name('Forgot-Password');
     Route::post('login-fb', 'AuthApiController@userLoginFb')->name('user-login');
     Route::post('login-google', 'AuthApiController@userLoginGoogle')->name('user-login');
-    // Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
+    Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
 
     // get all studios by location search
     Route::get('studios/search', 'StudioController@search');
