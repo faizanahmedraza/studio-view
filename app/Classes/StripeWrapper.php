@@ -89,7 +89,7 @@ class StripeWrapper
         $stripe_user_id = $stripe_id;
 
         $data = $this->stripe->charges->create([
-            "amount" => $amount,
+            "amount" => $amount * 100,
             "capture" => true,
             "currency" => "usd",
             'customer' => $stripe_user_id,
