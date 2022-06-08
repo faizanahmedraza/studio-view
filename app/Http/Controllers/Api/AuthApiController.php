@@ -341,7 +341,7 @@ class AuthApiController extends ApiBaseController
             $check = User::where('email',$data['providerData']['email'])->where('is_icloud', 1)->where('role_id', 1)->first();
             if(!$check){
                 $userRecord = [
-                    'first_name' => trim($data['providerData']['givenName'].' '.$data['providerData']['familyName']),
+                    'first_name' => trim($data['providerData']['givenName']??''.' '.$data['providerData']['familyName']??''),
                     'password' => null,
                     'email' => $data['providerData']['email'],
                     // 'phone' => $data['providerData']['phoneNumber'],
