@@ -33,5 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Interfaces\StudioImageRepositoryInterface', 'App\Repositories\StudioImageRepository');
         $this->app->bind('App\Repositories\Interfaces\CustomerFavouriteRepositoryInterface', 'App\Repositories\CustomerFavouriteRepository');
         $this->app->bind('App\Repositories\Interfaces\StudioBookingRepositoryInterface', 'App\Repositories\StudioBookingRepository');
+        $this->app->bind('App\Repositories\Interfaces\InvoiceRepositoryInterface', 'App\Repositories\InvoiceRepository');
+
     }
 }

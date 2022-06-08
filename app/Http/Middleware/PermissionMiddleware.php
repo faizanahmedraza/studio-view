@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by Muhammad Adnan Nadeem.
- * User: Muhammad Adnan Nadeem <adnannadeem1994@gmail.com>
- * Date: 10/24/2020
- * Time: 11:16 AM
- */
+
 
 namespace App\Http\Middleware;
 

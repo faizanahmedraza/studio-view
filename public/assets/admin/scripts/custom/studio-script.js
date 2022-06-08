@@ -1,6 +1,5 @@
 /*
-* @ author = Adnan
-* @ Author email = adnannadeem1994@gmail.com
+
 * @ custom studio js
 * */
 

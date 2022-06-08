@@ -2,18 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Interfaces\RoleInterface;
-use App\Repositories\Interfaces\RoleRepositoryInterface;
+use App\Models\Interfaces\InvoiceInterface;
+use App\Repositories\Interfaces\InvoiceRepositoryInterface;
+
 
 /**
+ * Class StudioRepository
  *
- * @author
  */
-class RolesRepository implements RoleRepositoryInterface
+class InvoiceRepository implements InvoiceRepositoryInterface
 {
     private $model;
 
-    public function __construct(RoleInterface $model)
+    public function __construct(InvoiceInterface $model)
     {
         $this->model = $model;
     }
@@ -28,11 +29,6 @@ class RolesRepository implements RoleRepositoryInterface
         $model = $this->model::create($data);
 
         return $model;
-    }
-
-    public function findFirst()
-    {
-        return $this->model::first();
     }
 
     public function find($id)

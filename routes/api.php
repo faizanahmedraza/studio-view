@@ -13,7 +13,7 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::post('forgot-password', 'AuthApiController@ForgotPassword')->name('Forgot-Password');
     Route::post('login-fb', 'AuthApiController@userLoginFb')->name('user-login');
     Route::post('login-google', 'AuthApiController@userLoginGoogle')->name('user-login');
-    // Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
+    Route::post('login-icloud', 'AuthApiController@userLoginIcloud')->name('user-login');
 
     // get all studios by location search
     Route::get('studios/search', 'StudioController@search');
@@ -56,6 +56,10 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');
         Route::post('studios/saved', 'CustomerFavouriteController@store');
         Route::delete('studios/saved/{studio_id}', 'CustomerFavouriteController@destroy');
+
+        ###Card
+        Route::post('card', 'CardController@store');
+        Route::delete('card-delete', 'CardController@destroy');
 
         ###Send Notification Apis###
         Route::post('/send-notification', 'NotificationController@sendNotification')->name('send.notification');

@@ -1,6 +1,6 @@
 /**
  * Icelandic translation for bootstrap-datetimepicker
- * Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>
+ *
  */
 ;(function($){
 	$.fn.datetimepicker.dates['is'] = {

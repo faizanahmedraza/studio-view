@@ -7,8 +7,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Class MenuServiceProvider
  *
- * @author Muzafar Ali Jatoi <muzfr7@gmail.com>
- * @date   23/9/18
+ * @author
  */
 class MenuServiceProvider extends ServiceProvider
 {

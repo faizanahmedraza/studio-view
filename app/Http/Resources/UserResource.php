@@ -40,7 +40,9 @@ class UserResource extends JsonResource
             'is_active' => $this->is_active,
             'profile_picture' => $this->profile_picture,
             'is_fb' => $this->is_fb,
+            'is_icloud' => $this->is_icloud,
             'is_google' => $this->is_google,
+            'card' => $this->card ? new CardResource( $this->card ) : (object)[],
             // 'email_verified_at' => $this->email_verified_at ?? '',
         ];
     }

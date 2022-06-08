@@ -98,6 +98,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('admin.studio.edit', function ($view) {
             $view->with(['pageTitle' => 'Studio Edit']);
         });
+        view()->composer('admin.studio.booking_details', function ($view) {
+            $view->with(['pageTitle' => 'Studio Booking Details']);
+        });
 
         /**
          * Studio Types
@@ -135,6 +138,19 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with(['pageTitle' => 'Edit Profile']);
         });
 
+        /**
+         *Invoice
+         */
+        view()->composer('admin.invoice.index', function ($view) {
+            $view->with(['pageTitle' => 'Invoice List']);
+        });
+        // view()->composer('admin.invoice.edit', function ($view) {
+        //     $view->with(['pageTitle' => 'Customer Edit']);
+        // });
+
+        // view()->composer('admin.invoice.edit-unverified-users', function ($view) {
+        //     $view->with(['pageTitle' => 'Customer Edit']);
+        // });
 
 
     }

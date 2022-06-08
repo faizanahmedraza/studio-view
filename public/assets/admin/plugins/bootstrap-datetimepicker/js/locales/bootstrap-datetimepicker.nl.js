@@ -1,6 +1,6 @@
 /**
  * Dutch translation for bootstrap-datetimepicker
- * Reinier Goltstein <mrgoltstein@gmail.com>
+ *
  */
 ;(function($){
 	$.fn.datetimepicker.dates['nl'] = {

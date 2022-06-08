@@ -4,8 +4,7 @@
 /**
  * Permissions config
  *
- * @author Muhammad Adnan <adnannadeem1994@gmail.com>
- * @date   23/10/2020
+ * @author
  */
 
 return [

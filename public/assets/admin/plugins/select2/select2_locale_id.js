@@ -1,7 +1,7 @@
 /**
  * Select2 Indonesian translation.
- * 
- * Author: Ibrahim Yusuf <ibrahim7usuf@gmail.com>
+ *
+ * Author:
  */
 (function ($) {
     "use strict";
