@@ -58,10 +58,13 @@ class StudioRequestController extends ApiBaseController
     public function request(RequestStudioRequest $request)
     {
         $user = $this->userRepository->find(auth()->user()->id);
+        $studio = $this->studioRepository->find($request->studio_id);
+        if ($studio->user_id == $user->id) {
+            return RestAPI::response("You cann't book your own studio.", false);
+        }
         if($user->stripe_user_id ==null || empty($user->card)){
             return RestAPI::response('First add your card details to book a studio.', false, 'validation_error');
         }
-        $studio = $this->studioRepository->find($request->studio_id);
         $requestStartTime = Carbon::parse($request->start_time);
         $requestEndTime = Carbon::parse($request->end_time);
         $differenceInHours = $requestEndTime->diffInHours($requestStartTime);

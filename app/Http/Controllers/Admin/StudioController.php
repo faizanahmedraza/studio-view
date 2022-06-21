@@ -12,6 +12,7 @@ use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
 use App\Services\CloudinaryService;
+use App\Services\NotificationService;
 use DB;
 use stdClass;
 use Validator;
@@ -122,7 +123,7 @@ class StudioController extends Controller
             $studioImages = [];
             if (is_array($request->images)) {
                 foreach ($request->images as $image) {
-                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studioId)->secureUrl;
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(), $studioId)->secureUrl;
                 }
             }
             if (count($studioImages) > 0) {
@@ -207,7 +208,7 @@ class StudioController extends Controller
             if (is_array($request->images) && !empty($request->images)) {
                 $studio->deleteImages();
                 foreach ($request->images as $image) {
-                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studio->id)->secureUrl;
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(), $studio->id)->secureUrl;
                 }
             }
             if (count($studioImages) > 0) {
@@ -242,6 +243,13 @@ class StudioController extends Controller
     public function toggleStatus(Studio $studio)
     {
         $studio->status = $studio->status ? false : true;
+        if ($studio->status) {
+            $notificationData['user_id'] = $studio->user_id;
+            $notificationData['title'] = "Studio Approved";
+            $notificationData['body'] = "Your studio ".$studio->name." has been approved by the admin.";
+            $notificationData['image'] = optional($studio->getImages[0])->image_url ?? "";
+            NotificationService::sendNotification($notificationData);
+        }
         $studio->approved_at = date('Y-m-d H:i:s');
         $studio->save();
         return redirect()->back()
