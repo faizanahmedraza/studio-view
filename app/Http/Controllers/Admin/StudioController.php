@@ -70,6 +70,10 @@ class StudioController extends Controller
             DB::beginTransaction();
             $user = $this->userRepository->find((int)$request->customer);
 
+            if (count($user->studios) > 0) {
+                return back()->withErrors(['errors' => 'The user have already created 1 studio.'])->withInput();
+            }
+
             $data = $request->all();
 
             $studioData = [
@@ -246,7 +250,7 @@ class StudioController extends Controller
         if ($studio->status) {
             $notificationData['user_id'] = $studio->user_id;
             $notificationData['title'] = "Studio Approved";
-            $notificationData['body'] = "Your studio ".$studio->name." has been approved by the admin.";
+            $notificationData['body'] = "Your studio " . $studio->name . " has been approved by the admin.";
             $notificationData['image'] = optional($studio->getImages[0])->image_url ?? "";
             NotificationService::sendNotification($notificationData);
         }

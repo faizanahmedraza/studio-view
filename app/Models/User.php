@@ -319,6 +319,7 @@ class User extends Authenticatable implements UserInterface, JWTSubject
     {
         return $this->hasMany(Studio::class,'user_id','id');
     }
+
     public function card()
     {
         return $this->hasOne(UserCardDetail::class, 'user_id','id');

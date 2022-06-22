@@ -68,7 +68,9 @@ class StudioController extends ApiBaseController
         DB::beginTransaction();
         try {
             $user = $this->userRepository->find(auth()->user()->id);
-
+            if (count($user->studios) > 0) {
+                return RestAPI::response('You have already created 1 studio.', false, 'error_exception');
+            }
             $studioData = [
                 'user_id' => $user->id,
                 'name' => $data['name'] ?? null,
