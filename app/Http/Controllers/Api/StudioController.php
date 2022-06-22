@@ -269,18 +269,42 @@ class StudioController extends ApiBaseController
 
     public function studiosList(Request $request)
     {
+        $request->validate([
+            'location' => 'required|string|regex:/^[0-9\.]+(,[0-9\.]+)$/'
+        ]);
+        $lat = trim(explode(',', $request->location)[0]);
+        $lng = trim(explode(',', $request->location)[1]);
         try {
-            $allStudios = $this->studioRepository->initiateQuery()->with(['getLocation', 'getPrice', 'getStudioTypes']);
+            $allStudios = $this->studioRepository->initiateQuery()->with(['getLocation', 'getPrice' => function($q) use($request){
+                if ($request->query("order_by_price")) {
+                    $q->orderBy('hourly_rate',trim($request->order_by_price));
+                }
+            }, 'getStudioTypes', 'paidPromotion']);
 
-            $allStudios->whereHas('getLocation', function ($q) use ($request) {
-                if ($request->query("country")) {
-                    $q->whereRaw("TRIM(LOWER(country)) = ? ", cleanQueryValue($request->country));
+            if ($request->query('premium')) {
+                if ($request->premium == "yes") {
+                    $allStudios->has('paidPromotion');
+                } elseif ($request->premium == "no") {
+                    $allStudios->doesntHave('paidPromotion');
                 }
-                if ($request->query("state")) {
-                    $q->whereRaw("TRIM(LOWER(state)) = ? ", cleanQueryValue($request->state));
-                }
-                if ($request->query("city")) {
-                    $q->whereRaw("TRIM(LOWER(city)) = ? ", cleanQueryValue($request->city));
+            }
+
+            $allStudios->whereHas('getLocation', function ($q) use ($request, $lat, $lng) {
+                if ($request->query('location')) {
+                    $q->selectRaw('SQRT(
+                        POW(69.1 * (lat - ?), 2) +
+                        POW(69.1 * (? - lng) * COS(lat / 57.3), 2)) as distance', [$lat, $lng])
+                        ->having('distance', '<=', 5);
+                } else {
+                    if ($request->query("country")) {
+                        $q->whereRaw("TRIM(LOWER(country)) = ? ", cleanQueryValue($request->country));
+                    }
+                    if ($request->query("state")) {
+                        $q->whereRaw("TRIM(LOWER(state)) = ? ", cleanQueryValue($request->state));
+                    }
+                    if ($request->query("city")) {
+                        $q->whereRaw("TRIM(LOWER(city)) = ? ", cleanQueryValue($request->city));
+                    }
                 }
             });
 
@@ -290,6 +314,9 @@ class StudioController extends ApiBaseController
                 }
                 if ($request->query("to_price")) {
                     $q->whereRaw("TRIM(FLOOR(hourly_rate)) <= ? ", (int)($request->to_price));
+                }
+                if ($request->query("order_by_price")) {
+                    $q->orderBy('hourly_rate',trim($request->order_by_price));
                 }
             });
 
@@ -305,10 +332,12 @@ class StudioController extends ApiBaseController
                 $allStudios->where('status', 1);
             }
 
-            if ($request->query('order_by')) {
-                $allStudios->orderBy('id', $request->get('order_by'));
-            } else {
-                $allStudios->orderBy('id', 'desc');
+            if (empty($request->query("order_by_price"))) {
+                if ($request->query('order_by')) {
+                    $allStudios->orderBy('id', $request->get('order_by'));
+                } else {
+                    $allStudios->orderBy('id', 'asc');
+                }
             }
 
             if ($request->query('page_limit')) {

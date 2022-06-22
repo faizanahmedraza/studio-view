@@ -59,6 +59,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
+                            <th>Paid Promotion</th>
                             <th>Action</th>
 
                             {{-- <th>Status</th> --}}
@@ -110,13 +111,13 @@
             appConfig.set('dt.order', [1, 'asc']);
             appConfig.set('yajrabox.scrollx_responsive', true);
             appConfig.set('yajrabox.ajax.data', function (data) {
-                data.status = jQuery('select[name=status]').val();
+                data.paid_promotion = jQuery('select[name=paid_promotion]').val();
             });
             appConfig.set('yajrabox.columns', [
                 {data: 'id', orderable: true, searchable: true, className: 'text-center'},
                 {data: 'name', orderable: true, searchable: true, className: 'text-center'},
+                {data: 'paid_promotion', orderable: false, searchable: false, className: 'text-center'},
                 {data: 'action', orderable: false, searchable: false, className: 'text-center'},
-                // {data: 'status', orderable: false, searchable: false, className: 'text-center'},
             ]);
 
         })

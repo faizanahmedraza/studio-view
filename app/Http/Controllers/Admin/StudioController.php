@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateStudioRequest;
 use App\Models\BookingTime;
+use App\Models\StudioPaidPromotion;
 use App\Models\Type;
 use App\Models\User;
 use App\Repositories\Interfaces\StudioImageRepositoryInterface;
@@ -122,7 +123,7 @@ class StudioController extends Controller
             $studioImages = [];
             if (is_array($request->images)) {
                 foreach ($request->images as $image) {
-                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studioId)->secureUrl;
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(), $studioId)->secureUrl;
                 }
             }
             if (count($studioImages) > 0) {
@@ -207,7 +208,7 @@ class StudioController extends Controller
             if (is_array($request->images) && !empty($request->images)) {
                 $studio->deleteImages();
                 foreach ($request->images as $image) {
-                    $studioImages[] = CloudinaryService::upload($image->getRealPath(),$studio->id)->secureUrl;
+                    $studioImages[] = CloudinaryService::upload($image->getRealPath(), $studio->id)->secureUrl;
                 }
             }
             if (count($studioImages) > 0) {
@@ -224,14 +225,14 @@ class StudioController extends Controller
      */
     public function studiosList(DataTables $datatables, Request $request): JsonResponse
     {
-        $query = Studio::where('status', 1);
+        $query = Studio::with('paidPromotion')->where('status', 1);
 
         return $datatables->eloquent($query)
             ->setRowId(static function ($record) {
                 return $record->id;
             })
-            ->editColumn('status', static function ($record) {
-                return view('admin.studio.status', compact('record'));
+            ->editColumn('paid_promotion', static function ($record) {
+                return view('admin.studio.paid_promotion', compact('record'));
             })
             ->addColumn('action', static function ($record) {
                 return view('admin.studio.action', compact('record'));
@@ -246,6 +247,20 @@ class StudioController extends Controller
         $studio->save();
         return redirect()->back()
             ->with('success', 'Status Changed Successfully!');
+    }
+
+    public function paidPromotion(Studio $studio)
+    {
+        $promo = StudioPaidPromotion::where('studio_id', $studio->id)->first();
+        if (!empty($promo)) {
+            $promo->delete();
+        } else {
+            StudioPaidPromotion::create([
+                'studio_id' => $studio->id
+            ]);
+        }
+        return redirect()->back()
+            ->with('success', 'Operation Successful!');
     }
 
     /**

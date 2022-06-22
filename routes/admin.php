@@ -93,6 +93,7 @@ Route::group(['middleware' => 'backendAuthenticate'], function () {
         Route::get('studios-pending', 'StudioController@indexPending')->name('studio.pending.index');
         Route::get('studios/list-pending/data', 'StudioController@studiosListPending')->name('studios.pending.list.data');
         Route::get('studio/toggle-status/{studio}', 'StudioController@toggleStatus')->name('studio.toggle.status');
+        Route::get('studio/promotion/{studio}', 'StudioController@paidPromotion')->name('studio.paid.promotion');
 
         //studio crud
         Route::get('studios/create', 'StudioController@create')->name('studio.create');

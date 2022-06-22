@@ -44,6 +44,7 @@ class StudioResource extends JsonResource
             'images'=> StudioImageResource::collection($this->getImages),
             'user' => new UserResource($this->user),
             'status' => $this->status ?true :false ,
+            'is_premium' => empty($this->paidPromotion) ? false : true,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];

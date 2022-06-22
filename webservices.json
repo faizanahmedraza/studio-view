@@ -253,43 +253,43 @@
       }
     },
     "/login-icloud": {
-        "post": {
-          "tags": [
-            "Auth"
-          ],
-          "summary": "Login with ICloud",
-          "description": "Login with ICloud",
-          "operationId": "Login with ICloud",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "loginICloud",
-              "in": "body",
-              "description": "login_icloud",
-              "required": false,
-              "example": {
-                "providerData": {
-                  "givenName": "Name",
-                  "familyName":"Name",
-                  "email": "email"
-                },
-                "idToken": "eyJhbGciOiJSUzI1NiIsImtpZdsasadsadsadsadsadsadsadsCI6ImFjYjZiZTUxZWZlYTZhNDE5ZWM5MzI1ZmVhYTFlYzQ2NjBmNWIzN2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEzMDQ3NTI2Mjk5Mjg3MDEyMDMxIiwiZW1haWwiOiJzYWFzZmEuZW1haWxAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfTWZiT3J3ZTlkQTY3SWFhY2pSM3d3IiwiaWF0IjoxNjQ1NTk5NTc1LCJleHAiOjE2NDU2MDMxNzV9.lmfPHkle9tvIiMx_-CumdbbhBHenmknlTPiOvGKin9VG1sS_LIcwdJ8tugR4PegxQ6LPdaqVNkMa-ofYkmPI-n20V4G9dFAmRshbBuLKXgOrsUdloId_Pg0H0qgYd5orotZ9iJVDQWMS6Tim1ZnjTmyWxrJvALC_gHr5vr-RPKA2Q73OKQlfUphUmsFQO1ZaXjoPWIX5YJ0tocXJRLRYUvYCSV4668ZpFMZP1dUY_25Cpg67nthFQSYoY-VMCYjsBkHXdip_mZv1JABRJlvzVVwFaRyvErCsiL_pYcMM75rZSj2UZxqYhBwikoa46SF9xV78Du6OlPfls50XAqtsnA",
-                "device_token": "213ewssads2a",
-                "device_type": "android"
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login with ICloud",
+        "description": "Login with ICloud",
+        "operationId": "Login with ICloud",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "loginICloud",
+            "in": "body",
+            "description": "login_icloud",
+            "required": false,
+            "example": {
+              "providerData": {
+                "givenName": "Name",
+                "familyName": "Name",
+                "email": "email"
               },
-              "schema": "",
-              "type": "object"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
+              "idToken": "eyJhbGciOiJSUzI1NiIsImtpZdsasadsadsadsadsadsadsadsCI6ImFjYjZiZTUxZWZlYTZhNDE5ZWM5MzI1ZmVhYTFlYzQ2NjBmNWIzN2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAwOTQ0OTgwMzY0LWlmOG1qaGJ2YjhlbXNlNGFtcGFqNGluM2oxODUxZ3ZyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEzMDQ3NTI2Mjk5Mjg3MDEyMDMxIiwiZW1haWwiOiJzYWFzZmEuZW1haWxAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfTWZiT3J3ZTlkQTY3SWFhY2pSM3d3IiwiaWF0IjoxNjQ1NTk5NTc1LCJleHAiOjE2NDU2MDMxNzV9.lmfPHkle9tvIiMx_-CumdbbhBHenmknlTPiOvGKin9VG1sS_LIcwdJ8tugR4PegxQ6LPdaqVNkMa-ofYkmPI-n20V4G9dFAmRshbBuLKXgOrsUdloId_Pg0H0qgYd5orotZ9iJVDQWMS6Tim1ZnjTmyWxrJvALC_gHr5vr-RPKA2Q73OKQlfUphUmsFQO1ZaXjoPWIX5YJ0tocXJRLRYUvYCSV4668ZpFMZP1dUY_25Cpg67nthFQSYoY-VMCYjsBkHXdip_mZv1JABRJlvzVVwFaRyvErCsiL_pYcMM75rZSj2UZxqYhBwikoa46SF9xV78Du6OlPfls50XAqtsnA",
+              "device_token": "213ewssads2a",
+              "device_type": "android"
+            },
+            "schema": "",
+            "type": "object"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
           }
         }
-      },
+      }
+    },
     "/logout": {
       "delete": {
         "tags": [
@@ -939,6 +939,27 @@
         ],
         "parameters": [
           {
+            "name": "location",
+            "in": "query",
+            "type": "string",
+            "description": "comma separated latitude and longitude are required.",
+            "required": true
+          },
+          {
+            "name": "order_by_price",
+            "in": "query",
+            "type": "string",
+            "description": "asc or desc",
+            "required": false
+          },
+          {
+            "name": "premium",
+            "in": "query",
+            "type": "string",
+            "description": "yes or no. It's useful for getting paid or unpaid promotion studios.",
+            "required": false
+          },
+          {
             "name": "country",
             "in": "query",
             "type": "string",
@@ -1010,96 +1031,93 @@
         }
       }
     },
-
     "/studio-request": {
-        "post": {
-          "tags": [
-            "Studio Request"
-          ],
-          "security": [
-            {
-              "Bearer": []
-            }
-          ],
-          "summary": "Studio Request",
-          "description": "Request For Studio",
-          "operationId": "RequestStudio",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-
-            {
-                "name": "studio_id",
-                "in": "formData",
-                "description": "Studio Id",
-                "required": true,
-                "type": "string"
-            },
-            {
-                "name": "date",
-                "in": "formData",
-                "description": "2022-12-22 Eg format Y-m-d",
-                "required": true,
-                "type": "string"
-            },
-            {
-                "name": "start_time",
-                "in": "formData",
-                "description": "20:44 Eg format H:i",
-                "required": true,
-                "type": "string"
-            },
-            {
-                "name": "end_time",
-                "in": "formData",
-                "description": "20:44 Eg format H:i",
-                "required": true,
-                "type": "string"
-            },
-            {
-                "name": "audio_engineer",
-                "in": "formData",
-                "description": "Boolean 1 OR 0",
-                "required": false,
-                "type": "integer"
-            },
-            {
-                "name": "mixing_services",
-                "in": "formData",
-                "description": "Boolean 1 OR 0",
-                "required": false,
-                "type": "integer"
-            },
-            {
-                "name": "other_services",
-                "in": "formData",
-                "description": "Boolean 1 OR 0",
-                "required": false,
-                "type": "integer"
-            },
-            {
-              "name": "on_arrival_to_bring_issued_id_agree",
-              "in": "formData",
-              "description": "Boolean 1 OR 0",
-              "required": true,
-              "type": "integer"
-            },
-            {
-              "name": "studio_cancellation_policy_agree",
-              "in": "formData",
-              "description": "Boolean 1 OR 0",
-              "required": true,
-              "type": "integer"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
+      "post": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
           }
-
+        ],
+        "summary": "Studio Request",
+        "description": "Request For Studio",
+        "operationId": "RequestStudio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studio_id",
+            "in": "formData",
+            "description": "Studio Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": "2022-12-22 Eg format Y-m-d",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "start_time",
+            "in": "formData",
+            "description": "20:44 Eg format H:i",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "end_time",
+            "in": "formData",
+            "description": "20:44 Eg format H:i",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "audio_engineer",
+            "in": "formData",
+            "description": "Boolean 1 OR 0",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "mixing_services",
+            "in": "formData",
+            "description": "Boolean 1 OR 0",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "other_services",
+            "in": "formData",
+            "description": "Boolean 1 OR 0",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "on_arrival_to_bring_issued_id_agree",
+            "in": "formData",
+            "description": "Boolean 1 OR 0",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "studio_cancellation_policy_agree",
+            "in": "formData",
+            "description": "Boolean 1 OR 0",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
         }
+      }
     },
     "/my-studio-request": {
       "get": {
@@ -1168,20 +1186,20 @@
           "application/json"
         ],
         "parameters": [
-            {
-                "name": "status",
-                "in": "formData",
-                "description": "for pending = 0 ,  approve = 1  , reject = 2",
-                "required": true,
-                "type": "integer"
-            },
-            {
-                "name": "booking_id",
-                "in": "formData",
-                "description": "booking id",
-                "required": true,
-                "type": "integer"
-            }
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "for pending = 0 ,  approve = 1  , reject = 2",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "booking_id",
+            "in": "formData",
+            "description": "booking id",
+            "required": true,
+            "type": "integer"
+          }
         ],
         "responses": {
           "200": {
@@ -1191,63 +1209,64 @@
       }
     },
     "/card": {
-        "post": {
-          "tags": [
-            "Payment"
-          ],
-          "security": [
-            {
-              "Bearer": []
-            }
-          ],
-          "summary": "Add Card",
-          "description": "Add Card",
-          "operationId": "AddCard",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-              {
-                  "name": "name",
-                  "in": "formData",
-                  "description": "Card holder name",
-                  "required": true,
-                  "type": "string"
-              },
-              {
-                  "name": "card_number",
-                  "in": "formData",
-                  "description": "Card number",
-                  "required": true,
-                  "type": "integer"
-              },
-              {
-                "name": "cvc",
-                "in": "formData",
-                "description": "Cvc number of card",
-                "required": true,
-                "type": "integer"
-            },
-            {
-                "name": "exp_month",
-                "in": "formData",
-                "description": "Expiry month eg 10",
-                "required": true,
-                "type": "integer"
-            },{
-                "name": "exp_year",
-                "in": "formData",
-                "description": "Expiry year eg 2023",
-                "required": true,
-                "type": "integer"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Add Card",
+        "description": "Add Card",
+        "operationId": "AddCard",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Card holder name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "card_number",
+            "in": "formData",
+            "description": "Card number",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "cvc",
+            "in": "formData",
+            "description": "Cvc number of card",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "exp_month",
+            "in": "formData",
+            "description": "Expiry month eg 10",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "exp_year",
+            "in": "formData",
+            "description": "Expiry year eg 2023",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
           }
         }
+      }
     },
     "/card-delete": {
       "delete": {
