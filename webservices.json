@@ -741,6 +741,13 @@
         ],
         "parameters": [
           {
+            "name": "order_by",
+            "in": "query",
+            "type": "string",
+            "description": "asc or desc. This is useful for getting cities that have max or min number of studios.",
+            "required": false
+          },
+          {
             "name": "page_no",
             "in": "query",
             "type": "string",
@@ -949,7 +956,7 @@
             "name": "order_by_price",
             "in": "query",
             "type": "string",
-            "description": "asc or desc",
+            "description": "asc or desc. This is useful for getting studios that have max or min hourly rate",
             "required": false
           },
           {

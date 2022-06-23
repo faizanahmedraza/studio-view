@@ -361,16 +361,16 @@ class StudioController extends ApiBaseController
     {
         try {
             $limit = 20;
+            $offset = 0;
             if (!empty($request->page_no)) {
                 $page_no = (int)$request->page_no;
                 $offset = $page_no * $limit;
-            } else {
-                $offset = 0;
             }
+            $orderBy = empty($request->order_by) ? 'desc' : trim(strtolower($request->order_by));
             $cities = $this->studioLocationRepository->initiateQuery()
-                ->selectRaw("COUNT(city) as no_of_studios, city")
+                ->selectRaw("COUNT(city) as studios_count, city")
                 ->groupBy("city")
-                ->orderBy("no_of_studios", "desc")
+                ->orderBy("studios_count", $orderBy)
                 ->offset($offset)
                 ->limit($limit)
                 ->get();
