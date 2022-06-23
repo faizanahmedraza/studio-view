@@ -19,4 +19,8 @@ class StudioLocation extends Model implements StudioLocationInterface
     protected $guarded = [
     ];
 
+    public function studio()
+    {
+        return $this->belongsTo(Studio::class, 'studio_id', 'id');
+    }
 }

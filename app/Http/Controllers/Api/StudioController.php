@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\StudioCityListResource;
+use App\Models\StudioPrice;
 use App\Services\CloudinaryService;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
@@ -275,11 +277,7 @@ class StudioController extends ApiBaseController
         $lat = trim(explode(',', $request->location)[0]);
         $lng = trim(explode(',', $request->location)[1]);
         try {
-            $allStudios = $this->studioRepository->initiateQuery()->with(['getLocation', 'getPrice' => function($q) use($request){
-                if ($request->query("order_by_price")) {
-                    $q->orderBy('hourly_rate',trim($request->order_by_price));
-                }
-            }, 'getStudioTypes', 'paidPromotion']);
+            $allStudios = $this->studioRepository->initiateQuery()->with(['getLocation', 'getPrice', 'getStudioTypes', 'paidPromotion']);
 
             if ($request->query('premium')) {
                 if ($request->premium == "yes") {
@@ -289,42 +287,50 @@ class StudioController extends ApiBaseController
                 }
             }
 
-            $allStudios->whereHas('getLocation', function ($q) use ($request, $lat, $lng) {
-                if ($request->query('location')) {
+            if ($request->query('location')) {
+                $allStudios->whereHas('getLocation', function ($q) use ($request, $lat, $lng) {
                     $q->selectRaw('SQRT(
-                        POW(69.1 * (lat - ?), 2) +
-                        POW(69.1 * (? - lng) * COS(lat / 57.3), 2)) as distance', [$lat, $lng])
+                         POW(69.1 * (lat - ?), 2) +
+                         POW(69.1 * (? - lng) * COS(lat / 57.3), 2)) as distance', [$lat, $lng])
                         ->having('distance', '<=', 5);
-                } else {
+                });
+            } else {
+                $allStudios->whereHas('getLocation', function ($q) use ($request) {
                     if ($request->query("country")) {
                         $q->whereRaw("TRIM(LOWER(country)) = ? ", cleanQueryValue($request->country));
                     }
                     if ($request->query("state")) {
-                        $q->whereRaw("TRIM(LOWER(state)) = ? ", cleanQueryValue($request->state));
+                        $q->orWhereRaw("TRIM(LOWER(state)) = ? ", cleanQueryValue($request->state));
                     }
                     if ($request->query("city")) {
-                        $q->whereRaw("TRIM(LOWER(city)) = ? ", cleanQueryValue($request->city));
+                        $q->orWhereRaw("TRIM(LOWER(city)) = ? ", cleanQueryValue($request->city));
                     }
-                }
-            });
+                });
+            }
 
-            $allStudios->whereHas('getPrice', function ($q) use ($request) {
-                if ($request->query("from_price")) {
+            if ($request->query("from_price")) {
+                $allStudios->whereHas('getPrice', function ($q) use ($request) {
                     $q->whereRaw("TRIM(FLOOR(hourly_rate)) >= ? ", (int)($request->from_price));
-                }
-                if ($request->query("to_price")) {
-                    $q->whereRaw("TRIM(FLOOR(hourly_rate)) <= ? ", (int)($request->to_price));
-                }
-                if ($request->query("order_by_price")) {
-                    $q->orderBy('hourly_rate',trim($request->order_by_price));
-                }
-            });
+                });
+            }
 
-            $allStudios->whereHas('getStudioTypes', function ($q) use ($request) {
-                if ($request->query("category_id")) {
+            if ($request->query("to_price")) {
+                $allStudios->orWhereHas('getPrice', function ($q) use ($request) {
+                    $q->orWhereRaw("TRIM(FLOOR(hourly_rate)) <= ? ", (int)($request->to_price));
+                });
+            }
+
+            if ($request->query("order_by_price")) {
+                $allStudios->orderBy(StudioPrice::select('hourly_rate')
+                    ->whereColumn('studio_prices.studio_id', 'studios.id')
+                    , trim($request->order_by_price));
+            }
+
+            if ($request->query("category_id")) {
+                $allStudios->whereHas('getStudioTypes', function ($q) use ($request) {
                     $q->whereIn('type_id', getIds($request->category_id));
-                }
-            });
+                });
+            }
 
             if ($request->query('status')) {
                 $allStudios->where('status', (int)$request->status);
@@ -332,12 +338,10 @@ class StudioController extends ApiBaseController
                 $allStudios->where('status', 1);
             }
 
-            if (empty($request->query("order_by_price"))) {
-                if ($request->query('order_by')) {
-                    $allStudios->orderBy('id', $request->get('order_by'));
-                } else {
-                    $allStudios->orderBy('id', 'asc');
-                }
+            if ($request->query('order_by')) {
+                $allStudios->orderBy('id', $request->get('order_by'));
+            } elseif (empty($request->query("order_by_price"))) {
+                $allStudios->orderBy('id', 'asc');
             }
 
             if ($request->query('page_limit')) {
@@ -363,7 +367,13 @@ class StudioController extends ApiBaseController
             } else {
                 $offset = 0;
             }
-            $cities = $this->studioLocationRepository->initiateQuery()->select('city')->distinct()->offset($offset)->limit($limit)->get();
+            $cities = $this->studioLocationRepository->initiateQuery()
+                ->selectRaw("COUNT(city) as no_of_studios, city")
+                ->groupBy("city")
+                ->orderBy("no_of_studios", "desc")
+                ->offset($offset)
+                ->limit($limit)
+                ->get();
             $response = StudioCityListResource::collection($cities);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
