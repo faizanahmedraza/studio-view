@@ -272,7 +272,7 @@ class StudioController extends ApiBaseController
     public function studiosList(Request $request)
     {
         $request->validate([
-            'location' => 'required|string|regex:/^[0-9\.]+(,[0-9\.]+)$/'
+            'location' => 'required|string'
         ]);
         $lat = trim(explode(',', $request->location)[0]);
         $lng = trim(explode(',', $request->location)[1]);
