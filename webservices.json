@@ -1126,6 +1126,38 @@
         }
       }
     },
+    "/studio-request/{booking_id}": {
+      "post": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Cancel Studio Request",
+        "description": "Cancel Request For Studio",
+        "operationId": "CancelRequestStudio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "formData",
+            "description": "Booking Id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/my-studio-request": {
       "get": {
         "tags": [

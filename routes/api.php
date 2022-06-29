@@ -51,6 +51,7 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::get('my-studio-request', 'StudioRequestController@myStudioRequest'); //my studios that have been requested by others (list)
         Route::get('my-booking-request', 'StudioRequestController@myBookingRequest'); //my requests for other's studios (list)
         Route::put('my-studio-request-status/{studio_id}', 'StudioRequestController@myStudioRequestStatus');
+        Route::put('studio-request/{booking_id}', 'StudioRequestController@cancelStudioRequest');
 
         ###Customer Saved Apis###
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');

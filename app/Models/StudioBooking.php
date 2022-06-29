@@ -10,7 +10,7 @@ class StudioBooking extends Model implements StudioBookingInterface
 {
     use SoftDeletes;
 
-    public const STATUS= ['pending' => 0 ,'approve' => 1  ,'reject' => 2];
+    public const STATUS= ['pending' => 0 ,'approve' => 1  ,'reject' => 2,'cancel' => 3];
 
     public $table = 'studio_bookings';
     /**
