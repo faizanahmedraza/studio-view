@@ -599,6 +599,78 @@
                     }
                 }
             });
+
+            //geocoder
+            var geocoder = new google.maps.Geocoder();
+            //this event fire on map click
+            google.maps.event.addListener(map, 'click', function (event) {
+                geocoder.geocode({
+                    'latLng': event.latLng
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            $('#location').val(results[0].formatted_address);
+                            $('#address').val(results[0].formatted_address);
+                            $('#lat').val(results[0].geometry['location'].lat());
+                            $('#lng').val(results[0].geometry['location'].lng());
+                            for (var i = 0; i < results[0].address_components.length; i++) {
+                                for (var j = 0; j < results[0].address_components[i].types.length; j++) {
+                                    if (results[0].address_components[i].types[j] == "country") {
+                                        $('#country').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "locality") {
+                                        $('#city').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "administrative_area_level_1") {
+                                        $('#state').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "postal_code") {
+                                        $('#zip_code').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "street_address") {
+                                        $('#street').val(results[0].address_components[i].long_name);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            //this event fire on marker click
+            google.maps.event.addListener(marker, 'click', function (event) {
+                geocoder.geocode({
+                    'latLng': event.latLng
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        console.log(results[0])
+                        if (results[0]) {
+                            $('#location').val(results[0].formatted_address);
+                            $('#address').val(results[0].formatted_address);
+                            $('#lat').val(results[0].geometry['location'].lat());
+                            $('#lng').val(results[0].geometry['location'].lng());
+                            for (var i = 0; i < results[0].address_components.length; i++) {
+                                for (var j = 0; j < results[0].address_components[i].types.length; j++) {
+                                    if (results[0].address_components[i].types[j] == "country") {
+                                        $('#country').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "locality") {
+                                        $('#city').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "administrative_area_level_1") {
+                                        $('#state').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "postal_code") {
+                                        $('#zip_code').val(results[0].address_components[i].long_name);
+                                    }
+                                    if (results[0].address_components[i].types[j] == "street_address") {
+                                        $('#street').val(results[0].address_components[i].long_name);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
         }
 
         function showPosition(position) {
