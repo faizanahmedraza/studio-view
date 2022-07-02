@@ -1,18 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('css')
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-          type="text/css">
     <style>
-        #geocoder {
-            z-index: 1;
-            margin: 20px;
-        }
-
-        .mapboxgl-ctrl-geocoder {
-            min-width: 100%;
+        #map_canvas {
+            height: 400px;
+            max-width: 100%;
+            margin: 10px;
+            padding: 0px
         }
     </style>
 @endsection
@@ -103,13 +97,16 @@
                         <div class="form-group">
                             <label for="studio_types" class="col-md-3 control-label">Studio Types *</label>
                             <div class="col-md-7">
-                                @foreach($types as $key => $val)
-                                    <label><input class="form-control" name="studio_types[]" type="checkbox"
-                                                  data-parent="checkbox{{$key+1}}"
-                                                  value="{{$val->id}}" {{  (in_array($val->id, (array)old("studio_types")) ? "checked":"") }}>
-                                        {{$val->name}}</label>
-                                    <br>
-                                @endforeach
+                                <div class="row">
+                                    @foreach($types as $key => $val)
+                                        <div class="col-md-3">
+                                            <label><input class="form-control" name="studio_types[]" type="checkbox"
+                                                          data-parent="checkbox{{$key+1}}"
+                                                          value="{{$val->id}}" {{  (in_array($val->id, (array)old("studio_types")) ? "checked":"") }}>
+                                                {{$val->name}}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                             @if ($errors->has('studio_types'))
                                 <span class="help-block">
@@ -300,7 +297,15 @@
 
                         <h3 class="text-center">Where's your studio located?</h3>
 
-                        <div id="geocoder"></div>
+                        <div class="form-group">
+                            <label for="location" class="col-md-3 control-label">Location/City/Address*</label>
+                            <div class="col-md-7">
+                                <input type="text" name="location" id="location" class="form-control"
+                                       placeholder="Choose Location/City/Address">
+                            </div>
+                        </div>
+
+                        {{--                        <div id="map_canvas"></div>--}}
 
                         <input type="hidden" id="address" name="address" value="{{ old('address') }}"
                                class="form-control"/>
@@ -504,68 +509,51 @@
 @stop
 
 @section('footer-js')
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/admin/scripts/core/app.js') }}"></script>
+    <script type="text/javascript"
+            src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places"></script>
+
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpemFuYWhtZWRyYXphIiwiYSI6ImNsMWthdDJzazF3am8zZXJ0bDBoemd5NHoifQ.l-XO8G0aOsFypxjsXsAvVg';
-        const geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            types: 'country,region,place'
-        });
+        window.addEventListener("load", initialize);
 
-        geocoder.addTo('#geocoder');
+        function initialize() {
+            // var map = new google.maps.Map(
+            //     document.getElementById("map_canvas"), {
+            //         center: new google.maps.LatLng(37.4419, -122.1419),
+            //         zoom: 13,
+            //         mapTypeId: google.maps.MapTypeId.ROADMAP
+            //     });
+            var input = document.getElementById('location');
+            var autocomplete = new google.maps.places.Autocomplete(input);
 
-        // Add geocoder result to container.
-        geocoder.on('result', (e) => {
-            $("#address").val(e.result.place_name);
-            $("#street").val(e.result.text);
-            $("#lat").val(e.result.geometry.coordinates[0]);
-            $("#lng").val(e.result.geometry.coordinates[1]);
-            if(e.result.id.split(".")[0] == "region")
-            {
-                $("#state").val(e.result.id.split(".")[1]);
-            }
-
-            if(e.result.id.split(".")[0] == "country")
-            {
-                $("#country").val(e.result.id.split(".")[1]);
-            }
-
-            if(e.result.id.split(".")[0] == "place")
-            {
-                $("#city").val(e.result.id.split(".")[1]);
-            }
-            e.result.context.forEach(filterContext);
-        });
-
-        function filterContext(item, index)
-        {
-            if(item.id.split(".")[0] == "region")
-            {
-                $("#state").val(item.text);
-            }
-
-            if(item.id.split(".")[0] == "country")
-            {
-                $("#country").val(item.text);
-            }
-
-            if(item.id.split(".")[0] == "place")
-            {
-                $("#city").val(item.text);
-            }
-            if(item.id.split(".")[0] == "postcode")
-            {
-                $("#zip_code").val(e.result.id.split(".")[1]);
-            }
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                $('#address').val(place.formatted_address);
+                $('#lat').val(place.geometry['location'].lat());
+                $('#lng').val(place.geometry['location'].lng());
+                for (var i = 0; i < place.address_components.length; i++) {
+                    for (var j = 0; j < place.address_components[i].types.length; j++) {
+                        if (place.address_components[i].types[j] == "country") {
+                            $('#country').val(place.address_components[i].long_name);
+                        }
+                        if (place.address_components[i].types[j] == "locality") {
+                            $('#city').val(place.address_components[i].long_name);
+                        }
+                        if (place.address_components[i].types[j] == "administrative_area_level_1") {
+                            $('#state').val(place.address_components[i].long_name);
+                        }
+                        if (place.address_components[i].types[j] == "postal_code") {
+                            $('#zip_code').val(place.address_components[i].long_name);
+                        }
+                        if (place.address_components[i].types[j] == "street_address") {
+                            $('#street').val(place.address_components[i].long_name);
+                        }
+                    }
+                }
+            });
         }
-
-        // Clear results container when search is cleared.
-        geocoder.on('clear', () => {
-            results.innerText = '';
-        });
-
         jQuery(document).ready(function () {
             // initiate layout and plugins
             App.init();
