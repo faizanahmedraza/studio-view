@@ -305,7 +305,7 @@
                             </div>
                         </div>
 
-                        {{--                        <div id="map_canvas"></div>--}}
+                        <div id="map_canvas"></div>
 
                         <input type="hidden" id="address" name="address" value="{{ old('address') }}"
                                class="form-control"/>
@@ -509,27 +509,53 @@
 @stop
 
 @section('footer-js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/admin/scripts/core/app.js') }}"></script>
     <script type="text/javascript"
             src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places"></script>
 
     <script>
+        var lat = 37.09024;
+        var lng = -95.712891;
+        //get location if user browser is supported
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            console.log('Geolocation is not supported by this browser.')
+        }
+
         window.addEventListener("load", initialize);
 
         function initialize() {
-            // var map = new google.maps.Map(
-            //     document.getElementById("map_canvas"), {
-            //         center: new google.maps.LatLng(37.4419, -122.1419),
-            //         zoom: 13,
-            //         mapTypeId: google.maps.MapTypeId.ROADMAP
-            //     });
+            var myLatlng = new google.maps.LatLng(lat, lng);
+            var myOptions = {
+                zoom: 12,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            //map view
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            //add marker to current location
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map
+            });
+
             var input = document.getElementById('location');
             var autocomplete = new google.maps.places.Autocomplete(input);
-
             autocomplete.addListener('place_changed', function () {
                 var place = autocomplete.getPlace();
+
+                //set map marker to the search location
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                //set form fields that based on address or location
                 $('#address').val(place.formatted_address);
                 $('#lat').val(place.geometry['location'].lat());
                 $('#lng').val(place.geometry['location'].lng());
@@ -554,6 +580,29 @@
                 }
             });
         }
+
+        function showPosition(position) {
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log('User denied the request for Geolocation.')
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log('Location information is unavailable.')
+                    break;
+                case error.TIMEOUT:
+                    console.log('The request to get user location timed out.')
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log('An unknown error occurred.')
+                    break;
+            }
+        }
+
         jQuery(document).ready(function () {
             // initiate layout and plugins
             App.init();
