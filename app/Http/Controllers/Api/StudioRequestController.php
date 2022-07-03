@@ -93,7 +93,7 @@ class StudioRequestController extends ApiBaseController
             }
 
             if ($studio->hours_status == 3) {
-                if ($studio->hrs_from >= $requestStartTime->format('H:i') && $studio->hrs_to <= $requestEndTime->format('H:i')) {
+                if ($requestStartTime->format('H:i') >= $studio->hrs_from && $requestEndTime->format('H:i') <= $studio->hrs_to ) {
                     $studioRequest = $studioRequest->first();
                     if (!empty($studioRequest)) {
                         $studioStartHours = Carbon::parse($studio->hrs_from);
@@ -105,7 +105,6 @@ class StudioRequestController extends ApiBaseController
                             return RestAPI::response('The date ' . $requestDate . ' you selected studio, not have enough time to grant you. Please use another slot.', false, 'validation_error');
                         }
                     }
-
                 } else {
                     return RestAPI::response('The time you selected is not the time where studio opens.', false, 'validation_error');
                 }
