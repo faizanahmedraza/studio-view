@@ -27,7 +27,7 @@ class RequestStudioRequest extends Request
             'studio_id' =>'required|exists:studios,id',
             'date' =>"required|date_format:Y-m-d|after_or_equal:$date",
             'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'end_time' => 'required|date_format:H:i',
             'audio_engineer' => 'nullable|boolean',
             'mixing_services' => 'nullable|boolean',
             'other_services' => 'nullable|boolean',
