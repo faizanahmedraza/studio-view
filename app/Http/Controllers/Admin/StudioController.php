@@ -247,6 +247,8 @@ class StudioController extends Controller
     public function toggleStatus(Studio $studio)
     {
         $studio->status = $studio->status ? false : true;
+        $studio->approved_at = date('Y-m-d H:i:s');
+        $studio->save();
         if ($studio->status) {
             $notificationData['user_id'] = $studio->user_id;
             $notificationData['title'] = "Studio Approved";
@@ -254,8 +256,6 @@ class StudioController extends Controller
             $notificationData['image'] = optional($studio->getImages[0])->image_url ?? "";
             NotificationService::sendNotification($notificationData);
         }
-        $studio->approved_at = date('Y-m-d H:i:s');
-        $studio->save();
         return redirect()->back()
             ->with('success', 'Status Changed Successfully!');
     }
