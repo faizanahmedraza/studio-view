@@ -60,10 +60,13 @@ class StudioRequestController extends ApiBaseController
     public function request(RequestStudioRequest $request)
     {
         $user = $this->userRepository->find(auth()->user()->id);
+        $studio = $this->studioRepository->find($request->studio_id);
+        if ($studio->user_id == $user->id) {
+            return RestAPI::response("You cann't book your own studio.", false);
+        }
         if ($user->stripe_user_id == null || empty($user->card)) {
             return RestAPI::response('First add your card details to book a studio.', false, 'validation_error');
         }
-        $studio = $this->studioRepository->find($request->studio_id);
         $requestStartTime = Carbon::parse($request->start_time);
         $requestEndTime = Carbon::parse($request->end_time);
         $differenceInHours = $requestEndTime->diffInHours($requestStartTime);
@@ -256,6 +259,9 @@ class StudioRequestController extends ApiBaseController
             }
             if ($request->status == 1) {
                 $studioBookingsByDate = $this->studioBookingRepository->where(['studio_id' => $studioBooking->studio_id, 'date' => $studioBooking->date, 'status' => 1]);
+                if ($user->stripe_user_id == null || empty($user->card)) {
+                    return RestAPI::response('First add your card details to accept a studio request.', false, 'validation_error');
+                }
                 $check = true;
                 $filtered = $studioBookingsByDate->whereBetween('start_time', [$studioBooking->start_time, $studioBooking->end_time]);
                 $filtered = $filtered->all();

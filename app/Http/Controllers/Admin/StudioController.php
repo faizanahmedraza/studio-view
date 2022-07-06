@@ -13,6 +13,7 @@ use App\Repositories\Interfaces\StudioPriceRepositoryInterface;
 use App\Repositories\Interfaces\StudioRepositoryInterface;
 use App\Repositories\Interfaces\StudioTypeRepositoryInterface;
 use App\Services\CloudinaryService;
+use App\Services\NotificationService;
 use DB;
 use stdClass;
 use Validator;
@@ -69,6 +70,10 @@ class StudioController extends Controller
         try {
             DB::beginTransaction();
             $user = $this->userRepository->find((int)$request->customer);
+
+            if (count($user->studios) > 0) {
+                return back()->withErrors(['errors' => 'The user have already created 1 studio.'])->withInput();
+            }
 
             $data = $request->all();
 
@@ -245,6 +250,13 @@ class StudioController extends Controller
         $studio->status = $studio->status ? false : true;
         $studio->approved_at = date('Y-m-d H:i:s');
         $studio->save();
+        if ($studio->status) {
+            $notificationData['user_id'] = $studio->user_id;
+            $notificationData['title'] = "Studio Approved";
+            $notificationData['body'] = "Your studio " . $studio->name . " has been approved by the admin.";
+            $notificationData['image'] = optional($studio->getImages[0])->image_url ?? "";
+            NotificationService::sendNotification($notificationData);
+        }
         return redirect()->back()
             ->with('success', 'Status Changed Successfully!');
     }
