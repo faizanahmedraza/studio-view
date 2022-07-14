@@ -953,13 +953,6 @@
             "required": true
           },
           {
-            "name": "order_by_price",
-            "in": "query",
-            "type": "string",
-            "description": "asc or desc. This is useful for getting studios that have max or min hourly rate",
-            "required": false
-          },
-          {
             "name": "premium",
             "in": "query",
             "type": "string",
@@ -1011,6 +1004,20 @@
             "in": "query",
             "type": "integer",
             "description": "Status 1 means verified or 0 means not verified."
+          },
+          {
+            "name": "order_by_price",
+            "in": "query",
+            "type": "string",
+            "description": "asc or desc. This is useful for getting studios that have max or min hourly rate",
+            "required": false
+          },
+          {
+            "name": "order_by_bookings",
+            "in": "query",
+            "type": "string",
+            "description": "asc or desc. This is useful for getting studios that have max or min bookings",
+            "required": false
           },
           {
             "name": "order_by",

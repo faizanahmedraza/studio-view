@@ -85,6 +85,11 @@ class Studio extends Model implements StudioInterface
 
     public function paidPromotion()
     {
-        return $this->hasOne(StudioPaidPromotion::class,'studio_id','id');
+        return $this->hasOne(StudioPaidPromotion::class, 'studio_id', 'id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(StudioBooking::class,'studio_id','id');
     }
 }

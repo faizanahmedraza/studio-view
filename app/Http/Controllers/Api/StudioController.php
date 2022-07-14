@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\StudioCityListResource;
+use App\Models\StudioBooking;
 use App\Models\StudioPrice;
 use App\Services\CloudinaryService;
 use Carbon\Carbon;
@@ -322,12 +323,6 @@ class StudioController extends ApiBaseController
                 });
             }
 
-            if ($request->query("order_by_price")) {
-                $allStudios->orderBy(StudioPrice::select('hourly_rate')
-                    ->whereColumn('studio_prices.studio_id', 'studios.id')
-                    , trim($request->order_by_price));
-            }
-
             if ($request->query("category_id")) {
                 $allStudios->whereHas('getStudioTypes', function ($q) use ($request) {
                     $q->whereIn('type_id', getIds($request->category_id));
@@ -340,10 +335,18 @@ class StudioController extends ApiBaseController
                 $allStudios->where('status', 1);
             }
 
-            if ($request->query('order_by')) {
-                $allStudios->orderBy('id', $request->get('order_by'));
-            } elseif (empty($request->query("order_by_price"))) {
-                $allStudios->orderBy('id', 'asc');
+            if ($request->query("order_by_price")) {
+                $allStudios->orderBy(StudioPrice::select('hourly_rate')
+                    ->whereColumn('studio_prices.studio_id', 'studios.id')
+                    , trim($request->order_by_price));
+            } elseif ($request->query("order_by_bookings")) {
+                $allStudios->withCount('bookings')->orderBy('bookings_count', trim($request->order_by_bookings));
+            } else {
+                if ($request->query('order_by')) {
+                    $allStudios->orderBy('id', $request->get('order_by'));
+                } elseif (empty($request->query("order_by_price"))) {
+                    $allStudios->orderBy('id', 'asc');
+                }
             }
 
             if ($request->query('page_limit')) {
