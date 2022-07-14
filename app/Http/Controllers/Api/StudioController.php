@@ -344,7 +344,7 @@ class StudioController extends ApiBaseController
             } else {
                 if ($request->query('order_by')) {
                     $allStudios->orderBy('id', $request->get('order_by'));
-                } elseif (empty($request->query("order_by_price"))) {
+                } else {
                     $allStudios->orderBy('id', 'asc');
                 }
             }
