@@ -53,6 +53,9 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::put('my-studio-request-status/{studio_id}', 'StudioRequestController@myStudioRequestStatus');
         Route::put('studio-request/{booking_id}', 'StudioRequestController@cancelStudioRequest');
 
+        ###Studio Ratings###
+        Route::post('studio/ratings', 'StudioRequestController@addRatings');
+
         ###Customer Saved Apis###
         Route::get('studios/saved/list', 'CustomerFavouriteController@index');
         Route::post('studios/saved', 'CustomerFavouriteController@store');

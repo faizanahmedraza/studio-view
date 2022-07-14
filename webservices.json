@@ -826,6 +826,45 @@
         }
       }
     },
+    "/studio/ratings": {
+      "post": {
+        "tags": [
+          "Studio"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Studio",
+        "description": "Studio Ratings",
+        "operationId": "StudioRating",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "formData",
+            "description": "Studio Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ratings",
+            "in": "formData",
+            "description": "ratings from 1 to 5",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/types-list": {
       "get": {
         "tags": [
@@ -1017,6 +1056,13 @@
             "in": "query",
             "type": "string",
             "description": "asc or desc. This is useful for getting studios that have max or min bookings",
+            "required": false
+          },
+          {
+            "name": "order_by_ratings",
+            "in": "query",
+            "type": "string",
+            "description": "asc or desc. This is useful for getting studios that have max or min ratings",
             "required": false
           },
           {

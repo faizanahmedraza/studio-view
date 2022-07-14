@@ -341,6 +341,8 @@ class StudioController extends ApiBaseController
                     , trim($request->order_by_price));
             } elseif ($request->query("order_by_bookings")) {
                 $allStudios->withCount('bookings')->orderBy('bookings_count', trim($request->order_by_bookings));
+            }  elseif ($request->query("order_by_ratings")) {
+                $allStudios->orderBy(StudioBooking::selectRaw("SUM(ratings) as sum_count")->whereColumn('studio_bookings.studio_id', 'studios.id')->groupBy('studio_id'), trim($request->order_by_ratings));
             } else {
                 if ($request->query('order_by')) {
                     $allStudios->orderBy('id', $request->get('order_by'));

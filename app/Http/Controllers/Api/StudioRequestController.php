@@ -96,7 +96,7 @@ class StudioRequestController extends ApiBaseController
             }
 
             if ($studio->hours_status == 3) {
-                if ($requestStartTime->format('H:i') >= $studio->hrs_from && $requestEndTime->format('H:i') <= $studio->hrs_to ) {
+                if ($requestStartTime->format('H:i') >= $studio->hrs_from && $requestEndTime->format('H:i') <= $studio->hrs_to) {
                     $studioRequest = $studioRequest->first();
                     if (!empty($studioRequest)) {
                         $studioStartHours = Carbon::parse($studio->hrs_from);
@@ -337,5 +337,29 @@ class StudioRequestController extends ApiBaseController
         $studioRequest->status = StudioBooking::STATUS['cancel'];
         $studioRequest->save();
         return RestAPI::response(new stdClass(), true, 'Studio Request Cancelled Successfully!');
+    }
+
+    public function addRatings(Request $request)
+    {
+        $request->validate([
+            'booking_id' => 'required|numeric',
+            'ratings' => 'required|numeric|max:5|min:1'
+        ]);
+
+        $user = $this->userRepository->find(auth()->user()->id);
+        $studioRequest = $this->studioBookingRepository->initiateQuery()
+            ->where('id', $request->booking_id)
+            ->where('user_id', $user->id)
+            ->where('ratings',0)
+            ->first();
+
+        if (empty($studioRequest)) {
+            return RestAPI::response("You don't have permission to add ratings.", false, 'validation_error');
+        }
+
+        $studioRequest->ratings = (int)$request->ratings;
+        $studioRequest->save();
+
+        return RestAPI::response(new stdClass(), true, 'Thanks for ratings!');
     }
 }
