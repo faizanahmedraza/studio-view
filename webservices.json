@@ -1179,8 +1179,40 @@
         }
       }
     },
+    "/studio-request/detail/{booking_id}": {
+      "get": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Studio Request Detail",
+        "description": "Get Detail of Studio Request",
+        "operationId": "RequestStudioDetail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "formData",
+            "description": "Booking Id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/studio-request/{booking_id}": {
-      "post": {
+      "put": {
         "tags": [
           "Studio Request"
         ],

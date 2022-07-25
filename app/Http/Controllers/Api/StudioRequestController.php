@@ -362,4 +362,18 @@ class StudioRequestController extends ApiBaseController
 
         return RestAPI::response(new stdClass(), true, 'Thanks for ratings!');
     }
+
+    public function studioRequestDetail($bookingId)
+    {
+        try {
+            $studioRequest = $this->studioBookingRepository->whereById($bookingId);
+            if (empty($studioRequest)) {
+                return RestAPI::response("Invalid Booking Id Or Booking Id doesn't exist.", false);
+            }
+            $response = new StudioRequestResource($studioRequest);
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+        return RestAPI::response($response, true, 'Studios Request Detail');
+    }
 }

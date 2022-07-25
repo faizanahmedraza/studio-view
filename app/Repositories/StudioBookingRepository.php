@@ -64,4 +64,8 @@ class StudioBookingRepository implements StudioBookingRepositoryInterface
     {
         return $this->model->where($where)->get();
     }
+    public function whereById($id)
+    {
+        return $this->model->where('user_id',auth()->id())->where('id', $id)->first();
+    }
 }
