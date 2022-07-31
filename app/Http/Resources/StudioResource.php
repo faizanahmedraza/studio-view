@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use phpDocumentor\Reflection\Types\Null_;
 
 class StudioResource extends JsonResource
 {
@@ -45,6 +46,7 @@ class StudioResource extends JsonResource
             'user' => new UserResource($this->user),
             'status' => $this->status ?true :false ,
             'is_premium' => empty($this->paidPromotion) ? false : true,
+            'avg_ratings' =>  $this->avg_ratings ?? '',
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];

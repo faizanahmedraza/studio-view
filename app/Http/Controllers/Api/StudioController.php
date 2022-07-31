@@ -54,6 +54,9 @@ class StudioController extends ApiBaseController
     {
         try {
             $allStudios = $this->studioRepository->initiateQuery()->where('user_id', auth()->id())->get();
+            foreach ($allStudios as $studio) {
+                $studio['avg_ratings'] = $studio->avgRatings();
+            }
             $response = StudioResource::collection($allStudios);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
@@ -225,6 +228,7 @@ class StudioController extends ApiBaseController
     public function show(Studio $studio)
     {
         try {
+            $studio['avg_ratings'] = $studio->avgRatings();
             $response = new StudioResource($studio);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');
@@ -355,6 +359,10 @@ class StudioController extends ApiBaseController
                 $allStudios = $allStudios->paginate((int)$request->page_limit);
             } else {
                 $allStudios = $allStudios->paginate(20);
+            }
+
+            foreach ($allStudios as $studio) {
+                $studio['avg_ratings'] = $studio->avgRatings();
             }
 
             $response = StudioResource::collection($allStudios);

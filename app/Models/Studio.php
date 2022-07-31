@@ -92,4 +92,9 @@ class Studio extends Model implements StudioInterface
     {
         return $this->hasMany(StudioBooking::class,'studio_id','id');
     }
+
+    public function avgRatings()
+    {
+        return $this->bookings()->where('ratings','!=',0)->avg('ratings');
+    }
 }
