@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\LatestStudioBookingResource;
 use App\Models\StudioBooking;
 use DB;
 use DateTime;
@@ -350,7 +351,7 @@ class StudioRequestController extends ApiBaseController
         $studioRequest = $this->studioBookingRepository->initiateQuery()
             ->where('id', $request->booking_id)
             ->where('user_id', $user->id)
-            ->where('ratings',0)
+            ->where('ratings', 0)
             ->first();
 
         if (empty($studioRequest)) {
@@ -375,5 +376,27 @@ class StudioRequestController extends ApiBaseController
             return RestAPI::response($e->getMessage(), false, 'error_exception');
         }
         return RestAPI::response($response, true, 'Studios Request Detail');
+    }
+
+    public function unRatedBooking()
+    {
+        try {
+            $user = $this->userRepository->find(auth()->user()->id);
+            $studioBooking = $this->studioBookingRepository->initiateQuery()
+                ->where('user_id', $user->id)
+                ->where('ratings', 0)
+                ->latest()
+                ->first();
+
+            if (empty($studioBooking)) {
+                return RestAPI::response(new stdClass(), true, 'No unrated bookings!');
+            }
+
+            $response = new LatestStudioBookingResource($studioBooking);
+        } catch (\Exception $e) {
+            return RestAPI::response($e->getMessage(), false, 'error_exception');
+        }
+
+        return RestAPI::response($response, true, 'Success');
     }
 }

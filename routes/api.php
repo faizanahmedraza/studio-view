@@ -53,6 +53,7 @@ Route::group(['prefix' => 'v1'], static function () {
         Route::put('my-studio-request-status/{studio_id}', 'StudioRequestController@myStudioRequestStatus');
         Route::get('studio-request/detail/{booking_id}', 'StudioRequestController@studioRequestDetail');
         Route::put('studio-request/{booking_id}', 'StudioRequestController@cancelStudioRequest');
+        Route::get('studio-booking/latest','StudioRequestController@unRatedBooking');
 
         ###Studio Ratings###
         Route::post('studio/ratings', 'StudioRequestController@addRatings');
