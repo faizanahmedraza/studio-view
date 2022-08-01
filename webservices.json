@@ -846,7 +846,7 @@
           {
             "name": "booking_id",
             "in": "formData",
-            "description": "Studio Id",
+            "description": "Booking Id",
             "required": true,
             "type": "string"
           },
@@ -1236,6 +1236,30 @@
             "type": "integer"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/studio-booking/latest": {
+      "get": {
+        "tags": [
+          "Studio Request"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Latest Studio Booking",
+        "description": "Get latest unrated studio booking of user",
+        "operationId": "LatestStudioBooking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation"
