@@ -46,7 +46,7 @@ class StudioResource extends JsonResource
             'user' => new UserResource($this->user),
             'status' => $this->status ?true :false ,
             'is_premium' => empty($this->paidPromotion) ? false : true,
-            'ratings' =>  $this->avg_ratings ?? '',
+            'ratings' =>  $this->avg_ratings ?? 0,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];
