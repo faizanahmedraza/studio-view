@@ -30,6 +30,9 @@ class CustomerFavouriteController extends Controller
         try {
             $favStudioIds = $this->customerFavouriteRepository->getFavouriteStudioIds();
             $allStudios = $this->studioRepository->getFavouriteStudios($favStudioIds);
+            foreach ($allStudios as $studio) {
+                $studio['avg_ratings'] = $studio->avgRatings();
+            }
             $response = StudioListResource::collection($allStudios);
         } catch (\Exception $e) {
             return RestAPI::response($e->getMessage(), false, 'error_exception');

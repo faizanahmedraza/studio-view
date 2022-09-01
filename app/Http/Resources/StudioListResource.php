@@ -28,6 +28,7 @@ class StudioListResource extends JsonResource
             'images'=> StudioImageResource::collection($this->getImages),
             'location'=>new StudioLocationResource($this->getLocation),
             'status' => $this->status,
+            'ratings' => $this->avg_ratings ?? 0,
             'approved_at' => $this->approved_at ?? '',
             'created_at' => $this->created_at ?? '',
         ];
